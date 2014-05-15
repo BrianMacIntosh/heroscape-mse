@@ -1,0 +1,224 @@
+﻿mse version: 0.3.8
+game: heroscape
+short name: Marvel Glyph
+full name: C3G Marvel Glyph Cards
+icon: card-sample.png
+installer group: heroscape/MarvelGlyph
+position hint: 11
+
+version: 2013-3-7
+depends on: heroscape.mse-game 2013-3-7
+depends on: heroscape-glyphglyphs.mse-include 2013-3-7
+depends on: heroscape-comics.mse-include 2013-3-7
+
+card background: white
+card width: 728
+card height: 691
+card dpi: 150
+
+include file: /heroscape.mse-game/styleinclude
+
+
+init script:
+	caps := "yes"
+	defaultglyph := "Marvel"
+	
+	abilheight := {
+		if card.marvelsym != "" or set.chcg24 = "Include at bottom of text box" then 448
+		else 488
+	}
+
+
+card style:
+	
+	chcg24:
+		left:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 590
+			else if set.chcg24 = "Include at bottom of text box" then 208
+			else -1000
+			}
+		top:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 393
+			else if set.chcg24 = "Include at bottom of text box" then 610
+			else -1000
+			}
+		width: 42
+		height: 42
+		z index: 5
+		render style: image
+		popup style: in place
+		choice images:
+			jandar:	/heroscape.mse-game/chcg24/jandar.png
+			utgar:	/heroscape.mse-game/chcg24/utgar.png
+			vydar:	/heroscape.mse-game/chcg24/vydar.png
+			ullar:		/heroscape.mse-game/chcg24/ullar.png
+			einar:	/heroscape.mse-game/chcg24/einar.png
+			aquilla:	/heroscape.mse-game/chcg24/aquilla.png
+			valkrill:	/heroscape.mse-game/chcg24/valkrill.png
+
+	disclaimer:
+		left: 5
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	author text:
+		left: 650
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	card type fixed:
+		left:	0
+		top:	0
+		width:	728
+		height:	691
+		z index: -2
+		render style: image
+		popup style: in place
+		choice images:
+			image: card.jpg
+
+	glyphtype:
+		left:	359
+		top:	302
+		width:	182
+		height:	209
+		z index: 2
+		render style: image
+		popup style: in place
+		choice images:
+			Standard: /heroscape-glyphglyphs.mse-include/glyph_standard.png
+			Treasure: /heroscape-glyphglyphs.mse-include/glyph_treasure.png
+			Power: /heroscape-glyphglyphs.mse-include/glyph_power.png
+			Marvel: /heroscape-glyphglyphs.mse-include/glyph_marvel.png
+
+	image:
+		left:	347
+		top:	0
+		width:	246
+		height:	523
+		z index: 1
+		mask: imagemask.png
+
+	marvellogo:
+		left: 205
+		top: 75
+		width: 90
+		height: 36
+		z index: 2
+		render style: image
+		popup style: in place
+		choice images:
+			2000 AD:	/heroscape-comics.mse-include/theme_logo_2000_ad.png
+			Crossgen:	/heroscape-comics.mse-include/theme_logo_crossgen.png
+			Crusade:	/heroscape-comics.mse-include/theme_logo_crusade.png
+			Danger Girl:	/heroscape-comics.mse-include/theme_logo_danger_girl.png
+			Dark Horse:	/heroscape-comics.mse-include/theme_logo_dark_horse.png
+			DC:		/heroscape-comics.mse-include/theme_logo_dc.png
+			Image:		/heroscape-comics.mse-include/theme_logo_image.png
+			Marvel:		/heroscape-comics.mse-include/theme_logo_marvel.png
+			Marvel 2:	/heroscape-comics.mse-include/theme_logo_marvel_mc2.png
+			Marvel Ultimate:/heroscape-comics.mse-include/theme_logo_marvel_ultimate.png
+			Marvel Zombies:	/heroscape-comics.mse-include/theme_logo_marvel_zombies.png
+			Top Cow:	/heroscape-comics.mse-include/theme_logo_top_cow.png
+			Vertigo:	/heroscape-comics.mse-include/theme_logo_vertigo.png
+			Custom 1:	/heroscape-comics.mse-include/custom1.png
+			Custom 2:	/heroscape-comics.mse-include/custom2.png
+			Custom 3:	/heroscape-comics.mse-include/custom3.png
+
+	name:
+		left: 173
+		top: 114
+		width: 156
+		height: 26
+		alignment: middle center
+		padding bottom: 0
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 12
+			color: rgb(255,255,255)
+			shadow color: rgb(177,159,33)
+			shadow displacement x: 2
+			shadow displacement y: 2
+		line height soft: 0.8
+	
+	glyphsub:
+		left: 173
+		top: 141
+		width: 156
+		height: 20
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			size: 10
+			color: rgb(255,255,255)
+			shadow color: rgb(177,159,33)
+			shadow displacement x: 2
+			shadow displacement y: 2
+	
+	expansion type:
+		left: 44
+		top: 322
+		width: 100
+		height: 18
+		alignment: center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			size: 10
+			color: rgb(255,255,255)
+			shadow color: rgb(177,159,33)
+			shadow displacement x: 2
+			shadow displacement y: 2
+	
+	expansion:
+		left: 44
+		top: 341
+		width: 100
+		height: 40
+		alignment: center
+		z index: 1
+		line height soft: 1
+		font:
+			name: Arial Narrow
+			size: 12
+			weight: bold
+			color: white
+			shadow color: rgb(177,159,33)
+			shadow displacement x: 2
+			shadow displacement y: 2
+
+	########################################################### Ability Text
+
+	abilitiesglyph:
+		left: 163
+		top: 171
+		width: 202
+		height:
+			script: abilheight()
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 12
+			color: black
+			scale down to: 6
+		line height soft: 1.0
+		mask: textmask.png

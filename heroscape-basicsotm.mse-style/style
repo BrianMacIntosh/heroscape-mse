@@ -1,0 +1,304 @@
+﻿mse version: 0.3.8
+game: heroscape
+short name: Basic SotM
+full name: Swarm of the Marro Basic
+icon: card-sample.png
+installer group: heroscape/SotM
+position hint: 5
+
+version: 2013-3-7
+depends on: heroscape.mse-game 2013-3-7
+
+card background: white
+card width: 728
+card height: 691
+card dpi: 150
+
+styling field:
+	type: boolean
+	name: fog image
+	description: Automatically add fog effect to card image?
+	initial: yes
+
+include file: /heroscape.mse-game/styleinclude
+
+init script:
+	caps := "yes"
+
+
+card style:
+	
+	chcg24:
+		left:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 585
+			else if set.chcg24 = "Include at bottom of text box" then 208
+			else -1000
+			}
+		top:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 388
+			else if set.chcg24 = "Include at bottom of text box" then 603
+			else -1000
+			}
+		width: 42
+		height: 42
+		z index: 5
+		render style: image
+		popup style: in place
+		choice images:
+			jandar:	/heroscape.mse-game/chcg24/jandar.png
+			utgar:	/heroscape.mse-game/chcg24/utgar.png
+			vydar:	/heroscape.mse-game/chcg24/vydar.png
+			ullar:		/heroscape.mse-game/chcg24/ullar.png
+			einar:	/heroscape.mse-game/chcg24/einar.png
+			aquilla:	/heroscape.mse-game/chcg24/aquilla.png
+			valkrill:	/heroscape.mse-game/chcg24/valkrill.png
+
+	disclaimer:
+		left: 5
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	author text:
+		left: 650
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	card type:
+		left:	0
+		top:	0
+		width:	727
+		height:	691
+		z index: -2
+		render style: image
+		popup style: in place
+		choice images:
+			jandar:		cardblanks/jandar.jpg
+			ullar:		cardblanks/ullar.jpg
+			utgar:		cardblanks/utgar.jpg
+			einar:		cardblanks/einar.jpg
+			vydar:		cardblanks/vydar.jpg
+			aquilla:	cardblanks/aquilla.jpg
+			valkrill:	cardblanks/valkrill.jpg
+			custom:	cardblanks/custom.jpg
+
+	generallogo:
+		left: 210
+		top: 41
+		width: 51
+		height: 59
+		render style: image
+		popup style: in place
+		choice images:
+			blank: /heroscape.mse-game/gensymbols/hex.png
+			jandar: /heroscape.mse-game/gensymbols/jandar.png
+			utgar: /heroscape.mse-game/gensymbols/utgar.png
+			vydar: /heroscape.mse-game/gensymbols/vydar.png
+			ullar: /heroscape.mse-game/gensymbols/ullar.png
+			einar: /heroscape.mse-game/gensymbols/einar.png
+			aquilla: /heroscape.mse-game/gensymbols/aquilla.png
+			valkrill: /heroscape.mse-game/gensymbols/valkrill.png
+			custom1: /heroscape.mse-game/gensymbols/custom1.png
+			custom2: /heroscape.mse-game/gensymbols/custom2.png
+			custom3: /heroscape.mse-game/gensymbols/custom3.png
+			symbolcustom1: script: symbol_variation(symbol: set.symbol1, variation: "standard")
+			symbolcustom2: script: symbol_variation(symbol: set.symbol2, variation: "standard")
+			symbolcustom3: script: symbol_variation(symbol: set.symbol3, variation: "standard")
+
+	name:
+		left: 159
+		top : 107
+		width: 156
+		height: 35
+		alignment: middle center
+		padding bottom: 0
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 15
+			color: rgb(255,255,255)
+		line height soft: 0.9
+
+	planet:
+		left: 170
+		top: 495
+		width: 170
+		height: 20
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 12
+			color: rgb(0,0,0)
+
+	expansion:
+		left: 170
+		top: 515
+		width: 170
+		height: 20
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			size: 12
+			color: rgb(0,0,0)
+
+	collector number:
+		left: 170
+		top: 535
+		width: 170
+		height: 20
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			size: 12
+			color: rgb(0,0,0)
+
+	general:
+		left: 7.5
+		top: 7.55
+		width: 90
+		height: 16.5
+		alignment: center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 10.5
+			color: rgb(0,0,0)
+
+	basicimage:
+		left:	{if styling.fog_image = "no" then 20 else -1000}
+		top:	62
+		width:	690
+		height:	503
+		z index: -1
+		mask: imagemask.png
+
+	basicimagefogged:
+		left:	{if styling.fog_image = "yes" then 20 else -1000}
+		top:	62
+		width:	690
+		height:	503
+		z index: -1
+		mask: imagemask_fogged.png
+
+	bmove:
+		left: 500
+		top: 386
+		width: 52.2
+		height: 30
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 21
+			weight: bold
+			color: rgb(255,255,255)
+
+	brange:
+		left: 500
+		top: 434
+		width: 52.5
+		height: 30
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 21
+			weight: bold
+			color: rgb(255,255,255)
+
+	battack:
+		left: 500
+		top: 483
+		width: 52.5
+		height: 30
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 21
+			weight: bold
+			color: rgb(255,255,255)
+
+	bdefense:
+		left: 500
+		top: 531
+		width: 52.5
+		height: 30
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 21
+			weight: bold
+			color: rgb(255,255,255)
+
+	########################################################### Static Text
+
+	bmove ext:
+		left: 490
+		top: 412
+		width: 75
+		height: 15
+		alignment: middle center
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 9
+			color: rgb(255,255,255)
+
+	brange ext:
+		left: 490
+		top: 461
+		width: 75
+		height: 15
+		alignment: middle center
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 9
+			color: rgb(255,255,255)
+
+	battack ext:
+		left: 490
+		top: 510
+		width: 75
+		height: 15
+		alignment: middle center
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 9
+			color: rgb(255,255,255)
+
+	bdefense ext:
+		left: 490
+		top: 558
+		width: 75
+		height: 15
+		alignment: middle center
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 9
+			color: rgb(255,255,255)

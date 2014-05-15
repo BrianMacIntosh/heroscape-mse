@@ -1,0 +1,185 @@
+﻿mse version: 0.3.8
+game: heroscape
+short name: Glyph
+full name: Glyph Reference Cards
+icon: card-sample.png
+installer group: heroscape/Glyph
+position hint: 11
+
+version: 2013-3-7
+depends on: heroscape.mse-game 2013-3-7
+depends on: heroscape-glyphglyphs.mse-include 2013-3-7
+
+card background: white
+card width: 728
+card height: 691
+card dpi: 150
+
+include file: /heroscape.mse-game/styleinclude
+
+
+init script:
+	caps := "yes"
+	defaultglyph := "Standard"
+	
+	abilheight := {
+		if card.marvelsym != "" or set.chcg24 = "Include at bottom of text box" then 410
+		else 450
+	}
+
+
+card style:
+	
+	chcg24:
+		left:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 590
+			else if set.chcg24 = "Include at bottom of text box" then 208
+			else -1000
+			}
+		top:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 393
+			else if set.chcg24 = "Include at bottom of text box" then 610
+			else -1000
+			}
+		width: 42
+		height: 42
+		z index: 5
+		render style: image
+		popup style: in place
+		choice images:
+			jandar:	/heroscape.mse-game/chcg24/jandar.png
+			utgar:	/heroscape.mse-game/chcg24/utgar.png
+			vydar:	/heroscape.mse-game/chcg24/vydar.png
+			ullar:		/heroscape.mse-game/chcg24/ullar.png
+			einar:	/heroscape.mse-game/chcg24/einar.png
+			aquilla:	/heroscape.mse-game/chcg24/aquilla.png
+			valkrill:	/heroscape.mse-game/chcg24/valkrill.png
+
+	disclaimer:
+		left: 5
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	author text:
+		left: 650
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	card type fixed:
+		left:	0
+		top:	0
+		width:	728
+		height:	691
+		z index: -2
+		render style: image
+		popup style: in place
+		choice images:
+			image: card.jpg
+
+	glyphtype:
+		left:	374
+		top:	390
+		width:	182
+		height:	209
+		z index: 2
+		render style: image
+		popup style: in place
+		choice images:
+			Standard: /heroscape-glyphglyphs.mse-include/glyph_standard.png
+			Treasure: /heroscape-glyphglyphs.mse-include/glyph_treasure.png
+			Power: /heroscape-glyphglyphs.mse-include/glyph_power.png
+			Marvel: /heroscape-glyphglyphs.mse-include/glyph_marvel.png
+
+	image:
+		left:	339
+		top:	25
+		width:	246
+		height:	523
+		z index: 1
+		mask: imagemask.png
+
+	name:
+		left: 156
+		top: 80
+		width: 156
+		height: 35
+		alignment: middle center
+		padding bottom: 0
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 15
+			color: rgb(255,255,255)
+		line height soft: 0.8
+	
+	glyphsub:
+		left: 156
+		top: 118
+		width: 156
+		height: 20
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			size: 10
+			color: rgb(255,255,255)
+	
+	expansion type:
+		left: 36
+		top: 320
+		width: 100
+		height: 20
+		alignment: left shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			size: 10
+			color: rgb(255,255,255)
+	
+	expansion:
+		left: 36
+		top: 341
+		width: 100
+		height: 40
+		alignment: left
+		z index: 1
+		line height soft: 0.8
+		font:
+			name: Arial Narrow
+			size: 12
+			weight: bold
+			color: white
+
+	########################################################### Ability Text
+
+	abilitiesglyph:
+		left: 162
+		top: 181
+		width: 155
+		height:
+			script: abilheight()
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 12
+			color: black
+			scale down to: 6
+		line height soft: 1.0
+		mask: textmask.png

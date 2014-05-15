@@ -1,0 +1,274 @@
+mse version: 0.3.8
+game: heroscape
+short name: HB - DS
+full name: Basic Dungeon Set Styles (Hi-Res)
+icon: card-sample.png
+installer group: heroscape/HBDS
+position hint: 14
+
+version: 2010-12-26
+depends on: heroscape.mse-game 2010-12-26
+
+card background: white
+card width: 1474
+card height: 1384
+card dpi: 300
+
+styling field:
+	type: boolean
+	name: fog image
+	description: Automatically add fog effect to card image?
+	initial: yes
+
+include file: /heroscape.mse-game/styleinclude
+
+init script:
+	
+	caps := "yes"
+	
+	colorcheck := {
+		if to_lower(input) = "jandar" then rgb(70,70,70)
+		else rgb(255,255,255)
+	}
+	abilheight := {
+		if set.chcg24 = "Include at bottom of text box" then 860
+		else 916
+	}
+
+card style:
+	
+	chcg24:
+		left:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 990
+			else if set.chcg24 = "Include at bottom of text box" then 446
+			else -1000
+			}
+		top:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 1195
+			else if set.chcg24 = "Include at bottom of text box" then 1216
+			else -1000
+			}
+		width: 150
+		height: 104
+		z index: 5
+		render style: image
+		popup style: in place
+		choice images:
+			SoVjandar:		/heroscape.mse-game/chcg24/SoVjandar.png
+			SoVutgar:		/heroscape.mse-game/chcg24/SoVutgar.png
+			SoVvydar:		/heroscape.mse-game/chcg24/SoVvydar.png
+			SoVullar:		/heroscape.mse-game/chcg24/SoVullar.png
+			SoVeinar:		/heroscape.mse-game/chcg24/SoVeinar.png
+			SoVaquilla:		/heroscape.mse-game/chcg24/SoVaquilla.png
+			SoVvalkrill:	/heroscape.mse-game/chcg24/SoVvalkrill.png
+			SoV:			/heroscape.mse-game/chcg24/SoV.png
+			C3V:			/heroscape.mse-game/chcg24/C3V.png
+			C3Vjandar:		/heroscape.mse-game/chcg24/C3Vjandar.png
+			C3Vutgar:		/heroscape.mse-game/chcg24/C3Vutgar.png
+			C3Vvydar:		/heroscape.mse-game/chcg24/C3Vvydar.png
+			C3Vullar:		/heroscape.mse-game/chcg24/C3Vullar.png
+			C3Veinar:		/heroscape.mse-game/chcg24/C3Veinar.png
+			C3Vaquilla:		/heroscape.mse-game/chcg24/C3Vaquilla.png
+			C3Vvalkrill:	/heroscape.mse-game/chcg24/C3Vvalkrill.png
+
+
+	disclaimer:
+		left: 10
+		top: 980
+		width: 140
+		height: 240
+		z index: 4
+		font:
+			name: Arial Narrow
+			size: 14
+			color: rgb(0,0,0)
+
+	author text:
+		left: 1300
+		top: 980
+		width: 140
+		height: 240
+		z index: 4
+		font:
+			name: Arial Narrow
+			size: 14
+			color: rgb(0,0,0)
+
+	card type:
+		left:	0
+		top:	0
+		width:	1492
+		height:	1408
+		z index: -4
+		render style: image
+		popup style: in place
+		choice images:
+			jandar:		cardblanks/jandar.jpg
+			ullar:		cardblanks/ullar.jpg
+			utgar:		cardblanks/utgar.jpg
+			einar:		cardblanks/einar.jpg
+			vydar:		cardblanks/vydar.jpg
+			aquilla:		cardblanks/aquilla.jpg
+			valkrill:		cardblanks/valkrill.jpg
+
+	image:
+		left:	{if styling.fog_image = "no" then 52 else -2000}
+		top:	132
+		width: 	1382
+		height:	952
+		z index: 2
+		mask:	imagemask.png
+
+	imagefogged:
+		left:	{if styling.fog_image = "yes" then 52 else -2000}
+		top:	132
+		width:	1382
+		height:	952
+		z index: 2
+		mask: imagemask_fogged.png
+
+	generallogo:
+		left: 427
+		top: 87
+		width: 102
+		height: 118
+		render style: image
+		popup style: in place
+		choice images:
+			blank: /heroscape.mse-game/gensymbols/hex.png
+			jandar: /heroscape.mse-game/gensymbols/jandar.png
+			utgar: /heroscape.mse-game/gensymbols/utgar.png
+			vydar: /heroscape.mse-game/gensymbols/vydar.png
+			ullar: /heroscape.mse-game/gensymbols/ullar.png
+			einar: /heroscape.mse-game/gensymbols/einar.png
+			aquilla: /heroscape.mse-game/gensymbols/aquilla.png
+			valkrill: /heroscape.mse-game/gensymbols/valkrill.png
+			custom1: /heroscape.mse-game/gensymbols/custom1.png
+			custom2: /heroscape.mse-game/gensymbols/custom2.png
+			custom3: /heroscape.mse-game/gensymbols/custom3.png
+			symbolcustom1: script: symbol_variation(symbol: set.symbol1, variation: "standard")
+			symbolcustom2: script: symbol_variation(symbol: set.symbol2, variation: "standard")
+			symbolcustom3: script: symbol_variation(symbol: set.symbol3, variation: "standard")
+
+	name:
+		left: 318
+		top : 206
+		width: 340
+		height: 100
+		alignment: middle center shrink-overflow
+		padding bottom: 0
+		z index: 2
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 30
+			color: rgb(255,255,255)
+			scale down to: 14
+		line height soft: 0.9
+
+	planet:
+		left: 350
+		top: 1025
+		width: 300
+		height: 40
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 24
+			color: rgb(0,0,0)
+
+	expansion:
+		left: 350
+		top: 1065
+		width: 300
+		height: 40
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			size: 24
+			color: rgb(0,0,0)
+
+	collector number:
+		left: 350
+		top: 1105
+		width: 300
+		height: 40
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			size: 24
+			color: rgb(0,0,0)
+
+
+	general:
+		left: 8
+		top: 8
+		width: 90
+		height: 30
+		alignment: center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 15
+			color: rgb(0,0,0)
+
+	bmove:
+		left: 1022
+		top: 784
+		width: 106
+		height: 60
+		alignment: top center shrink-overflow
+		z index: 6
+		font:
+			name: Arial
+			size: 36
+			weight: bold
+			color: rgb(255,255,255)
+
+	brange:
+		left: 1022
+		top: 880
+		width: 106
+		height: 60
+		alignment: top center shrink-overflow
+		z index: 6
+		font:
+			name: Arial
+			size: 36
+			weight: bold
+			color: rgb(255,255,255)
+
+	battack:
+		left: 1022
+		top: 977
+		width: 106
+		height: 60
+		alignment: top center shrink-overflow
+		z index: 6
+		font:
+			name: Arial
+			size: 36
+			weight: bold
+			color: rgb(255,255,255)
+
+	bdefense:
+		left: 1022
+		top: 1074
+		width: 106
+		height: 60
+		alignment: top center shrink-overflow
+		z index: 6
+		font:
+			name: Arial
+			size: 36
+			weight: bold
+			color: rgb(255,255,255)

@@ -1,0 +1,263 @@
+﻿mse version: 0.3.8
+game: heroscape
+short name: D.O.
+full name: Destructible Objects
+icon: card-sample.png
+installer group: heroscape/DO
+position hint: 8
+
+version: 2013-3-7
+depends on: heroscape.mse-game 2013-3-7
+
+card background: white
+card width: 728
+card height: 691
+card dpi: 150
+
+
+styling field:
+	type: boolean
+	name: allow general symbol
+	description: Use general symbol on Destructible Objects?
+	initial: no
+
+styling field:
+	type: boolean
+	name: fog image
+	description: Automatically add fog effect to card image?
+	initial: yes
+
+include file: /heroscape.mse-game/styleinclude
+
+
+init script:
+	caps := "yes"
+	
+	abilheight := {
+		if card.marvelsym != "" or set.chcg24 = "Include at bottom of text box" then 410
+		else 450
+	}
+
+
+card style:
+	
+	chcg24:
+		left:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 590
+			else if set.chcg24 = "Include at bottom of text box" then 208
+			else -1000
+			}
+		top:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 398
+			else if set.chcg24 = "Include at bottom of text box" then 603
+			else -1000
+			}
+		width: 42
+		height: 42
+		z index: 5
+		render style: image
+		popup style: in place
+		choice images:
+			jandar:	/heroscape.mse-game/chcg24/jandar.png
+			utgar:	/heroscape.mse-game/chcg24/utgar.png
+			vydar:	/heroscape.mse-game/chcg24/vydar.png
+			ullar:		/heroscape.mse-game/chcg24/ullar.png
+			einar:	/heroscape.mse-game/chcg24/einar.png
+			aquilla:	/heroscape.mse-game/chcg24/aquilla.png
+			valkrill:	/heroscape.mse-game/chcg24/valkrill.png
+
+	disclaimer:
+		left: 5
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	author text:
+		left: 650
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	card type fixed:
+		left:	0
+		top:	0
+		width:	728
+		height:	691
+		z index: -2
+		render style: image
+		choice images:
+			image: card.jpg
+
+	image:
+		left:	{if styling.fog_image = "no" then 342 else -1000}
+		top:	23
+		width:	246
+		height:	523
+		z index: 1
+		mask: imagemask.png
+
+	imagefogged:
+		left:	{if styling.fog_image = "yes" then 342 else -1000}
+		top:	23
+		width:	246
+		height:	523
+		z index: 1
+		mask: imagemask_fogged.png
+
+	hitzone:
+		left:	585
+		top:	227
+		width:	128
+		height:	244
+		z index: 2
+		mask: hzmask.png
+
+	generallogo:
+		left: { if styling.allow_general_symbol = "yes"  then 210 else -500 }
+		top: 41
+		width: 51
+		height: 59
+		render style: image
+		popup style: in place
+		choice images:
+			blank: /heroscape.mse-game/gensymbols/hex.png
+			jandar: /heroscape.mse-game/gensymbols/jandar.png
+			utgar: /heroscape.mse-game/gensymbols/utgar.png
+			vydar: /heroscape.mse-game/gensymbols/vydar.png
+			ullar: /heroscape.mse-game/gensymbols/ullar.png
+			einar: /heroscape.mse-game/gensymbols/einar.png
+			aquilla: /heroscape.mse-game/gensymbols/aquilla.png
+			valkrill: /heroscape.mse-game/gensymbols/valkrill.png
+			custom1: /heroscape.mse-game/gensymbols/custom1.png
+			custom2: /heroscape.mse-game/gensymbols/custom2.png
+			custom3: /heroscape.mse-game/gensymbols/custom3.png
+			symbolcustom1: script: symbol_variation(symbol: set.symbol1, variation: "standard")
+			symbolcustom2: script: symbol_variation(symbol: set.symbol2, variation: "standard")
+			symbolcustom3: script: symbol_variation(symbol: set.symbol3, variation: "standard")
+
+	name:
+		left: 159
+		top : { if styling.allow_general_symbol = "yes"  then 107 else 80 }
+		width: 156
+		height: 35
+		alignment: middle center
+		padding bottom: 0
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 15
+			color: rgb(255,255,255)
+		line height soft: 0.9
+
+	########################################################### Ability Text
+
+	abilities:
+		left: 162
+		top: 181
+		width: 155
+		height:
+			script: abilheight()
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 12
+			color: black
+			scale down to: 6
+		line height soft: 1.0
+		mask: textmask.png
+
+	########################################################## Largemaster
+
+	life:
+		left: 448
+		top: 400
+		width: 39
+		height: 27
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 20
+			weight: bold
+			color: rgb(255,255,255)
+
+	defense:
+		left: 498
+		top: 473
+		width: 53
+		height: 30
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 18
+			weight: bold
+			color: rgb(255,255,255)
+
+	########################################################### Static Text
+
+	defense ext:
+		left: 488
+		top: 497
+		width: 76
+		height: 15
+		alignment: middle center
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 9
+			color: rgb(255,255,255)
+	
+	defense st:
+		left: 390
+		top: 467
+		width: 100
+		height: 50
+		alignment: middle left
+		z index: 2
+		font:
+			name: Arial
+			size: 17
+			weight: bold
+			color: rgb(255,255,255)
+	
+	life ext:
+		left: 443
+		top: 425
+		width: 50
+		height: 27
+		alignment: middle center
+		z index: 2
+		font:
+			name: Arial
+			size: 9
+			weight: bold
+			color: rgb(255,255,255)
+
+	general static:
+		left: { if styling.allow_general_symbol = "yes" then 192 else 159 }
+		top: { if styling.allow_general_symbol = "yes" then 147 else 125 }
+		width: { if styling.allow_general_symbol = "yes" then 91 else 156 }
+		height: 17
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 10
+			color: rgb(255,255,255)

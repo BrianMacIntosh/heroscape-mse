@@ -1,0 +1,179 @@
+﻿mse version: 0.3.8
+game: heroscape
+short name: Marvel D.O.
+full name: Marvel Destructibles
+icon: card-sample.png
+installer group: heroscape/MarvelDO
+position hint: 9
+
+version: 2013-3-7
+depends on: heroscape.mse-game 2013-3-7
+depends on: heroscape-comics.mse-include 2013-3-7
+
+card background: white
+card width: 728
+card height: 691
+card dpi: 150
+
+
+styling field:
+	type: boolean
+	name: allow general symbol
+	description: Use general symbol on Destructible Objects?
+	initial: yes
+
+styling field:
+	type: boolean
+	name: fog image
+	description: Automatically add fog effect to card image?
+	initial: no
+
+include file: /heroscape.mse-game/styleinclude
+
+
+init script:
+	caps := "yes"
+
+
+card style:
+	
+	disclaimer:
+		left: 5
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	author text:
+		left: 650
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	card type fixed:
+		left:	0
+		top:	0
+		width:	728
+		height:	691
+		z index: -2
+		render style: image
+		choice images:
+			image: card.jpg
+
+	image:
+		left:	{if styling.fog_image = "no" then 346 else -1000}
+		top:	-57
+		width:	246
+		height:	523
+		z index: 1
+		mask: imagemask.png
+
+	imagefogged:
+		left:	{if styling.fog_image = "yes" then 346 else -1000}
+		top:	-57
+		width:	246
+		height:	523
+		z index: 1
+		mask: imagemask_fogged.png
+
+	hitzone:
+		left:	587
+		top:	223
+		width:	128
+		height:	244
+		z index: 2
+		mask: hzmask.png
+
+	marvellogo:
+		left: { if styling.allow_general_symbol = "yes"  then 200 else -500 }
+		top: 75
+		width: 90
+		height: 36
+		z index: 2
+		render style: image
+		popup style: in place
+		choice images:
+			2000 AD:	/heroscape-comics.mse-include/theme_logo_2000_ad.png
+			Crossgen:	/heroscape-comics.mse-include/theme_logo_crossgen.png
+			Crusade:	/heroscape-comics.mse-include/theme_logo_crusade.png
+			Danger Girl:	/heroscape-comics.mse-include/theme_logo_danger_girl.png
+			Dark Horse:	/heroscape-comics.mse-include/theme_logo_dark_horse.png
+			DC:		/heroscape-comics.mse-include/theme_logo_dc.png
+			Image:		/heroscape-comics.mse-include/theme_logo_image.png
+			Marvel:		/heroscape-comics.mse-include/theme_logo_marvel.png
+			Marvel 2:	/heroscape-comics.mse-include/theme_logo_marvel_mc2.png
+			Marvel Ultimate:/heroscape-comics.mse-include/theme_logo_marvel_ultimate.png
+			Marvel Zombies:	/heroscape-comics.mse-include/theme_logo_marvel_zombies.png
+			Top Cow:	/heroscape-comics.mse-include/theme_logo_top_cow.png
+			Vertigo:	/heroscape-comics.mse-include/theme_logo_vertigo.png
+			Custom 1:	/heroscape-comics.mse-include/custom1.png
+			Custom 2:	/heroscape-comics.mse-include/custom2.png
+			Custom 3:	/heroscape-comics.mse-include/custom3.png
+
+	name:
+		left: 171
+		top : { if styling.allow_general_symbol = "yes"  then 120 else 100 }
+		width: 156
+		height: 35
+		alignment: middle center
+		padding bottom: 0
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 15
+			color: rgb(255,255,255)
+		line height soft: 0.9
+
+	########################################################### Ability Text
+
+	abilities:
+		left: 157
+		top: 200
+		width: 184
+		height: 441
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 12
+			color: black
+			scale down to: 6
+		line height soft: 1.0
+		mask: textmask.png
+
+	########################################################## Largemaster
+
+	life:
+		left: 443
+		top: 354
+		width: 39
+		height: 27
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 20
+			weight: bold
+			color: rgb(255,255,255)
+
+	defense:
+		left: 528
+		top: 485
+		width: 33
+		height: 30
+		alignment: middle center
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 23
+			weight: bold
+			color: rgb(255,255,255)

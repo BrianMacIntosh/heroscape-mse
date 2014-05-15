@@ -1,0 +1,24 @@
+mse version: 0.3.8
+version: 2008-07-29
+short name: normal
+installer group: heroscape/Marvel Symbols
+position hint: 001
+icon: superstrength.png
+
+image font size: 135
+horizontal space: 0
+symbol:
+	code: F
+	image: flight.png
+symbol:
+	code: N
+	image: superstrength.png
+symbol:
+	code: S
+	image: superstrength.png
+
+##############################################################
+# Insert-symbol menu
+insert symbol menu:
+	item: F
+	item: S

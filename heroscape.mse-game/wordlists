@@ -1,0 +1,228 @@
+#Version 12/26/10
+
+word list:
+	name: species
+	word:
+		name: A - H
+		word: arachnid
+		word: cyclops
+		word: demons
+		word: doggin
+		word: dragon
+		word: dragonborn
+		word: drow
+		word: dwarf
+		word: dwarves
+		word: dzu-Teh
+		word: elemental
+		word: elementars
+		word: eladrin
+		word: elf
+		word: fiantooth
+		word: firbolg
+		word: giant
+		word: goblins
+		word: golem
+		word: goliath
+		word: gryphillin
+		word: half-elf
+		word: hobgoblin
+		word: human
+		word: hybrid
+		word: hydra
+	
+	word:
+		name: I-Z
+		word: insect
+		word: kyrie
+		word: lizardfolk
+		word: lycanthrope
+		word: marro
+		word: mind flayer
+		word: moltarn
+		word: nagrubs
+		word: ogre
+		word: orc
+		word: primadon
+		word: quasatch
+		word: sahuagin
+		word: soulborg
+		word: troll
+		word: trolticor
+		word: undead
+		word: viper
+		word: warforged
+		word: wolf
+		word: wulsinu
+		word: wyvern
+
+
+word list:
+	name: exptype
+	word: Master Set
+	word: Expansion Set
+
+word list:
+	name: type
+	word: unique hero
+	word: unique squad
+	word: common hero
+	word: common squad
+	word: uncommon hero
+
+word list:
+	name: class
+	word:
+		name: A - F
+		word: agent
+		word: agents
+		word: alphallon
+		word: arachnomancer
+		word: archer
+		word: archers
+		word: archmage
+		word: ashigaru
+		word: battle mage
+		word: beast
+		word: brute
+		word: brutes
+		word: champion
+		word: cleric
+		word: construct
+		word: cutters
+		word: daimyo
+		word: darklord
+		word: death knights
+		word: deathreavers
+		word: deathstalkers
+		word: deathwalker
+		word: devourer
+		word: devourers
+		word: dividers
+		word: drones
+		word: duchess
+		word: emperor
+		word: fighter
+		word: fighters
+		word: frostrager
+	
+	word:
+		name: G - P
+		word: gladiator
+		word: guard
+		word: guards
+		word: hewer
+		word: hive
+		word: hivelord
+		word: hunter
+		word: hunters
+		word: juggernaut
+		word: king
+		word: knights
+		word: lady
+		word: lawman
+		word: leader
+		word: lord
+		word: major
+		word: marauder
+		word: minions
+		word: monk
+		word: monks
+		word: mount
+		word: ninja
+		word: overlord
+		word: paladin
+		word: predator
+		word: prince
+		word: protector
+		word: protectors
+		word: psychic
+		word: pulverizer
+	
+	word:
+		name: Q - W
+		word: queen
+		word: raider
+		word: repulsors
+		word: rogue
+		word: samurai
+		word: savages
+		word: scout
+		word: scouts
+		word: sentinels
+		word: shadow assassin
+		word: sniper
+		word: snipers
+		word: soldier
+		word: soldiers
+		word: sorceror
+		word: stingers
+		word: tribesman
+		word: warden
+		word: warhulk
+		word: warlord
+		word: warmongers
+		word: warrior
+		word: warriors
+		word: warwitch
+		word: wizard
+		word: wyrmling
+		word: young
+
+word list:
+	name: personality
+	word: bold
+	word: confident
+	word: dauntless
+	word: devout
+	word: disciplined
+	word: fearless
+	word: fearsome
+	word: ferocious
+	word: inspiring
+	word: loyal
+	word: menacing
+	word: merciful
+	word: militaristic
+	word: mindless
+	word: precise
+	word: rebellious
+	word: reckless
+	word: relentless
+	word: resolute
+	word: skittish
+	word: stoic
+	word: terrifying
+	word: tormented
+	word: tormenting
+	word: tricky
+	word: valiant
+	word: wild
+
+word list:
+	name: sizes
+	word: Small
+	word: Medium
+	word: Large
+	word: Huge
+
+word list:
+	name: generals
+	word: jandar
+	word: utgar
+	word: vydar
+	word: ullar
+	word: einar
+	word: aquilla
+	word: valkrill
+
+word list:
+	name: planets
+	word: Alpha Prime
+	word: Earth
+	word: Feylund
+	word: Grut
+	word: Icaria
+	word: Isadora
+	word: Marr
+	word: Valhalla

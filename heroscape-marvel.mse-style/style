@@ -1,0 +1,519 @@
+﻿mse version: 0.3.8
+game: heroscape
+short name: Marvel
+full name: Marvel Styles
+icon: card-sample.png
+installer group: heroscape/Marvel
+position hint: 7
+
+version: 2013-3-7
+depends on: heroscape.mse-game 2013-3-7
+depends on: heroscape-marvelsymbols.mse-symbol-font 2008-07-29
+depends on: heroscape-comics.mse-include 2013-3-7
+
+card background: white
+card width: 728
+card height: 691
+card dpi: 150
+
+styling field:
+	type: boolean
+	name: fog image
+	description: Show fog effect on image?
+	initial: no
+
+init script:
+	
+	caps := "yes"
+	
+	colorcheck := {
+		if      to_lower(input) = "white" then rgb(70,70,70)
+		else if to_lower(input) = "pink"  then rgb(70,70,70)
+		else if to_lower(input) = "light gray"  then rgb(70,70,70)
+		else if to_lower(input) = "lavender"  then rgb(70,70,70)
+		else rgb(255,255,255)
+	}
+	colorcheck2 := {
+		if      to_lower(input) = "light gray" then rgb(70,70,70)
+		else if to_lower(input) = "bright yellow" then rgb(70,70,70)
+		else rgb(255,255,255)
+	}
+	abilheight := {
+		if (card.marvelsym != "" and set.show_marvel_sym = "Include") then 436
+		else 477
+	}
+
+include file: /heroscape.mse-game/styleinclude
+
+
+card style:
+	
+	disclaimer:
+		left: 5
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	author text:
+		left: 650
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	name:
+		left: 155
+		top : 110
+		width: 196
+		height: {if card_style.general.content_height=0 then 38 else 28}
+		alignment: middle center shrink-overflow
+		padding bottom: 0
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 17
+			color:
+				script: colorcheck2(card.card_back_marvel)
+			scale down to: 10
+		line height soft: 0.9
+
+	marvellogo:
+		left: 200
+		top: 72
+		width: 90
+		height: 36
+		z index: 2
+		render style: image
+		popup style: in place
+		choice images:
+			2000 AD:	/heroscape-comics.mse-include/theme_logo_2000_ad.png
+			Crossgen:	/heroscape-comics.mse-include/theme_logo_crossgen.png
+			Crusade:	/heroscape-comics.mse-include/theme_logo_crusade.png
+			Danger Girl:	/heroscape-comics.mse-include/theme_logo_danger_girl.png
+			Dark Horse:	/heroscape-comics.mse-include/theme_logo_dark_horse.png
+			DC:		/heroscape-comics.mse-include/theme_logo_dc.png
+			Image:		/heroscape-comics.mse-include/theme_logo_image.png
+			Marvel:		/heroscape-comics.mse-include/theme_logo_marvel.png
+			Marvel 2:	/heroscape-comics.mse-include/theme_logo_marvel_mc2.png
+			Marvel Ultimate:/heroscape-comics.mse-include/theme_logo_marvel_ultimate.png
+			Marvel Zombies:	/heroscape-comics.mse-include/theme_logo_marvel_zombies.png
+			Top Cow:	/heroscape-comics.mse-include/theme_logo_top_cow.png
+			Vertigo:	/heroscape-comics.mse-include/theme_logo_vertigo.png
+			Custom 1:	/heroscape-comics.mse-include/custom1.png
+			Custom 2:	/heroscape-comics.mse-include/custom2.png
+			Custom 3:	/heroscape-comics.mse-include/custom3.png
+
+	###LARGEMASTER
+
+	general:
+		left: 200
+		top: 141
+		width: 91
+		height: 17
+		alignment: middle center shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 10
+			color:
+				script: colorcheck2(card.card_back_marvel)
+
+	species:
+		left: 57
+		top : 291
+		width: 81
+		height: 15
+		alignment: middle right shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 11
+			weight: bold
+			color:
+				script: colorcheck2(card.card_back_marvel)
+			separator color: rgb(128,128,128)
+
+	type:
+		left: 25
+		top: 317
+		width: 113
+		height: 15
+		alignment: middle right shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 11
+			weight: bold
+			color:
+				script: colorcheck2(card.card_back_marvel)
+			separator color: rgb(128,128,128)
+
+	class:
+		left: 25
+		top: 343
+		width: 113
+		height: 15
+		alignment: middle right shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 11
+			weight: bold
+			color:
+				script: colorcheck2(card.card_back_marvel)
+			separator color: rgb(128,128,128)
+
+	personality:
+		left: 25
+		top: 370
+		width: 113
+		height: 14
+		alignment: middle right shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 11
+			weight: bold
+			color:
+				script: colorcheck2(card.card_back_marvel)
+			separator color: rgb(128,128,128)
+
+	size:
+		left: 54
+		top: 393
+		width: {85 - card_style.marvel_size_number.content_width}
+		height: 14
+		alignment: right shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 12
+			weight: bold
+			color:
+				script: colorcheck2(card.card_back_marvel)
+			separator color: rgb(128,128,128)
+	
+	marvel size number:
+		left: 100
+		top: 388
+		width: 40
+		height: 40
+		alignment: top right shrink-overflow
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 30
+			weight: bold
+			color:
+				script: colorcheck2(card.card_back_marvel)
+
+	life:
+		left: 439
+		top: 364
+		width: 39
+		height: 27
+		alignment: middle center
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 27
+			weight: bold
+			color: rgb(255,255,255)
+	
+	life ext:
+		left: 437
+		top: 390
+		width: 44
+		height: 27
+		alignment: middle center
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 18
+			weight: bold
+			color: rgb(255,255,255)
+
+	move:
+		left: 528
+		top: 433
+		width: 33
+		height: 30
+		alignment: middle center
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 23
+			weight: bold
+			color: rgb(255,255,255)
+
+	range:
+		left: 528
+		top: 474
+		width: 33
+		height: 30
+		alignment: middle center
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 23
+			weight: bold
+			color: rgb(255,255,255)
+
+	attack:
+		left: 528
+		top: 512
+		width: 33
+		height: 30
+		alignment: middle center
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 23
+			weight: bold
+			color: rgb(255,255,255)
+
+	defense:
+		left: 528
+		top: 551
+		width: 33
+		height: 30
+		alignment: middle center
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 23
+			weight: bold
+			color: rgb(255,255,255)
+
+	points:
+		left: 445
+		top: 597
+		width: 68
+		height: 27
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 24
+			weight: bold
+			color:
+				script: colorcheck( card.card_type )
+
+	marvelsym:
+		left:
+			{
+			if set.show_marvel_sym = "Include" then 190
+			else -1000
+			}
+		top: 608
+		width: 76
+		height: 35
+		z index: 3
+		alignment: middle center
+		symbol font:
+			name: heroscape-marvelsymbols
+			size: 60
+			alignment: middle center
+	
+	card border marvel:
+		left:	0
+		top:	0
+		width:	728
+		height:	691
+		z index: -2
+		render style: image
+		popup style: in place
+		choice images:
+			white:		cardblanks/border_0000_Layer-20.png
+			yellow:		cardblanks/border_0001_Layer-19.png
+			dark green:		cardblanks/border_0002_Layer-18.png
+			brown:	cardblanks/border_0003_Layer-17.png
+			tan:			cardblanks/border_0004_Layer-16.png
+			salmon:		cardblanks/border_0005_Layer-15.png
+			red:			cardblanks/border_0006_Layer-14.png
+			purple:		cardblanks/border_0007_Layer-13.png
+			orange:		cardblanks/border_0008_Layer-12.png
+			olive:			cardblanks/border_0009_Layer-11.png
+			maroon:		cardblanks/border_0010_Layer-10.png
+			lavender:		cardblanks/border_0011_Layer-9.png
+			green:		cardblanks/border_0012_Layer-8.png
+			gray:			cardblanks/border_0013_Layer-7.png
+			gold:			cardblanks/border_0014_Layer-6.png
+			dark red:		cardblanks/border_0015_Layer-5.png
+			dark blue:		cardblanks/border_0016_Layer-4.png
+			bright green:	cardblanks/border_0017_Layer-3.png
+			blue:			cardblanks/border_0018_Layer-2.png
+			black:		cardblanks/border_0019_Layer-1.png
+	
+	card back marvel:
+		left: 20
+		top: 26
+		width: 358
+		height: 433
+		z index: -3
+		render style: image
+		popup style: in place
+		choice images:
+			yellow:			cardblanks/back__0000_Layer-30.png
+			turquoise:		cardblanks/back__0001_Layer-29.png
+			tan:			cardblanks/back__0002_Layer-28.png
+			salmon:			cardblanks/back__0003_Layer-27.png
+			rust:			cardblanks/back__0004_Layer-26.png
+			reddish brown:	cardblanks/back__0005_Layer-25.png
+			red:			cardblanks/back__0006_Layer-24.png
+			purple:			cardblanks/back__0007_Layer-23.png
+			pink:			cardblanks/back__0008_Layer-22.png
+			pastel green:	cardblanks/back__0009_Layer-21.png
+			pastel blue:	cardblanks/back__0010_Layer-20.png
+			orange:			cardblanks/back__0011_Layer-19.png
+			olive:			cardblanks/back__0012_Layer-18.png
+			maroon:			cardblanks/back__0013_Layer-17.png
+			lt red brown:	cardblanks/back__0014_Layer-16.png
+			light gray:		cardblanks/back__0015_Layer-15.png
+			lavender:		cardblanks/back__0016_Layer-14.png
+			green:			cardblanks/back__0017_Layer-13.png
+			gray:			cardblanks/back__0018_Layer-12.png
+			faded red:		cardblanks/back__0019_Layer-11.png
+			dark turquoise:	cardblanks/back__0020_Layer-10.png
+			dark red:		cardblanks/back__0021_Layer-9.png
+			dark orange:	cardblanks/back__0022_Layer-8.png
+			dark green:		cardblanks/back__0023_Layer-7.png
+			dark blue:		cardblanks/back__0024_Layer-6.png
+			brown:			cardblanks/back__0025_Layer-5.png
+			bright yellow:	cardblanks/back__0026_Layer-4.png
+			bright green:	cardblanks/back__0027_Layer-3.png
+			blue:			cardblanks/back__0028_Layer-2.png
+			black:			cardblanks/back__0029_Layer-1.png
+	
+	card back marvel choose:
+		left: 3
+		top: 3
+		width: 70
+		height: 20
+		z index: 2
+		render style: text
+		popup style: in place
+		font:
+			name: Arial
+			size: 8
+			color: black
+
+	image:
+		left:	347
+		top:	-54
+		width:	246
+		height:	523
+		z index: 1
+		mask: imagemask.png
+
+	marvelfog:
+		left: 367
+		top: {if styling.fog_image="yes" then 234 else -200}
+		width: 206
+		height: 152
+		z index: 2
+		mask: fogmask.png
+
+	hitzone:
+		left:	585
+		top:	228
+		width:	128
+		height:	244
+		z index: 2
+		mask: hzmask.png
+
+	########################################################### Static Text
+
+	move st:
+		left: 403
+		top: 433
+		width: 50
+		height: 30
+		alignment: middle left
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 23
+			weight: bold
+			color: rgb(255,255,255)
+
+	range st:
+		left: 403
+		top: 472
+		width: 50
+		height: 30
+		alignment: middle left
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 23
+			weight: bold
+			color: rgb(255,255,255)
+
+	attack st:
+		left: 403
+		top: 511
+		width: 50
+		height: 30
+		alignment: middle left
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 23
+			weight: bold
+			color: rgb(255,255,255)
+
+	defense st:
+		left: 403
+		top: 550
+		width: 50
+		height: 30
+		alignment: middle left
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 23
+			weight: bold
+			color: rgb(255,255,255)
+	
+	points ext:
+		left: 445
+		top: 635
+		width: 68
+		height: 10
+		alignment: middle center
+		z index: 3
+		font:
+			name: Arial
+			size: 10
+			weight: bold
+			color:
+				script: colorcheck(card.card_border_marvel)
+
+	########################################################### Ability Text
+
+	abilities:
+		left: 162
+		top: 181
+		width: 189
+		height:
+			script: abilheight()
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 12
+			color: black
+			scale down to: 6
+		line height soft: 0.96
+		mask: textmask.png

@@ -1,0 +1,1030 @@
+﻿mse version: 0.3.8
+full name: Heroscape
+short name: HS
+icon: card-sample.png
+installer group: heroscape
+
+version: 2013-3-7
+
+#By bmaczero
+
+include file: wordlists
+include file: keywords
+
+init script:
+	defaultglyph := "Standard"
+	
+	card_type := {
+		cardgen := to_lower(remove_tags(input))
+		if      cardgen = "jandar" then "jandar"
+		else if cardgen = "utgar" then "utgar"
+		else if cardgen = "ullar" then "ullar"
+		else if cardgen = "vydar" then "vydar"
+		else if cardgen = "einar" then "einar"
+		else if cardgen = "aquilla" then "aquilla"
+		else if cardgen = "valkrill" then "valkrill"
+		else "utgar"
+	}
+	
+	logo_type := {
+		cardgen := to_lower(remove_tags(input))
+		if      cardgen = "jandar" then "jandar"
+		else if cardgen = "utgar" then "utgar"
+		else if cardgen = "ullar" then "ullar"
+		else if cardgen = "vydar" then "vydar"
+		else if cardgen = "einar" then "einar"
+		else if cardgen = "aquilla" then "aquilla"
+		else if cardgen = "valkrill" then "valkrill"
+		else "blank"
+	}
+	
+	### Colors associated with each general (used in trading cards)
+	card_color := {
+		cardgen := to_lower(remove_tags(input))
+		if      cardgen = "jandar" then rgb(23,69,189)
+		else if cardgen = "utgar" then rgb(216,1,0)
+		else if cardgen = "ullar" then rgb(1,137,1)
+		else if cardgen = "vydar" then rgb(100,100,100)
+		else if cardgen = "einar" then rgb(74,33,111)
+		else if cardgen = "aquilla" then rgb(222,144,33)
+		else if cardgen = "valkrill" then rgb(155,122,50)
+		else rgb(200,200,200)
+	}
+	
+	### Word lists
+	type_over_type := replace@(match:" ?[-:]$", replace:"")
+	
+	wordlist := {
+		if caps = "no" then upper := 0
+		input := remove_tag(tag: "<word-list-")
+		input := type_over_type()
+		tag := "word-list-{uselist}"
+		if upper=1 then "<{tag}>{to_upper(input)}</{tag}>"
+		else "<{tag}>{to_title(input)}</{tag}>"
+	}
+	
+	### Script to fill statistics
+	IsPlural := {
+		if units == 0 and input != 1 then "SPACES"
+		else if units == 0 and input = 1 then "SPACE"
+		else if units == 1 and input != 1 then "DICE"
+		else if units == 1 and input = 1 then "DIE"
+		else if units == 2 and input !=1 then "POINTS"
+		else if units == 2 and input = 1 then "POINT"
+	}
+	
+	### Filter allows only numbers
+	num_filter := 
+		tag_remove_rule(tag: "<sym-auto>") +
+		tag_remove_rule(tag: "<i-auto>")   +
+		tag_remove_rule(tag: "<b-auto>")   +
+		filter_rule(match: "[0-9]")
+	
+	### Filter for Marvel Symbols field
+	marvelsym := 
+		tag_remove_rule(tag: "<sym>") +
+		to_upper +
+		replace_rule(match: "<sym>", replace: to_lower) +
+		replace_rule(match: "</sym>", replace: to_lower) +
+		filter_rule(match: "F|N|S") +
+		replace_rule(
+			match: "F|N|S"
+			replace: "<sym>&</sym>" )
+	
+	### Remove tags
+	remove_tags_spc :=
+		tag_remove_rule(tag: "<b-auto>")   +
+		tag_remove_rule(tag: "<error-spelling>") +
+		tag_remove_rule(tag: "<nospellcheck>") #+
+		#tag_contents@(tag: "<atom-param-", contents: {""}) +
+		#tag_remove_rule(tag: "<atom-param-")
+	
+	### Set keyword parameter tags to lowercase - uppercase tags won't work
+	lowertags :=
+		replace@(match: "<ATOM-KWPPH>NUMBER</ATOM-KWPPH>", replace: to_lower) +
+		replace@(match: "<ATOM-KWPPH>STRING</ATOM-KWPPH>", replace: to_lower)
+	
+	shldsize := {
+		if caps="no" then "<size:"+input+">"
+		else ""
+	}
+	
+	shldendsize := {
+		if caps="no" then "</size>"
+		else ""
+	}
+	
+	########### keyword scripts
+	
+	### Set something to only display if the card is a squad
+	sqvalue := {
+		if      filter_text( match: "squad", to_text(to_lower(card.type_bkgrnd)) ) = "squad" then input
+		else heroinput
+	}@(heroinput: "")
+	
+	### Set something to only display if the card is uncommon
+	uncvalue := {
+		if filter_text( match: "squad", to_text(to_lower(card.type_bkgrnd)) ) = "squad" then otherinput
+		else if filter_text( match: "uncommon", to_text(to_lower(card.type_bkgrnd)) ) = "uncommon" then input
+		else otherinput
+	}@(otherinput:"")
+	
+	uncTHIS := {
+		uncvalue("this ")
+	}
+	uncTHISC := {
+		uncvalue("This ")
+	}
+	sqA :={
+		sqvalue("a ")
+	}
+	sqAC :={
+		sqvalue("A ")
+	}
+	sqTHE :={
+		sqvalue("the ")
+	}
+	sqTHEC :={
+		sqvalue("The ")
+	}
+	
+	### Pronouns for keyword texts
+	HIM := {
+		if filter_text( match: "squad", to_text(to_lower(card.type_bkgrnd)) ) = "squad" and input = "plural" then "them"
+		else if styling.pronoun = "Male"   then "him"
+		else if styling.pronoun = "Female" then "her"
+		else if styling.pronoun = "It"     then "it"
+	}@("")
+	HE := {
+		if filter_text( match: "squad", to_text(to_lower(card.type_bkgrnd)) ) = "squad" and input = "plural" then "they"
+		else if styling.pronoun = "Male"   then "he"
+		else if styling.pronoun = "Female" then "she"
+		else if styling.pronoun = "It"     then "it"
+	}@("")
+	HIS := {
+		if filter_text( match: "squad", to_text(to_lower(card.type_bkgrnd)) ) = "squad" and input = "plural" then "their"
+		else if styling.pronoun = "Male"   then "his"
+		else if styling.pronoun = "Female" then "her"
+		else if styling.pronoun = "It"     then "its"
+	}@("")
+
+
+
+set field:
+	type: info
+	name: Set Information
+set field:
+	type: text
+	name: title
+	identifying: true
+set field:
+	type: text
+	name: author text
+	description: Appears on the cards.
+set field:
+	type: text
+	name: description
+	multi line: true
+set field:
+	type: boolean
+	name: automatic abilities
+	description: Automatically fill ability texts using keyword database?
+set field:
+	type: boolean
+	name: glyph reminder
+	description: Automatically add reminder text to glyph reference cards?
+set field:
+	type: choice
+	name: chcg24
+	description: Include the CHCG24 logo?
+	choice: Do not include
+	choice: Include in hitzone box
+	choice: Include at bottom of text box
+	initial: Do not include
+set field:
+	type: choice
+	name: show_marvel_sym
+	description: Include the Marvel Symbols box?
+	choice: Do not include
+	choice: Include
+	initial: Include
+set field:
+	type: symbol
+	name: symbol1
+	description: A custom general symbol - a hex to start with can be loaded from "data/heroscape.mse-game/gensymbols".
+set field:
+	type: symbol
+	name: symbol2
+	description: A custom general symbol - a hex to start with can be loaded from "data/heroscape.mse-game/gensymbols".
+set field:
+	type: symbol
+	name: symbol3
+	description: A custom general symbol - a hex to start with can be loaded from "data/heroscape.mse-game/gensymbols".
+
+default set style:
+	title:
+		padding left: 2
+		font:
+			size: 16
+	symbol1:
+		max aspect ratio: 2.5
+		variation:
+			name: standard
+			border radius: 0.0
+			fill type: solid
+			fill color:   rgb(255,255,255)
+	symbol2:
+		max aspect ratio: 2.5
+		variation:
+			name: standard
+			border radius: 0.0
+			fill type: solid
+			fill color:   rgb(255,255,255)
+	symbol3:
+		max aspect ratio: 2.5
+		variation:
+			name: standard
+			border radius: 0.0
+			fill type: solid
+			fill color:   rgb(255,255,255)
+
+
+### Fields used in keyword text generation
+card field:
+	type: text
+	name: key name
+	editable: false
+	show statistics: false
+	script: if card.name = "" then "this unit" else if caps = "yes" then to_title(to_lower(card.name)) else to_title(to_lower(card.shld_name))
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: key name sing
+	editable: false
+	show statistics: false
+	script: if styling.singular_override != "" then styling.singular_override else sqvalue(english_singular(card.key_name), heroinput: card.key_name)
+	card list allow: false
+	save value: false
+
+
+
+card field:
+	type: text
+	name: disclaimer
+	editable: false
+	show statistics: false
+	multi line: true
+	save value: false
+	script: ("Not endorsed by or associated with Hasbro or its affiliates.\n\nHEROSCAPE and all related characters are trademarks of Hasbro. ©2006 Hasbro. All Rights Reserved.")
+	card list allow: false
+
+card field:
+	type: text
+	name: author text
+	editable: false
+	show statistics: false
+	save value: false
+	card list allow: false
+	script: (set.author_text)
+	multi line: true
+
+card field:
+	type: choice
+	name: card type
+	choice: jandar
+	choice: utgar
+	choice: ullar
+	choice: einar
+	choice: vydar
+	choice: aquilla
+	choice: valkrill
+	choice: custom
+	default: card_type( card.general )
+	show statistics: false
+
+card field:
+	type: choice
+	name: shld_backimage
+	editable: false
+	choice: jandar
+	choice: utgar
+	choice: ullar
+	choice: einar
+	choice: vydar
+	choice: aquilla
+	choice: valkrill
+	default: card_type( card.general )
+	show statistics: false
+
+card field:
+	type: color
+	name: shld_nameback
+	choice:
+		name: Jandar
+		color: rgb(23,69,189)
+	choice:
+		name: Utgar
+		color: rgb(216,1,0)
+	choice:
+		name: Ullar
+		color: rgb(1,137,1)
+	choice:
+		name: Einar
+		color: rgb(74,33,111)
+	choice:
+		name: Vydar
+		color: rgb(100,100,100)
+	choice:
+		name: Aquilla
+		color: rgb(222,144,33)
+	choice:
+		name: Valkrill
+		color: rgb(155,122,50)
+	default: card_color( card.general )
+	card list allow: false
+	show statistics: false
+
+card field:
+	type: color
+	name: shld_genback
+	choice:
+		name: Jandar
+		color: rgb(23,69,189)
+	choice:
+		name: Utgar
+		color: rgb(216,1,0)
+	choice:
+		name: Ullar
+		color: rgb(1,137,1)
+	choice:
+		name: Einar
+		color: rgb(74,33,111)
+	choice:
+		name: Vydar
+		color: rgb(100,100,100)
+	choice:
+		name: Aquilla
+		color: rgb(222,144,33)
+	choice:
+		name: Valkrill
+		color: rgb(155,122,50)
+	default: card_color( card.general )
+	card list allow: false
+	show statistics: false
+
+card field:
+	type: choice
+	name: card type tk1
+	choice: jandar
+	choice: utgar
+	choice: ullar
+	choice: einar
+	choice: vydar
+	choice: aquilla
+	choice: valkrill
+	choice: army
+	choice: army-desert
+	choice: army-jungle
+	choice: army-urban
+	choice: bone
+	choice: chaos
+	choice: dark
+	choice: fun house
+	choice: silver
+	choice: silver-black
+	choice: gold
+	choice: gold-black
+	choice: jungle
+	choice: light
+	choice: necromancy
+	choice: orc
+	choice: stone
+	choice: alien
+	choice: ufo
+	choice: ufo 2
+	choice: water
+	default: card_type( card.general )
+	show statistics: false
+
+card field:
+	type: choice
+	name: card border marvel
+	choice: yellow
+	choice: white
+	choice: tan
+	choice: salmon
+	choice: red
+	choice: purple
+	choice: orange
+	choice: olive
+	choice: maroon
+	choice: lavender
+	choice: green
+	choice: gray
+	choice: gold
+	choice: dark red
+	choice: dark green
+	choice: dark blue
+	choice: brown
+	choice: bright green
+	choice: blue
+	choice: black
+	show statistics: false
+
+card field:
+	type: choice
+	name: card back marvel
+	choice: yellow
+	choice: turquoise
+	choice: tan
+	choice: salmon
+	choice: rust
+	choice: reddish brown
+	choice: red
+	choice: purple
+	choice: pink
+	choice: pastel green
+	choice: pastel blue
+	choice: orange
+	choice: olive
+	choice: maroon
+	choice: lt red brown
+	choice: light gray
+	choice: lavender
+	choice: green
+	choice: gray
+	choice: faded red
+	choice: dark turquoise
+	choice: dark red
+	choice: dark orange
+	choice: dark green
+	choice: dark blue
+	choice: brown
+	choice: bright yellow
+	choice: bright green
+	choice: blue
+	choice: black
+	default: card.card_back_marvel_choose
+	editable: false
+	show statistics: false
+
+card field:
+	type: choice
+	name: card back marvel choose
+	choice: yellow
+	choice: turquoise
+	choice: tan
+	choice: salmon
+	choice: rust
+	choice: reddish brown
+	choice: red
+	choice: purple
+	choice: pink
+	choice: pastel green
+	choice: pastel blue
+	choice: orange
+	choice: olive
+	choice: maroon
+	choice: lt red brown
+	choice: light gray
+	choice: lavender
+	choice: green
+	choice: gray
+	choice: faded red
+	choice: dark turquoise
+	choice: dark red
+	choice: dark orange
+	choice: dark green
+	choice: dark blue
+	choice: brown
+	choice: bright yellow
+	choice: bright green
+	choice: blue
+	choice: black
+	default: card.card_back_marvel_choose
+	show statistics: false
+
+card field:
+	type: choice
+	name: card type fixed
+	show statistics: false
+	card list allow: false
+	editable: false
+	save value: false
+	choice: image
+
+card field:
+	type: choice
+	name: glyphtype
+	choice: Standard
+	choice: Treasure
+	choice: Power
+	choice: Marvel
+	default: defaultglyph
+
+card field:
+	type: color
+	name: glyphcolor
+	card list allow: false
+	show statistics: false
+
+card field:
+	type: choice
+	name: shld_staticback
+	show statistics: false
+	card list allow: false
+	editable: false
+	choice: back
+
+card field:
+	type: text
+	name: name
+	identifying: true
+	description: The name of the card.
+	show statistics: false
+	script: to_upper(value)
+	multi line: true
+	card list visible: true
+	card list column: 1
+	card list width: 100
+
+card field:
+	type: text
+	name: shld_name
+	description: The name of the card.
+	show statistics: false
+	multi line: false
+	card list visible: true
+	card list column: 1
+	card list width: 100
+
+card field:
+	type: text
+	name: shld_title
+	description: The card's title, E.G. "The Black Dragon"
+	show statistics: false
+
+card field:
+	type: text
+	name: planet
+	script: wordlist(uselist: "planets" , upper: 0 , value)
+	description: The planet the unit comes from.
+
+card field:
+	type: text
+	name: collector number
+	show statistics: false
+	description: The figure(s) collector number(s).
+
+card field:
+	type: text
+	name: general
+	description: The general the unit belongs to.
+	script: wordlist(uselist: "generals" , upper: 1 , value)
+	card list visible: true
+	card list column: 2
+	card list width: 100
+
+card field:
+	type: text
+	name: glyphsub
+	description: Short word or phrase describing the glyph.
+
+card field:
+	type: text
+	name: expansion type
+	script: wordlist(uselist: "exptype" , upper: 0 , value)
+	description: EXPANSION SET or MASTER SET in most cases.
+
+card field:
+	type: text
+	name: expansion
+	description: The name of the expansion the card is from.  Ex: "MALLIDON'S PROPECY"
+	#script: if caps = "yes" then to_upper(value) else value
+	multi line: true
+
+card field:
+	type: text
+	name: general static
+	save value: false
+	editable: false
+	script: ("DESTRUCTIBLE OBJECT")
+	card list allow: false
+	show statistics: false
+
+card field:
+	type: choice
+	name: generallogo
+	show statistics: false
+	choice: blank
+	choice: jandar
+	choice: utgar
+	choice: ullar
+	choice: vydar
+	choice: einar
+	choice: aquilla
+	choice: valkrill
+	choice: custom1
+	choice: custom2
+	choice: custom3
+	choice: symbolcustom1
+	choice: symbolcustom2
+	choice: symbolcustom3
+	default: logo_type( card.general )
+	card list allow: false
+	description: The logo of the general the card belongs to.
+
+card field:
+	type: choice
+	name: chcg24
+	choice: jandar
+	choice: utgar
+	choice: ullar
+	choice: einar
+	choice: vydar
+	choice: aquilla
+	choice: valkrill
+	default: card_type( card.general )
+	show statistics: false
+
+card field:
+	type: choice
+	name: marvellogo
+	choice: 2000 AD
+	choice: Crossgen
+	choice: Crusade
+	choice: Danger Girl
+	choice: Dark Horse
+	choice: DC
+	choice: Image
+	choice: Marvel
+	choice: Marvel 2
+	choice: Marvel Ultimate
+	choice: Marvel Zombies
+	choice: Top Cow
+	choice: Vertigo
+	choice: Custom 1
+	choice: Custom 2
+	choice: Custom 3
+	default: "Marvel"
+	description: The logo of the comic company the hero or villain belongs to.
+
+card field:
+	type: image
+	name: image
+	show statistics: false
+	description: The card's picture.
+	card list allow: false
+
+card field:
+	type: image
+	name: imagefogged
+	show statistics: false
+	description: The card's picture.
+	card list allow: false
+
+card field:
+	type: image
+	name: basicimage
+	show statistics: false
+	description: The card's picture.
+	card list allow: false
+
+card field:
+	type: image
+	name: basicimagefogged
+	show statistics: false
+	description: The card's picture.
+	card list allow: false
+
+card field:
+	type: image
+	name: glylabelimage
+	show statistics: false
+	description: The glyphs's icon image.
+	card list allow: false
+
+card field:
+	type: color
+	name: marvelfog
+	card list allow: false
+	show statistics: false
+
+card field:
+	type: image
+	name: hitzone
+	show statistics: false
+	description: The unit's hit zone image (green dot for line-of-sight origin, red for hittable area, grey for non-hittable area).
+	card list allow: false
+
+card field:
+	type: text
+	name: species bkgrnd
+	script: wordlist(uselist: "species" , upper: 1 , value)
+	editable: false
+	show statistics: false
+	card list allow: false
+
+card field:
+	type: text
+	name: species
+	description: The species of the unit.
+	save value: false
+	script: combined_editor(field1: card.species_bkgrnd)
+	card list visible: true
+	card list column: 3
+	card list width: 100
+
+card field:
+	type: text
+	name: type bkgrnd
+	script: wordlist(uselist: "type" , upper: 1 , value)
+	editable: false
+	show statistics: false
+	card list allow: false
+
+card field:
+	type: text
+	name: type
+	description: The type of the unit.
+	save value: false
+	script: combined_editor(field1: card.type_bkgrnd)
+	card list visible: true
+	card list column: 4
+	card list width: 100
+
+card field:
+	type: text
+	name: class bkgrnd
+	script: wordlist(uselist: "class" , upper: 1 , value)
+	editable: false
+	show statistics: false
+	card list allow: false
+
+card field:
+	type: text
+	name: class
+	description: The class of the unit.
+	save value: false
+	script: combined_editor(field1: card.class_bkgrnd)
+	card list visible: true
+	card list column: 5
+	card list width: 100
+
+card field:
+	type: text
+	name: personality bkgrnd
+	script: wordlist(uselist: "personality" , upper: 1 , value)
+	editable: false
+	show statistics: false
+
+card field:
+	type: text
+	name: personality
+	card list visible: true
+	card list column: 6
+	card list width: 100
+	description: The personality of the unit.
+	save value: false
+	script: combined_editor(field1: card.personality_bkgrnd)
+
+card field:
+	type: text
+	name: size
+	description: The unit's size rating (e.g. Medium).
+	script: if caps = "yes" then wordlist(uselist: "sizes" , upper: 1 , value) else wordlist(uselist: "sizes" , upper: 0 , value)
+
+card field:
+	type: text
+	name: marvel size number
+	description: The unit's numeric size (height in tiles).
+	script: num_filter(value)
+
+card field:
+	type: text
+	name: life
+	description: The unit's life value.
+
+card field:
+	type: text
+	name: move
+	description: The unit's movement value.
+
+card field:
+	type: text
+	name: range
+	description: The unit's range value.
+
+card field:
+	type: text
+	name: attack
+	description: The unit's attack value.
+
+card field:
+	type: text
+	name: defense
+	description: The unit's defense value.
+
+
+card field:
+	type: text
+	name: bmove
+	description: The unit's basic-game movement value.
+
+card field:
+	type: text
+	name: brange
+	description: The unit's basic-game range value.
+
+card field:
+	type: text
+	name: battack
+	description: The unit's basic-game attack value.
+
+card field:
+	type: text
+	name: bdefense
+	description: The unit's basic-game defense value.
+
+
+card field:
+	type: text
+	name: points
+	description: The unit's point cost.
+
+####################################################################### Ability Text
+
+card field:
+	type: text
+	name: abilities
+	description: The card's ability text.
+	show statistics: false
+	card list allow: false
+	multi line: true
+	script: 
+		expand_keywords(
+			default_expand: {true}
+			condition: {set.automatic_abilities}
+			combine: {
+				"<b-auto><nospellcheck>" + shldsize("19") + lowertags(to_upper(keyword)) + shldendsize() + "</nospellcheck></b-auto>" +
+				if expand then "<atom-reminder-{mode}>" + shldsize("13") + "\n" + reminder + shldendsize() + "</atom-reminder-{mode}>"
+			}
+			remove_tags_spc(value)
+		)
+
+card field:
+	type: text
+	name: glyphreminder
+	editable: false
+	show statistics: false
+	card list allow: false
+	save value: false
+	multi line: true
+	script: "<i-auto>Keep this card handy as a reference for the {if card.name = "" then "glyph" else to_title(card.name)}'s power.</i-auto>"
+
+card field:
+	type: text
+	name: abilitiesglyph
+	description: The card's ability text.
+	show statistics: false
+	card list allow: false
+	save value: false
+	multi line: true
+	script:
+		if set.glyph_reminder then combined_editor(field1: card.abilities, separator: "\n<line>\n</line>", field2: card.glyphreminder)
+		else combined_editor(field1: card.abilities)
+
+card field:
+	type: text
+	name: marvelsym
+	description: Flight and SuperStrength symbols here.
+	script: marvelsym(value)
+
+####################################################################### Static Text
+
+card field:
+	type: text
+	name: move st
+	editable: false
+	script: ("MOVE")
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: range st
+	editable: false
+	script: ("RANGE")
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: attack st
+	editable: false
+	script: ("ATTACK")
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: defense st
+	editable: false
+	script: ("DEFENSE")
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: move ext
+	editable: false
+	script: IsPlural(units: 0 , card.move)
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: range ext
+	editable: false
+	script: IsPlural(units: 0 , card.range)
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: attack ext
+	editable: false
+	script: IsPlural(units: 1 , card.attack)
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: defense ext
+	editable: false
+	script: IsPlural(units: 1 , card.defense)
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: bmove ext
+	editable: false
+	script: IsPlural(units: 0 , card.bmove)
+	show statistics: false
+	card list allow: false
+
+card field:
+	type: text
+	name: brange ext
+	editable: false
+	script: IsPlural(units: 0 , card.brange)
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: battack ext
+	editable: false
+	script: IsPlural(units: 1 , card.battack)
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: bdefense ext
+	editable: false
+	script: IsPlural(units: 1 , card.bdefense)
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: life ext
+	editable: false
+	script: ("LIFE")
+	show statistics: false
+	card list allow: false
+	save value: false
+
+card field:
+	type: text
+	name: points ext
+	editable: false
+	script: IsPlural(units: 2 , card.points)
+	show statistics: false
+	card list allow: false
+	save value: false

@@ -1,0 +1,1997 @@
+#Version 10/23/10
+#Current to Wave D3
+
+has keywords: true
+
+depends on: heroscape.mse-game 2010-2-27
+
+keyword mode:
+	name: official
+	description: Abilities from official Heroscape cards.
+
+keyword mode:
+	name: custom
+	description: Abilities added by the user.
+
+keyword parameter type:
+	name: number
+	match: [0-9]+
+	#script: {"<atom-param-number>"+input+"</atom-param-number>"}
+
+keyword parameter type:
+	name: string
+	match: .+
+	#reminder script: to_title(value)
+
+
+keyword:
+	keyword: A Coward's Reward
+	match: A COWARD'S REWARD
+	mode: official
+	reminder: {uncTHISC()}{card.key_name} {sqvalue("roll", heroinput: "rolls")} one additional die against figures leaving an engagement with {HIM("plural")}.
+
+keyword:
+	keyword: Acid Spray Special Attack
+	match: ACID SPRAY SPECIAL ATTACK
+	mode: official
+	reminder: Range 4. Attack 4. Choose a figure to attack. You may also choose up to 2 other figures adjacent to the targetted figure to be affected by Acid Spray Special Attack. Roll attack dice once for all affected figures. Each figure rolls defense dice seperately.
+
+keyword:
+	keyword: Adjacent Toughness
+	match: ADJACENT TOUGHNESS <atom-param>number</atom-param>
+	mode: official
+	reminder: When rolling defense dice for {uncTHIS()}{sqA()}{card.key_name_sing}, if {sqTHE()}{card.key_name_sing} is adjacent to at least one figure you control who follows Einar, add {english_number(param1)} automatic {if param1.value == "1" then "shield" else "shields"} to the defense roll.
+
+keyword:
+	keyword: Air Mastery
+	match: AIR MASTERY
+	mode: official
+	reminder: Figures that have the Flying or Stealth Flying power subtract 1 from their defense dice when attacked by {uncTHIS()}{sqA()}{card.key_name_sing}.
+
+keyword:
+	keyword: Amphibious
+	match: AMPHIBIOUS
+	mode: official
+	reminder: While {uncvalue("a ")}{sqA()}{card.key_name_sing} is on a water space, add 2 to {HIS()} Defense. If {uncvalue("a ")}{sqA()}{card.key_name_sing} starts {HIS()} turn on a water space, add 1 to {HIS()} movement for that turn.  {uncvalue("A ")}{sqAC()}{card.key_name_sing} does not have to stop its movement when entering a water space.
+
+keyword:
+	keyword: Arcane Bolt Special Attack
+	match: ARCANE BOLT SPECIAL ATTACK
+	mode: official
+	reminder: Range 5 + Special. Attack 3. The first target of Arcane Bolt Special Attack must be within a Range of 5. After attacking with Arcane Bolt Special Attack, if the defending figure recieves at least 1 wound, you may choose a figure that was adjacent to the defending figure at the beginning of that attack and attack that chosen figure with Arcane Bolt Special Attack. You may continue attacking with Arcane Bolt Special Attack in this manner until you fail to inflict a wound. A figure cannot be attacked more than once in a turn with Arcane Bolt Special Attack.
+
+keyword:
+	keyword: Arcane Riposte
+	match: ARCANE RIPOSTE
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} rolls defense dice against a normal attack, all excess shields count as unblockable hits on the attacking figure.
+
+keyword:
+	keyword: Archer's Glory
+	match: ARCHER'S GLORY
+	mode: official
+	reminder: Each time {uncTHIS()}{sqA()}{card.key_name_sing} destroys an opponent's non-adjacent Unique Hero, you make take another turn with {uncTHIS()}{sqvalue("that ")}{card.key_name_sing}.
+
+keyword:
+	keyword: Army Defense Bonus
+	match: <atom-param>string</atom-param> ARMY DEFENSE BONUS
+	mode: official
+	reminder: If every Army Card you control has a {to_lower(param1)} personality, {uncTHIS()}{card.key_name} {sqvalue("recieve", heroinput: "recieves")} 1 additional defense die.
+
+keyword:
+	keyword: Arrow Volley Special Attack
+	match: ARROW VOLLEY SPECIAL ATTACK
+	mode: official
+	reminder: Range 6. Attack 6. Three unengaged adjacent {card.key_name} on the same level may combine their attacks and roll their attack dice as one attack. All {card.key_name} in the Arrow Volley must have a clear line of sight on the one target.
+
+keyword:
+	keyword: Attack Aura
+	match: ATTACK AURA
+	mode: official
+	reminder: All figures you control within 4 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} get +1 to attack. {uncTHISC()}{sqTHEC()}{card.key_name}'s Attack Aura does not affect {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Attack Enhancement
+	match: <atom-param>string</atom-param> ATTACK ENHANCEMENT
+	mode: official
+	reminder: All friendly {english_plural(to_lower(param1))} adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} receive an additional attack die.
+
+keyword:
+	keyword: Attack Spirit Aura
+	match: ATTACK SPIRIT AURA <atom-param>number</atom-param>
+	mode: official
+	reminder: All friendly figures adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} with a Range of 1 add {param1} {if param1.value == "1" then "die" else "dice"} to their normal attack.
+
+keyword:
+	keyword: Attack The Wild
+	match: ATTACK THE WILD <atom-param>number</atom-param>
+	mode: official
+	reminder: When attacking a figure who has a wild personality, {uncTHIS()}{card.key_name} {sqvalue("roll", heroinput: "rolls")} {param1} additional attack {if param1.value == "1" then "die" else "dice"}.
+
+keyword:
+	keyword: Autoload Special Attack
+	match: AUTOLOAD SPECIAL ATTACK
+	mode: official
+	reminder: Range 7. Attack 3. When attacking with Autoload Special Attack, you may roll Vydar Valkyrie dice. If you roll at least one Vydar symbol, you may attack again using Autoload Special Attack.
+
+keyword:
+	keyword: Barge Into Battle
+	match: BARGE INTO BATTLE
+	mode: official
+	reminder: After moving and before attacking, if {sqA()}{uncTHIS()}{card.key_name_sing} you control ends {HIS()} movement unengaged, you may choose an engaged small or medium friendly Squad figure within 3 clear sight spaces of {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} whose base is no more than 2 levels higher or lower than the base of {sqvalue("that ")}{uncTHIS()}{card.key_name_sing}. You may switch {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} with the chosen Squad figure. Figures moved by Barge into Battle never take any leaving engagement attacks.
+
+keyword:
+	keyword: Battle Frenzy
+	match: BATTLE FRENZY
+	mode: official
+	reminder: After attacking with {sqTHE()}{uncTHIS()}{card.key_name}, roll the 20-sided die. If you roll a 16 or higher, you may attack again with {sqvalue("each ")}{uncTHIS()}{card.key_name_sing}.
+
+keyword:
+	keyword: Battle Fury
+	match: BATTLE FURY
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is engaged, add 1 to {HIS()} attack dice and 2 to {HIS()} defense dice.
+
+keyword:
+	keyword: Battleaxe
+	match: BATTLEAXE
+	mode: official
+	reminder: If {sqA()}{uncTHIS()}{card.key_name_sing} is attacking a small or medium figure, add 2 to {HIS()} attack.
+
+keyword:
+	keyword: Bayonet Attack
+	match: BAYONET ATTACK <atom-param>number</atom-param>
+	mode: official
+	reminder: When rolling attack dice against an adjacent figure, {uncTHIS()}{card.key_name} {sqvalue("add", heroinput: "adds")} {param1} to {HIS("plural")} attack dice. {uncTHISC()}{sqAC()}{card.key_name_sing} can only use Bayonet Attack if {HE()} moved at least one space this turn.
+
+keyword:
+	keyword: Berserker Charge
+	match: BERSERKER CHARGE
+	mode: official
+	reminder: After moving and before attacking, roll the 20-sided die. If you roll a 15 or higher, you may move {uncTHIS()}{sqvalue("all ")}{card.key_name} again.
+
+keyword:
+	keyword: Berserker Charge Enhancement
+	match: BERSERKER CHARGE ENHANCEMENT
+	mode: official
+	reminder: Add 1 to your die roll when you roll for the Beserker Charge power on any Army Card.
+
+keyword:
+	keyword: Blend Into Shadow
+	match: BLEND INTO SHADOW
+	mode: official
+	reminder: {uncTHISC()}{sqTHEC()}{card.key_name_sing} {sqvalue("start ", heroinput: "starts ")}each game with up to 2 shadow tiles on {HIS("plural")} Army Card. If {sqA()}{uncTHIS()}{card.key_name_sing} ends {HIS()} turn on an empty land space, you may place a shadow tile from {HIS()} Army Card onto the space {HE()} occupies if the shadow tile fits normally onto that space.
+
+keyword:
+	keyword: Blind Rage Special Attack
+	match: BLIND RAGE SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 3. If {uncTHIS()}{sqA()}{card.key_name_sing} rolls at least 2 skulls with {HIS()} Blind Rage Special Attack, {uncTHIS()}{sqvalue("that ")}{card.key_name_sing} may attack again with {HIS()} Blind Rage Special Attack. {uncTHISC()}{sqTHEC()}{card.key_name_sing} may continue attacking with {HIS()} Blind Rage Special Attack until {HE()} rolls fewer than 2 skulls.
+
+keyword:
+	keyword: Blood Frenzy
+	match: BLOOD FRENZY
+	mode: official
+	reminder: When attacking with {uncTHIS()}{sqA()}{card.key_name_sing}, {HE()} recieves 1 extra attack die for each wound marker on the defending figure's Army Card, to a maximum of 3 additional attack dice for Blood Frenzy.
+
+keyword:
+	keyword: Blood Hungry Special Attack
+	match: BLOOD HUNGRY SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 4. If {uncTHIS()}{sqA()}{card.key_name_sing}'s Blood Hungry Special Attack destroys a figure, {HE()} may attack again with {HIS()} Blood Hungry Special Attack. {uncTHISC()}{sqTHEC()}{card.key_name_sing} may continue attacking with {HIS()} Blood Hungry Special Attack until {HE()} does not destroy a figure.
+
+keyword:*
+	keyword: Bloodlust
+	match: BLOODLUST
+	mode: official
+	reminder: For every opponent's figure {uncTHIS()}{sqA()}{card.key_name_sing} destroys, place a purple Experience Marker on this card. When attacking with {uncTHIS()}{sqA()}{card.key_name_sing}, roll one additional attack die for each Experience Marker on this card. A maximum of 3 Experience Markers can be placed on this card.
+
+keyword:
+	keyword: Bonding
+	match: <atom-param>string</atom-param> BONDING
+	mode: official
+	reminder: Before taking a turn with {uncTHIS()}{card.key_name}, you can take a turn with any {to_lower(param1)} you control.
+
+keyword:
+	keyword: Burning Breath Special Attack
+	match: BURNING BREATH SPECIAL ATTACK
+	mode: official
+	reminder: Range 4 + Special. Attack 4. Choose a figure to attack. You may also choose 4 spaces in a straight line from the targeted figure. All figures on those spaces that are within line of sight of {sqvalue("the attacking ")}{uncTHIS()}{card.key_name_sing} are affected by Burning Breath Special Attack. Roll attack dice once for all affected figures. Each figure rolls defense dice seperately. {uncTHISC()}{card.key_name} {sqvalue("are", heroinput: "is")} not affected by Burning Breath Special Attack.
+
+keyword:
+	keyword: Carry
+	match: CARRY
+	mode: official
+	reminder: Before moving {uncTHIS()}{sqA()}{card.key_name_sing}, choose an unengaged friendly Small or Medium figure adjacent to {HIM()}. After you move {uncTHIS()}{sqTHE()}{card.key_name_sing}, place the chosen figure adjacent to {uncTHIS()}{sqTHE()}{card.key_name_sing}.
+
+keyword:
+	keyword: Cell Divide
+	match: CELL DIVIDE
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing}{sqvalue(" you control")} recieves one or more wounds from a Normal or Special Attack by an opponent's figure, you may roll the 20-sided die before removing that figure. If you roll 17 or higher, ignore any wounds that figure just recieved and, if possible, place one of your previously destroyed {card.key_name} on a same-level space adjacent to {uncTHIS()}{sqvalue("the defending ")}{card.key_name_sing}.
+
+keyword:
+	keyword: Chain Grab
+	match: CHAIN GRAB
+	mode: official
+	reminder: After moving and before attacking with {uncTHIS()}{sqA()}{card.key_name_sing}, you may choose one opponent's small or medium figure within 3 clear sight spaces whose base is no more than 6 levels above {uncTHIS()}{sqTHE()}(card.key_name_sing}'s height and no more than 6 levels below {uncTHIS()}{sqTHE()}{card.key_name_sing}'s base. Roll the 20-sided die. If you roll a 9 or higher, place the chosen figure on an empty same-level space adjacent to {uncTHIS()}{sqTHE()}{card.key_name_sing}. If the chosen figure is engaged when it is moved by Chain Grab, it will not take any leaving engagement attacks.
+
+keyword:
+	keyword: Chalice Of Fortitude
+	match: CHALICE OF FORTITUDE
+	mode: official
+	reminder: If {uncTHIS()}{card.key_name} has 4 or more wounds on {HIS("plural")} Army Card, add 1 to {HIS("plural")} defense dice.
+
+keyword:
+	keyword: Charging Assault
+	match: CHARGING ASSAULT
+	mode: official
+	reminder: {sqvalue("Any or all of the ")}{uncTHIS()}{card.key_name} may add 3 to {HIS("plural")} Move number as long as {HE("plural")} {sqvalue("are", heroinput: "is")} unengaged prior to moving. {uncTHISC()}{sqTHEC()}{card.key_name_sing} must be able to move adjacent to an opponent's figure in order to use Charging Assault.
+
+keyword:*
+	keyword: Chilling Touch
+	match: CHILLING TOUCH
+	mode: official
+	reminder: After moving and before attacking, {uncTHIS()}{sqvalue("one or more of the ")}{card.key_name} may attempt a Chilling Touch. To do this, choose a figure adjacent to {uncTHIS()}{sqTHE()}{card.key_name_sing} and roll the 20-sided die. If you roll 1-12, nothing happens. If you roll 13-15, the chosen figure receives 1 wound. If you roll 16-17, the chosen figure receives 2 wounds. If you roll 18-19, the chosen figure receives 3 wounds. If you roll a 20 or higher, the chosen figure receives 6 wounds. Chilling Touch does not effect Soulborgs or destructible objects.
+
+keyword:
+	keyword: Chomp
+	match: CHOMP
+	mode: official
+	reminder: Before attacking, choose one medium or small figure adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}. If the chosen figure is a Squad figure, destroy it. If the chosen figure is a Hero figure, roll the 20-sided die. If you roll a 16 or higher, destroy the chosen Hero.
+
+keyword:
+	keyword: Circuitry Overload
+	match: CIRCUITRY OVERLOAD
+	mode: official
+	reminder: After moving and before attacking, you must roll the 20-sided die once for each Soulborg figure adjacent to {uncTHIS()}{sqvalue("any ")}{card.key_name}{sqvalue(" you control")}. If the figure is a Squad figure and you roll a 13 or higher, destroy that figure. If the figure is a Hero figure and you roll a 16 or higher, that figure recieves a wound. {uncTHISC()}{card.key_name} {sqvalue("are", heroinput: "is")} not affected by Circuitry Overload.
+
+keyword:
+	keyword: Cleave
+	match: CLEAVE
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} attacks an adjacent figure, you may choose one Squad figure that is also adjacent to {sqTHE()}{card.key_name_sing}. If the defending figure recieves any wounds from {sqTHE()}{card.key_name_sing}'s attack, the chosen figure recieves 1 wound.
+
+keyword:
+	keyword: Climb X2
+	match: CLIMB X2
+	mode: official
+	reminder: When moving up or down levels of terrain, {uncTHIS()}{card.key_name} may double {HIS("plural")} height.
+
+keyword:
+	keyword: Climb X3
+	match: CLIMB X3
+	mode: official
+	reminder: When moving up or down levels of terrain, {uncTHIS()}{card.key_name} may triple {HIS("plural")} height.
+
+keyword:
+	keyword: Cloud of Darkness
+	match: CLOUD OF DARKNESS
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may roll the 20-sided die{sqvalue(" once for each "+card.key_name_sing+" you control")}. If you roll a 16 or higher, while {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} remains on that space, {HE()} has no visible Hit Zone until the next time you reveal an order marker.
+
+keyword:
+	keyword: Coil Crush
+	match: COIL CRUSH
+	mode: official
+	reminder: When attacking a small, medium or large figure, if {uncTHIS()}{sqA()}{card.key_name_sing} inflicts at least 2 wounds, roll the 20-sided die. If you roll a 15 or higher, destroy the defending figure.
+
+keyword:
+	keyword: Cold Healing
+	match: COLD HEALING
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, if {HE()} is on at least one snow or ice space, remove 1 wound marker from this Army Card.
+
+keyword:
+	keyword: Cold Regenerate
+	match: COLD REGENERATE
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, remove 1 wound marker from {uncTHIS()}{sqTHE()}{card.key_name}'s Army Card. If {HE()} is on a snow or ice space, remove 1 additional wound marker.
+
+keyword:
+	keyword: Combat Challenge
+	match: COMBAT CHALLENGE
+	mode: official
+	reminder: If an opponent's figure that is adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} attacks with a Normal or Special Attack, it must attack {uncTHIS()}{sqvalue("that ")}{card.key_name_sing}.
+
+keyword:
+	keyword: Combat Leader
+	match: COMBAT LEADER
+	mode: official
+	reminder: If at least one order marker is on {uncTHIS()}{sqTHE()}{card.key_name}, you may add 3 to your initiative roll.
+
+keyword:
+	keyword: Combined Arbalest
+	match: COMBINED ARBALEST
+	mode: official
+	reminder: When attacking with {uncTHIS()}{sqA()}{card.key_name_sing}, roll 1 additional attack die for every wound that has been inflicted on the defending figure this turn by {uncTHIS()}{card.key_name}{sqvalue(" you control")}.
+
+keyword:
+	keyword: Commander's Strike
+	match: COMMANDER'S STRIKE
+	mode: official
+	reminder: After moving and before attacking with {uncTHIS()}{sqTHE()}{card.key_name}, you may choose any opponent's figure within 5 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} that is engaged with any other figure you control. Roll the 20-sided die. If you roll a 15 or higher, the chosen figure recieves one wound.
+
+keyword:
+	keyword: Concealment
+	match: CONCEALMENT <atom-param>number</atom-param>
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is targetted and recieves one or more wounds from an attacking figure who is not adjacent, you must roll the 20-sided die. Count the minimum number of spaces between the attacker and {uncTHIS()}{sqTHE()}{card.key_name_sing}. Add this number to your die roll. If you roll a {param1} or higher, ignore any wounds {uncTHIS()}{sqTHE()}{card.key_name_sing} just recieved.
+
+keyword:
+	keyword: Concentrated Will
+	match: CONCENTRATED WILL
+	mode: official
+	reminder: If {uncTHIS()}{card.key_name} {sqvalue("have", heroinput: "has")} only one unrevealed order marker on {HIS("plural")} Army Card, add 1 to {HIS("plural")} attack and defense.
+
+keyword:
+	keyword: Cosmic Force Blast Special Attack
+	match: COSMIC FORCE BLAST SPECIAL ATTACK
+	mode: official
+	reminder: Range 6. Attack 6. If an opponent's Unique Hero receives at least one wound from the Cosmic Force Blast Special Attack, roll the 20-sided die. If you roll a 16 or higher, you may remove one unrevealed Order Marker at random from that Unique Hero's Army Card.
+
+keyword:
+	keyword: Counter Strike
+	match: COUNTER STRIKE
+	mode: official
+	reminder: When rolling defense dice against a normal attack from an adjacent attacking figure, all excess shields count as unblockable hits on the attacking figure.{if to_lower(remove_tags(card.class)) = "samurai" then " This power does not work against Samurai."}
+
+keyword:
+	keyword: Cover Fire
+	match: COVER FIRE
+	mode: official
+	reminder: When attacking an opponent's figure, if {uncTHIS()}{sqA()}{card.key_name_sing} inflicts one or more wounds, you may move one Tricky figure you control who follows Vydar and is within 8 clear sight spaces of {uncTHIS()}{sqTHE()}{card.key_name_sing} up to 4 spaces. You cannot use Cover Fire to move {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Crag of Steel
+	match: CRAG OF STEEL
+	mode: official
+	reminder: When revealing a numbered order marker on {sqTHE()}{uncTHIS()}{card.key_name}'s Army Card, you may also reveal an "X" order marker that is on {sqTHE()}{uncTHIS()}{card.key_name}'s Army Card to active Crag of Steel for the duration of the round. While Crag of Steel is active, add 3 to {sqTHE()}{uncTHIS()}{card.key_name}'s Defense value and subtract 2 from {sqTHE()}{uncTHIS()}{card.key_name}'s Attack and Move values. When {sqA()}{uncTHIS()}{card.key_name_sing} attakcs while Crag of Steel is active, {HE()} may attack any or all figures adjacent to {HIM()}. Roll each attack seperately.
+
+keyword:
+	keyword: Crippling Gaze
+	match: CRIPPLING GAZE <atom-param>number</atom-param>
+	mode: official
+	reminder: Before moving, you may choose a figure within 5 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}. Roll the 20-sided die. If you roll a {param1} or higher, remove all Order Markers on the chosen figure's Army Card (or cards if your opponent has more than one Common card for that figure).
+
+keyword:
+	keyword: Cyberclaw
+	match: CYBERCLAW
+	mode: official
+	reminder: All small or medium opponent's figures that enter or occupy a space adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} cannot move. Figures affected by the Cyberclaw cannot be moved by any special power on any Army Card or Glyph.
+
+keyword:
+	keyword: Deadly Shot
+	match: DEADLY SHOT
+	mode: official
+	reminder: When attacking with {uncTHIS()}{sqA()}{card.key_name_sing}, all skulls rolled count for one additional hit.
+
+keyword:
+	keyword: Deadly Strike
+	match: DEADLY STRIKE
+	mode: official
+	reminder: When attacking with {uncTHIS()}{sqA()}{card.key_name_sing}, all skulls rolled count for one additional hit.
+
+keyword:
+	keyword: Defensive Agility
+	match: DEFENSIVE AGILITY
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} rolls defense dice against a normal attack from an adjacent figure, one shield will block all damage.
+
+keyword:
+	keyword: Defensive Aura
+	match: DEFENSIVE AURA
+	mode: official
+	reminder: All figures you control within 4 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} add 2 to their defense dice. {uncTHISC()}{card.key_name}'s Defensive Aura does not affect {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Defensive Spirit Aura
+	match: DEFENSIVE SPIRIT AURA <atom-param>number</atom-param>
+	mode: official
+	reminder: All friendly figures adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} add {param1} {if param1.value == "1" then "die" else "dice"} to their defense.
+
+keyword:
+	keyword: Disappearing Ninja
+	match: DISAPPEARING NINJA
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is attacked with a normal attack and at least 1 skull is rolled, roll the 20-sided die to disappear. If you roll a 1-11, roll defense dice normally. If you roll a 12 or higher, {uncTHIS()}{sqTHE()}{card.key_name_sing} takes no damage and instead may move up to 4 spaces. {uncTHISC()}{card.key_name} can disappear only if {HE("plural")} end {HIS("plural")} disappearing move not adjacent to any enemy figures.
+
+keyword:
+	keyword: Disarm Traps
+	match: DISARM TRAPS
+	mode: official
+	reminder: When you roll the 20-sided die for a Treasure Glyph trap with {uncTHIS()}{sqA()}{card.key_name_sing}, you may add 4 to your die roll.
+
+keyword:
+	keyword: Disengage
+	match: DISENGAGE
+	mode: official
+	reminder: {uncTHISC()}{card.key_name} {sqvalue("are", heroinput: "is")} never attacked when leaving an engagement.
+
+keyword:
+	keyword: Dishonorable Attack
+	match: DISHONORABLE ATTACK
+	mode: official
+	reminder: When attacking a figure who follows Jandar, {uncTHIS()}{card.key_name} roll{sqvalue("", heroinput: "s")} 2 additional attack dice.
+
+keyword:
+	keyword: Dismiss The Rabble
+	match: DISMISS THE RABBLE
+	mode: official
+	reminder: When rolling defense dice against adjacent attacking small or medium Squad figures, {uncTHIS()}{card.key_name} recieve{sqvalue("", heroinput: "s")} 1 additional defense die.
+
+keyword:
+	keyword: Double Assault
+	match: DOUBLE ASSAULT
+	mode: official
+	reminder: When {sqA()}{uncTHIS()}{card.key_name_sing} attacks an adjacent figure or destructible object, {HE()} may attack one additional time.
+
+keyword:
+	keyword: Double Attack
+	match: DOUBLE ATTACK
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} attacks, {HE()} may attack one additional time.
+
+keyword:
+	keyword: Dragon Breath Special Attack
+	match: DRAGON BREATH SPECIAL ATTACK
+	mode: official
+	reminder: Range Special. Attack 3. Choose 3 spaces in a straight line from {sqvalue("each ")}{uncTHIS()}{card.key_name_sing}. All figures on those spaces are affected by Dragon Breath Special Attack. Roll attack dice once for all affected figures. Each figure rolls defense dice separately.
+
+keyword:
+	keyword: Dragon Healing
+	match: DRAGON HEALING
+	mode: official
+	reminder: Before moving, you may choose a wounded Hero figure within 4 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}. Roll the 20-sided die. If you roll a 15 or higher, remove one wound marker from the chosen Hero's Army Card. {uncTHISC()}{sqAC()}{card.key_name_sing}'s Dragon can use its Dragon Healing on {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Dragon Swoop
+	match: DRAGON SWOOP
+	mode: official
+	reminder: After moving and before attacking, you may choose any figure within 4 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}. Roll the 20-sided die. If you roll a 15 or higher, the chosen figure recieves one wound.
+
+keyword:
+	keyword: Dust Of Death
+	match: DUST OF DEATH
+	mode: official
+	reminder: After moving and before attacking, you may either 1) Roll the 20-sided die once for each figure adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}, or 2) Roll the 20-sided die once for any one figure up to 3 clear sight spaces away. If you roll a 19 or higher, that figure is destroyed.
+
+keyword:
+	keyword: Dying Swipe
+	match: DYING SWIPE
+	reminder: If {sqA()}{uncTHIS()}{card.key_name_sing} is attacked with a normal attack by an opponent's figure and receives enough wounds to be destroyed, roll 3 attack dice. One at a time for each skull rolled, you may inflict 1 wound on any figure that is adjacent to {sqvalue("that ")}{uncTHIS()}{card.key_name_sing}. Figures affected by Dying Swipe cannot roll any defense dice and can receive more than 1 wound each. After using Dying Swipe, remove {sqTHE()}{uncTHIS()}{card.key_name_sing} from the battlefield.
+
+keyword:
+	keyword: Earth Slam Special Attack
+	match: EARTH SLAM SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 3. Any non-flying creature adjacent to {uncTHIS()}{sqvalue("the attacking ")}{card.key_name_sing} is affected by Earth Slam Special Attack. Roll attack dice once for all affected figures. Each figure rolls defense dice seperately.
+
+keyword:
+	keyword: Elven Summoning Spell
+	match: ELVEN SUMMONING SPELL
+	mode: official
+	reminder: After moving and before attacking, you may roll the 20-sided die. Add the number of Elves you control adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} to your die roll. If you roll 1-4, nothing happens. If you roll 5-11, you may place 1 Elf you control adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}. If you roll 12-17, you may place 2 Elves you control adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}. If you roll 18-20, you may place up to 3 Elves you control adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}. If the summoned Elves are engaged, they will not take any leaving engagement attacks. {uncTHISC()}{card.key_name} cannot summon an Elf that {HE("plural")} {sqvalue("are", heroinput: "is")} already adjacent to.
+
+keyword:
+	keyword: EMP Response
+	match: EMP RESPONSE
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing}{sqvalue(" you control")} successfully defends against an attack by a Soulborg figure, you must roll the 20-sided die. If you roll a 14 or higher, the attacking figure must immediately end its turn and all order markers must be removed from its Army Card (or cards if your opponent has more than one Common Army Card for that figure).
+
+keyword:
+	keyword: Encircle Special Attack
+	match: ENCIRCLE SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 6. If 3 {card.key_name} you control are adjacent to the same enemy figure, they may roll their attack dice as one combined attack. The defending figure compares height to the lowest {card.key_name} to determine any height advantage. If Encircle Special Attack is used, figures not involved in the attack that moved this turn cannot attack.
+
+keyword:
+	keyword: Engagement Strike
+	match: ENGAGEMENT STRIKE <atom-param>number</atom-param>
+	mode: official
+	reminder: If an opponent's small or medium figure moves adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}, roll the 20-sided die. If you roll a {param1} or higher, the opponent's figure recieves a wound. Figures may be targetted only as they move into engagement with {uncTHIS()}{sqA()}{card.key_name_sing}.
+
+keyword:
+	keyword: Enslave
+	match: ENSLAVE <atom-param>number</atom-param>
+	mode: official
+	reminder: When revealing an order marker on {uncTHIS()}{sqTHE()}{card.key_name}, after taking {uncTHIS()}{sqTHE()}{card.key_name}'s turn, you may choose any Unique Hero figure within 4 clear sight spaces of {sqA()}{uncTHIS()}{card.key_name_sing}. Roll the 20-sided die. If you roll a {param1} or higher, take temporary control of the chosen Hero and immediately take a turn with that Hero. At the end of that turn, control of the chosen hero returns to its previous owner. All order markers that were on the figure's Army Card will stay on the Army Card. Enslave does not affect Mind Flayers.
+
+keyword:
+	keyword: Entangling Web
+	match: ENTANGLING WEB
+	mode: official
+	reminder: After moving and before attacking, you may choose any one small or medium opponent's figure that is engaged with at least three {card.key_name} that you control. Roll the 20-sided die. If you roll a 16 or higher, remove one unrevealed order marker at random from the chosen figure's Army Card (or cards if your opponent has more than one Common Army Card for that figure).
+
+keyword:
+	keyword: Eternal Hatred
+	match: ETERNAL HATRED
+	mode: official
+	reminder: After revealing an order marker on this card, you must roll the 20-sided die. If you roll a 17 or higher, choose an opponent. That opponent will now control {uncTHIS()}{card.key_name} for the remainder of your turn, but will not be able to view any unrevealed order markers on this card. At the end of that turn, control of {uncTHIS()}{card.key_name} returns to you. All order markers and figures that were on {uncTHIS()}{card.key_name}'s Army Card will stay on {HIS("plural")} Army Card.
+
+keyword:
+	keyword: Eternal Heartbreak
+	match: ETERNAL HEARTBREAK
+	mode: official
+	reminder: If you control Cyprien Esenwein and he is destroyed, {uncTHIS()}{card.key_name} immediately recieve{sqvalue("", heroinput: "s")} 2 wounds.
+
+keyword:
+	keyword: Eternal Strength
+	match: ETERNAL STRENGTH
+	mode: official
+	reminder: Anytime you roll the 20-sided die for Cyprien Esenwein's Chilling Touch, you may add 2 to your die roll.
+
+keyword:
+	keyword: Evasive 
+	match: EVASIVE <atom-param>number</atom-param>
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} rolls defense dice against an attacking figure who is not adjacent, add {param1} defense {if param1.value == "1" then "die" else "dice"} to the defense roll.
+
+keyword:
+	keyword: Evil Eye Defense
+	match: EVIL EYE DEFENSE
+	mode: official
+	reminder: When rolling defense dice against a normal attack from a non-adjacent attacking figure, all excess shields count as unblockable hits on the attacking figure.
+
+keyword:
+	keyword: Evil Eye Protection
+	match: EVIL EYE PROTECTION
+	mode: official
+	reminder: When {sqA()}{uncTHIS()}{card.key_name_sing}, or any friendly small or medium Utgar figure adjacent to {sqA()}{uncTHIS()}{card.key_name_sing}, rolls defense dice against a normal attack from a non-adjacent attacking figure, all excess shields count as unblockable hits inflicted by {sqTHE()}{uncTHIS()}{card.key_name_sing} on the attacking figure.
+
+keyword:
+	keyword: Evisceraxe Special Attack
+	match: EVISCERAXE SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 5. The Evisceraxe Special Attack cannot be used on small figures.
+
+keyword:
+	keyword: Exoskeleton
+	match: EXOSKELETON
+	mode: official
+	reminder: At the start of the game, place 1 copper Exoskeleton marker on {sqvalue("a ")}{card.key_name}{sqvalue("", heroinput"'s")} Army Card{sqvalue(" for each "+card.key_name_sing+" figure in your Army")}. After {sqA()}{uncTHIS()}{card.key_name_sing} rolls defense dice against a normal attack, you may remove 1 Exoskeleton marker from {HIS()} Army Card to ignore all wounds inflicted by that attack.
+
+keyword:
+	keyword: Expendable Rabble
+	match: EXPENDABLE RABBLE
+	mode: official
+	reminder: If {sqA()}{uncTHIS()}{card.key_name_sing} you control is attacked with a normal attack by an opponent's figure and receives 1 or more wounds, you may destroy a small Goblin figure you control that is adjacent to {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} to ignore any wounds {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} just recieved.
+
+keyword:
+	keyword: Explosion Special Attack
+	match: EXPLOSION SPECIAL ATTACK
+	mode: official
+	reminder: Range 7. Attack 3. Choose a figure to attack. Any figures adjacent to the chosen figure are also affected by the Explosion Special Attack. {uncTHISC()}{sqAC()}{card.key_name_sing} only needs a clear sight shot at the chosen figure. Roll 3 attack dice once for all affected figures. Each figure rolls defense dice seperately. {uncTHISC()}{card.key_name} can be affected by {HIS("plural")} own Explosion Special Attack.
+
+keyword:
+	keyword: Extended Defensive Aura
+	match: EXTENDED DEFENSIVE AURA
+	mode: official
+	reminder: All figures you control within 6 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} add 1 to their defense dice. Extended Defensive Aura does not affect {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Fearless Advantage
+	match: FEARLESS ADVANTAGE
+	mode: official
+	reminder: {uncTHISC()}{sqAC()}{card.key_name_sing} rolls an additional attack die when attacking or defending against large or huge figures.
+
+keyword:
+	keyword: Feral Rage
+	match: FERAL RAGE
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} attacks, {HE()} may attack up to 2 additional times. {uncTHISC()}{sqAC()}{card.key_name_sing} cannot attack the same figure more than once per turn.
+
+keyword:
+	keyword: Fey Step
+	match: FEY STEP
+	mode: official
+	reminder: Once per game, {uncTHIS()}{sqTHE()}{card.key_name} may use Fey Step. Before moving normally with {uncTHIS()}{sqTHE()}{card.key_name}, you may place {sqvalue("each one", heroinput: HIM())} on any empty space within 5 spaces of {HIS()} current location. If {uncTHIS()}{sqA()}{card.key_name_sing} is engaged when {HE()} uses Fey Step, {HE()} will not take any leaving engagement attacks.
+
+keyword:
+	keyword: Fire and Rush Special Attack
+	match: FIRE AND RUSH SPECIAL ATTACK
+	mode: official
+	reminder: Range Special. Attack Special. If {sqA()}{uncTHIS()}{card.key_name_sing} begins {HIS()} turn unengaged, instead of moving and attacking normally, {HE()} may use {HIS()} Fire and Rush Special Attack. Choose a figure within 5 spaces of {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} to attack and roll 3 attack dice. If the defending figure recieves one or more wounds from that attack, you may move {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} up to 5 spaces. If {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} ends that move engaged, {HE()} may attack again by rolling 4 attack dice.
+
+keyword:
+	keyword: Fire Blast Special Attack
+	match: FIRE BLAST SPECIAL ATTACK
+	mode: official
+	reminder: Range 5. Attack Special. Each time you attack with Fire Blast Special Attack, you may choose to roll 2, 3, or 4 attack dice. If a skull is rolled on every die, you may attack again with Fire Blast Special Attack. You may continue attacking with Fire Blast Special Attack until you do not roll a skull on every die.
+
+keyword:
+	keyword: Fire Line Special Attack
+	match: FIRE LINE SPECIAL ATTACK
+	mode: official
+	reminder: Range Special. Attack 4. Choose 8 spaces in a straight line from {uncTHIS()}{sqA()}{card.key_name_sing}. All figures on those spaces who are in line of sight are affected by {uncTHIS()}{sqTHE()}{card.key_name_sing}'s Fire Line Special Attack. Roll 4 attack dice once for all affected figures. Affected figures roll defense dice separately.
+
+keyword:
+	keyword: Fire Strike Special Attack
+	match: FIRE STRIKE SPECIAL ATTACK
+	mode: official
+	reminder: Range 6. Attack 2 + Special. When {uncTHIS()}{sqA()}{card.key_name_sing} attacks with Fire Strike Special Attack, add 1 to {HIS()} attack dice for every additional Elf Wizard you control within 3 clear sight spaces of {HIM()}, up to a maximum of +3 dice.
+
+keyword:
+	keyword: First Assault
+	match: FIRST ASSAULT <atom-param>number</atom-param>
+	mode: official
+	reminder: When attacking with {uncTHIS()}{sqA()}{card.key_name_sing}, if the defending figure was not adjacent to {uncTHIS()}{sqTHE()}{card.key_name_sing} at the start of this turn, {uncTHIS()}{sqTHE()}{card.key_name_sing} receives {param1} additional attack {if param1.value == "1" then "die" else "dice"}.
+
+keyword:
+	keyword: Flail Hurricane
+	match: FLAIL HURRICANE
+	mode: official
+	reminder: After moving and before attacking with {uncTHIS()}{sqTHE()}{card.key_name_sing}, you must roll the 20-sided die. If you roll a 1-10, {HE("plural")} may attack normally. If you roll an 11 or higher, instead of attacking normally, {sqvalue("each "+card.key_name_sing, heroinput: HE())} must attack each figure adjacent to {HIM()}, if possible. Roll each attack seperately.
+
+keyword:
+	keyword: Fledgling Acid Breath
+	match: FLEDGLING ACID BREATH
+	mode: official
+	reminder: Instead of attacking with {uncTHIS()}{sqvalue("all of the ")}{card.key_name}, {sqvalue("for each "+card.key_name_sing+", ")}you may choose one small or medium figure within 4 clear sight spaces of {HIM()}. Roll the 20-sided die. If you roll a 1-10, nothing happens. If you roll an 11-15, the chosen figure recieves 1 wound. If you roll a 16 or higher, the chosen figure recieves 2 wounds.
+
+keyword:
+	keyword: Fledgling Fires Special Attack
+	match: FLEDGLING FIRES SPECIAL ATTACK
+	mode: official
+	reminder: Range 5. Attack 3. Common Squad figures roll 2 fewer defense dice against Fledgling Fires Special Attack.
+
+keyword:
+	keyword: Fledgling Ice Shards Special Attack
+	match: FLEDGLING ICE SHARDS SPECIAL ATTACK
+	mode: official
+	reminder: Range 5. Attack 2. When {sqA()}{uncTHIS()}{card.key_name_sing} attacks with {HIS()} Fledgling Ice Shards Special Attack, {HE()} may attack one additional time. {to_title(HE())} cannot attack the same figure more than once this turn.
+
+keyword:
+	keyword: Fledgling Lightning Breath Special Attack
+	match: FLEDGLING LIGHTNING BREATH SPECIAL ATTACK
+	mode: official
+	reminder: Range 4+Special. Attack 2. Choose a figure to attack. You may also choose one other figure within 3 clear sights spaces of the targeted figure to be affected by Fledgling Lightning Breath Special Attack. Roll attack dice once for both affected figures. Each figure rolls defense dice seperately. Fledgling Lightning Breath Special Attack does not affect destructible objects.
+
+keyword:
+	keyword: Flying
+	match: FLYING
+	mode: official
+	reminder: When counting spaces for {uncvalue("a ")}{sqA()}{card.key_name_sing}'s movement, ignore elevations. {uncvalue("A ")}{card.key_name} may fly over water without stopping, pass over figures without becoming engaged, and fly over obstacles such as ruins. When {uncvalue("a ")}{sqA()}{card.key_name_sing} starts to fly, if {HE()} is engaged {HE()} will take any leaving engagement attacks.
+
+keyword:
+	keyword: Force Orb Special Attack
+	match: FORCE ORB SPECIAL ATTACK
+	mode: official
+	reminder: Range 5. Attack 3. Choose an opponent's figure to attack. Each opponent's figure adjacent to the chosen figure is also affected by Force Orb Special Attack. Roll attack dice once for all affected figures. Each figure rolls defense dice seperately.
+
+keyword:
+	keyword: Frenzy
+	match: FRENZY
+	mode: official
+	reminder: After you take a turn {uncTHIS()}{sqTHE()}{card.key_name}, roll the 20-sided die. If you roll a 16 or higher you may take another turn with {uncTHIS()}{sqTHE()}{card.key_name}.
+
+keyword:
+	keyword: Frenzy Enhancement
+	match: FRENZY ENHANCEMENT
+	mode: official
+	reminder: Add 1 to your die roll when you roll for the Frenzy power on any Army Card.
+
+keyword:
+	keyword: Frost Rage
+	match: FROST RAGE
+	mode: official
+	reminder: When revealing a numbered order marker on {sqTHE()}{uncTHIS()}{card.key_name}'s Army Card, you may also reveal an "X" order marker that is on {sqTHE()}{uncTHIS()}{card.key_name}'s Army Card to active Frost Rage for the duration of the round. While Frost Rage is active, add 1 to {sqTHE()}{uncTHIS()}{card.key_name}'s Attack and Defense values for each wound marker on {HIS("plural")} Army Card.
+
+keyword:
+	keyword: Gain High Ground
+	match: GAIN HIGH GROUND
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may move {uncTHIS()}{sqvalue("each ")}{card.key_name_sing}{sqvalue(" you control")} up to 1 space. This space may be up to 4 levels higher.
+
+keyword:
+	keyword: Galloping Charge
+	match: GALLOPING CHARGE
+	mode: official
+	reminder: {uncTHISC()}{card.key_name} recieve{sqvalue("", heroinput: "s")} 2 additional attack dice when attacking any figure that was at least 4 clear sight spaces away from {HIM("plural")} at the start of {HIS("plural")} turn.
+
+keyword:
+	keyword: Ghost Walk
+	match: GHOST WALK
+	mode: official
+	reminder: {uncTHISC()}{card.key_name} can move through all figures.
+
+keyword:
+	keyword: Giant Killer
+	match: GIANT KILLER
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} attack{sqvalue("", heroinput: "s")} Huge figures, add 2 attack dice.
+
+keyword:
+	keyword: Gift Of The Empress Aura
+	match: GIFT OF THE EMPRESS AURA
+	mode: official
+	reminder: When you roll defense dice for any Kyrie that you control who follows Einar and is within 5 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}, you may re-roll all defense dice that did not show shields. Gift of the Empress Aura can be used only once for each defense roll. {uncTHISC()}{card.key_name}'s Gift of the Empress Aura does not affect {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Glacier Camouflage
+	match: GLACIER CAMOUFLAGE
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is adjacent to a Glacier Mountain, opponent's figures must be adjacent to {uncTHIS()}{sqTHE()}{card.key_name_sing} to attack {HIM()} with a normal attack.
+
+keyword:
+	keyword: Glacier Traverse
+	match: GLACIER TRAVERSE
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is adjacent to a Glacier Mountain, {uncTHIS()}{sqTHE()}{card.key_name_sing} may Glacier Traverse instead of moving normally. {sqvalue("You may do this with any or all of the "+card.key_name+" each turn. ")}To Glacier Traverse, move to any unoccupied space adjacent to that Glacier Mountain.
+
+keyword:
+	keyword: Gladiator Inspiration
+	match: GLADIATOR INSPIRATION
+	mode: official
+	reminder: If all Order Markers for a round are placed on Gladiator Army Cards, and at least one Order Marker is placed on {uncTHIS()}{card.key_name}, then all Gladiators you control (except {uncTHIS()}{card.key_name}) become inspired. Inspired Gladiators add one to their Move number and add 1 extra attack die and defense die for the rest of the round.
+
+keyword:
+	keyword: Grapple Arm
+	match: GRAPPLE ARM
+	mode: official
+	reminder: Instead of {HIS("plural")} normal move, {uncTHIS()}{sqvalue("any or all of the ")}{card.key_name} may use {HIS("plural")} Grapple Arm. Grapple Arm has a move of 4. When counting spaces for Grapple Arm ignore elevations. {uncTHISC()}{card.key_name} may grapple over water without stopping, over figures without becoming engaged, and over obstacles such as ruins. {uncTHISC()}{card.key_name} may not grapple more than 45 levels up or down in a single Grapple Arm move. If {uncTHIS()}{sqA()}{card.key_name_sing} is engaged when {HE()} starts {HIS()} Grapple Arm move, {HE()} will take any leaving engagement attacks.
+
+keyword:
+	keyword: Grapple Gun
+	match: GRAPPLE GUN <atom-param>number</atom-param>
+	mode: official
+	reminder: Instead of {uncTHIS()}{sqA()}{card.key_name_sing}'s normal move, {HE()} may move only one space. This space may be up to {param1} levels higher. When using the Grapple Gun, all engagement rules still apply.
+
+keyword:
+	keyword: Grenade Special Attack
+	match: GRENADE SPECIAL ATTACK
+	mode: official
+	reminder: Range 4. Lob 12. Attack 2. Use this power once per game. Start the game with a grenade marker on this card. Remove the grenade marker to throw grenades. {sqvalue("One at a time do the following with each " + card.key_name + ": ")}Choose a creature to attack. No clear line of sight is needed. Any figures adjacent to the chosen figure are also affected by the Grenade Special Attack. Roll 2 attack dice once for all affected figures. Each figure rolls defense dice seperately.
+
+keyword:
+	keyword: Grok Training
+	match: GROK TRAINING
+	mode: official
+	reminder: Marro Hive cannot rebirth {uncTHIS()}{card.key_name} with its Marro Rebirth special power.
+
+keyword:
+	keyword: Healing Touch
+	match: HEALING TOUCH
+	mode: official
+	reminder: After moving and before attacking, choose a wounded hero figure adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}. Then roll the 20-sided die to add or remove wound markers from the choses figure's card. If you roll a 1, add 2 markers. If you roll 2-5, remove 1 marker. If you roll 6-17, remove up to 2 markers. If you roll 18-20, remove all markers.
+
+keyword:
+	keyword: Healing Word
+	match: HEALING WORD
+	mode: official
+	reminder: After revealing an order marker on a wounded small or medium Hero figure you control that is adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}, and before using any other special powers on an Army Card or Glyph, you may first roll the 20-sided die. If you roll a 1-12, nothing happens. If you roll a 13 or higher, remove up to 2 wound markers from that Hero's Army Card.
+
+keyword:
+	keyword: Helm Of Mitonsoul
+	match: HELM OF MITONSOUL
+	mode: official
+	reminder: After moving and before attacking, {uncTHIS()}{sqA()}{card.key_name_sing} may use {HIS()} Helm of Mitonsoul Aura. When using the Helm of Mitonsoul Aura, you must roll the 20-sided die for all figures within 3 clear sight spaces of {uncTHIS()}{sqTHE()}{card.key_name_sing}, one at a time. If you roll a 20, destroy the figure. {uncTHISC()}{card.key_name}'s Helm of Mitonsoul Aura does not affect {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Heroic Defense Aura
+	match: HEROIC DEFENSE AURA
+	mode: official
+	reminder: When defending against a normal attack by an adjacent figure with any Samurai or Ashigaru figures you control within 8 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}, you may roll Einar Valkyrie dice. Each Einar symbol rolled counts as an additional sheild. Heroic Defense Aura does not affect {card.key_name}.
+
+keyword:
+	keyword: Hide in Darkness
+	match: HIDE IN DARKNESS
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is attacked with a normal attack and at least 1 skull is rolled, roll the 20-sided die. If {uncTHIS()}{sqvalue("that ")}{card.key_name_sing} is on a dungeon space, add 3 to your die roll. If {HE()} is on a shadow space, add 6 to your die roll. If you roll a 1-15, roll defense dice normally. If you roll a 16 or higher, ignore all damage that would be inflicted by the attack.
+
+keyword:
+	keyword: Highland Fury
+	match: HIGHLAND FURY
+	mode: official
+	reminder: At the start of the game, choose a Human Champion you control. While that Champion is in play, {uncTHIS()}{card.key_name} roll{sqvalue("", heroinput: "s")} one additional attack die for each wound marker on the chosen Hero. There can be only one Human Champion for {uncTHIS()}{sqvalue("all ")}{card.key_name}{sqvalue(" you control")}. {uncTHISC()}{card.key_name} cannot attack {HIS("plural")} chosen Human Champion.
+
+keyword:
+	keyword: Hive Mind
+	match: HIVE MIND
+	mode: official
+	reminder: After Revealing an order marker on this Army Card, you may take a turn with any small or medium Common Marro Squad you control before taking a turn with {uncTHIS()}{card.key_name}. Any figure that is taking a turn must be withing 12 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} prior to its movement.
+
+keyword:
+	keyword: Hive Supremacy
+	match: HIVE SUPREMACY
+	mode: official
+	reminder: Any time you roll the 20-sided die for a Marro or Wulsinu Army Card, you may add 1 to your die roll.
+
+keyword:
+	keyword: Hive Swarm
+	match: HIVE SWARM
+	mode: official
+	reminder: Before moving {uncTHIS()}{sqTHE()}{card.key_name}, roll the 20-sided die. If you roll 1-12, you may move and attack with up to 3 {card.key_name} that you control. If you roll 13-16, you may move and attack with up to 6 {card.key_name} that you control. If you roll 17-20, you may move and attack with up to 9 {card.key_name} that you control.
+
+keyword:
+	keyword: Hivelord Life Bonding
+	match: HIVELORD LIFE BONDING
+	mode: official
+	reminder: Before taking a turn with {uncTHIS()}{card.key_name}, you may first take a turn with any Hivelord you control. Before moving the chosen Hivelord, you may destroy one adjacent {card.key_name} you control. If you destroy {sqA()}{card.key_name_sing} with Hivelord Life Bonding remove 1 wound marker from the chosen Hivelord's Army Card.
+
+keyword:
+	keyword: Homing Device
+	match: HOMING DEVICE
+	mode: official
+	reminder: When attacking a non-adjacent figure, add 1 attack die for every Soulborg you control who follows Vydar that is adjacent to the attacking figure.
+
+keyword:
+	keyword: Horde Movement
+	match: HORDE MOVEMENT
+	mode: official
+	reminder: You may move up to 6 {card.key_name} that you control each turn. However, you may attack with only 3 {card.key_name}. You may attack with any 3 {card.key_name}, even {card.key_name} that you did not move this turn.
+
+keyword:
+	keyword: Hydra Heads
+	match: HYDRA HEADS
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} attacks, {HE()} may attack up to {card.life} times. Reduce the number of times {uncTHIS()}{sqA()}{card.key_name_sing} can attack by 1 for each wound marker on this Army Card.
+
+keyword:
+	keyword: Hyper Speed
+	match: HYPER SPEED <atom-param>number</atom-param>
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{card.key_name}, {HE("plural")} may move up to an additional {param1} {if param1.value == "1" then "space" else "spaces"}{sqvalue(" each")}. {uncTHISC()}{card.key_name} cannot use Hyper Speed {param1} if {HE("plural")} attacked with {HIS("plural")} Cosmic Force Blast Special Attack during this turn.
+
+keyword:
+	keyword: Ice Cold
+	match: ICE COLD
+	mode: official
+	reminder: While {uncvalue("a ")}{sqA()}{card.key_name_sing} is on a water or ice space, that space and all same-level water spaces adjacent to {uncvalue("this ")}{sqvalue("that ")}{card.key_name_sing} are considered normal ice spaces. Figures do not have to stop their movement on normal ice spaces.
+
+keyword:
+	keyword: Ice Shard Breath Special Attack
+	match: ICE SHARD BREATH SPECIAL ATTACK
+	mode: official
+	reminder: Range 5. Attack 4. When {uncTHIS()}{sqA()}{card.key_name_sing} attacks with {HIS()} Ice Shard Breath Special Attack, {HE()} may attack 2 additional times. {to_title(HE())} cannot attack the same figure more than once.
+
+keyword:
+	keyword: Ice Spikes
+	match: ICE SPIKES <atom-param>number</atom-param>
+	mode: official
+	reminder: If an opponent's figure moves adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}, roll the 20-sided die. If {uncTHIS()}{sqTHE()}{card.key_name_sing} is on at least one snow or ice space, add 2 to your die roll. If you roll a {param1} or higher, the opponent's figure recieves 1 wound. Figures can be affected by Ice Spikes only as they move into engagement with {uncTHIS()}{sqA()}{card.key_name_sing}.
+
+keyword:
+	keyword: Ice Troll Charge
+	match: ICE TROLL CHARGE
+	mode: official
+	reminder: After taking a turn with {sqTHE()}{uncTHIS()}{card.key_name}, roll the 20-sided die. If {sqvalue("each ")}{uncTHIS()}{card.key_name_sing}{sqvalue(" you control")} is on a snow or ice space, add 3 to your die roll. If you roll a 13 or higher, you may move {sqvalue("each ")}{uncTHIS()}{card.key_name_sing}{sqvalue(" you control")} again.
+
+keyword:
+	keyword: Improved Cyberclaw
+	match: IMPROVED CYBERCLAW
+	mode: official
+	reminder: All small, medium, or large opponent's figures that enter or occupy a space adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} may not move. Figures affected by the Cyberclaw cannot be moved by any special power on an Army Card or Glyph.
+
+keyword:
+	keyword: Indomitable
+	match: INDOMITABLE
+	mode: official
+	reminder: If {uncTHIS()}{sqvalue("each ")}{card.key_name_sing} begins {HIS()} turn unengaged, add 2 to {HIS("plural")} Move value this turn. If {HE("plural")} begin{sqvalue("", heroinput: "s")} {HIS("plural")} turn engaged, add 2 to {HIS("plural")} Attack value this turn.
+
+keyword:
+	keyword: Influence
+	match: <atom-param>string</atom-param> INFLUENCE
+	mode: official
+	reminder: At the start of the game, you may choose any unique Army Card you control. For this game the chosen card's personality is {to_lower(param1)}, regardless of what is listed on the card.
+
+keyword:
+	keyword: Initiative Advantage
+	match: INITIATIVE ADVANTAGE
+	mode: official
+	reminder: If all your order markers are on Gladiator Army Cards, you may add 1 to your initiative roll for every order marker on {uncTHIS()}{sqTHE()}{card.key_name}'s Army Card, up to a maximum of +3 for Initiative Advantage.
+
+keyword:
+	keyword: Insubstantial
+	match: INSUBSTANTIAL <atom-param>number</atom-param>
+	mode: official
+	reminder: {sqAC()}{uncTHISC()}{card.key_name_sing} adds {param1} additional defense dice when rolling defense against a normal attack from a figure who is not adjacent.
+
+keyword:
+	keyword: Iron Tough
+	match: IRON TOUGH
+	mode: official
+	reminder: When rolling defense dice against a special attack, {uncTHIS()}{card.key_name} always add{sqvalue("", heroinput: "s")} 2 automatic shields to whatever is rolled.
+
+keyword:
+	keyword: Iskra's Summoning
+	match: ISKRA'S SUMMONING
+	mode: official
+	reminder: {uncTHIS()}{card.key_name} do{sqvalue("", heroinput: "es")} not start the game on the battlefield. {HE("plural")} must be summoned onto the battlefield by Iskra Esenwein.
+
+keyword:
+	keyword: Jandar's Dispatch
+	match: JANDAR'S DISPATCH
+	mode: official
+	reminder: After you take a turn with {uncTHIS()}{card.key_name}, you may roll 12 Jandar Valkyrie dice. Move up to 4 squad figures you control who follow Jandar up to X spaces. X equals the number of Jandar symbols rolled. Any squad figures moved with Jandar's Dispatch must be within 8 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} prior to moving.
+
+keyword:
+	keyword: Javelin
+	match: JAVELIN
+	mode: official
+	reminder: After moving and before attacking with {sqTHE()}{uncTHIS()}{card.key_name}, you may roll the 20-sided die. If you roll a 16 or higher, add 3 to {uncTHIS()}{sqTHE()}{card.key_name}'s Range value for the duration of {HIS("plural")} turn.
+
+keyword:
+	keyword: Jungle Tracking
+	match: JUNGLE TRACKING
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} begins {HIS()} turn adjacent to an Evergreen Tree or Jungle Piece, {HE()} may move 2 additional spaces.
+
+keyword:
+	keyword: Kato Katsuro's Command
+	match: KATO KATSURO'S COMMAND
+	mode: official
+	reminder: Instead of taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may take a turn with one of the following that you control: 1 Samurai Hero, or 1 Samurai Squad, or 1 Ashigaru Harquebus Squad and/or 1 Ashigaru Yari Squad. You may choose which Squad to activate first. Any figure in the above list that is taking a turn instead of {uncTHIS()}{sqTHE()}{card.key_name} must be within clear sight of {uncTHIS()}{sqA()}{card.key_name_sing} before moving.
+
+keyword:
+	keyword: Knight's Courage
+	match: KNIGHT'S COURAGE
+	mode: official
+	reminder: Add 1 to {uncTHIS()}{sqvalue("each ")}{card.key_name}'s attack dice for every Knight you control within 4 clear sight spaces of {uncTHIS()}{sqvalue("that ")}{card.key_name_sing} up to a maximum of +3 dice.
+
+keyword:
+	keyword: Knockback
+	match: KNOCKBACK <atom-param>number</atom-param>
+	mode: official
+	reminder: When a small or medium figure rolls defense dice and is not destroyed by a normal or special attack from {sqA()}{uncTHIS()}{card.key_name_sing}, immediately roll the 20-sided die. If you roll a {param1} or higher, you may Knockback the figure by placing it on any empty space within 3 clear sight spaces of {Sqvalue("the attacking ")}{uncTHIS()}{card.key_name_sing}. The space must be on the same level as or lower than its current location. A figure moved by Knockback never takes any leaving engagement attacks. A non-flying figure moved lower by Knockback can recive any falling damage that may apply.
+
+keyword:
+	keyword: Landslide
+	match: LANDSLIDE
+	mode: official
+	reminder: When {uncTHISC()}{sqAC()}{card.key_name_sing} has a height advantage on an adjacent opponent's figure, {HE()} rolls an additional attack die when attacking that figure.
+
+keyword:
+	keyword: Lava Resistant
+	match: LAVA RESISTANT
+	mode: official
+	reminder: {uncTHISC()}{card.key_name} never roll{sqvalue("", heroinput: "s")} for molten lava damage or lava field damage and {HE("plural")} do not have to stop on molten lava spaces.
+
+keyword:
+	keyword: Lava Throw
+	match: LAVA THROW
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} is on a molten lava space {HE()} may add 2 to {HIS()} range.
+
+keyword:
+	keyword: Lay on Hands
+	match: LAY ON HANDS
+	mode: official
+	reminder: After moving and before attacking with {uncTHIS()}{card.key_name}, you may choose a wounded friendly Hero figure adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} and roll the 20-sided die. If you roll a 6 or higher, remove 1 wound marker from the chosen figure's Army Card.
+
+keyword:
+	keyword: Leadership
+	match: <atom-param>string</atom-param> LEADERSHIP
+	mode: official
+	reminder: All {english_plural(to_lower(param1))} you control{if to_lower(param1) = card.class then ", except " + {card.key_name} + ","} move one additional Space.
+
+keyword:
+	keyword: Leaf of the Home Tree Aura
+	match: LEAF OF THE HOME TREE AURA
+	mode: official
+	reminder: When any Elf you control within 8 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} recieves enough wounds to be destroyed, you may roll 10 Ullar Valkyrie dice before removing the figure. If you roll at least 3 Ullar symbols, ignore any wounds that figure just recieved. {uncTHISC()}{sqTHEC()}{card.key_name}'s Leaf of the Home Tree Aura does not affect {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Lethal Sting
+	match: LETHAL STING
+	mode: official
+	reminder: When rolling attack dice against a small or medium figure, if {uncTHIS()}{sqA()}{card.key_name_sing} rolls a skull on every die, the defending figure cannot roll any defense dice and is immediately destroyed.
+
+keyword:
+	keyword: Life Drain
+	match: LIFE DRAIN
+	mode: official
+	reminder: Each time {uncTHIS()}{sqA()}{card.key_name_sing} destroys a figure, you may remove a wound marker from this Army Card. {uncTHISC()}{card.key_name} cannot Life Drain destructible objects.
+
+keyword:
+	keyword: Lizard King Bonding
+	match: LIZARD KING BONDING
+	mode: official
+	reminder: Before taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may first take a turn with {HIS("plural")} chosen Lizard King, if it is still under your control.
+
+keyword:
+	keyword: Lolth's Judgement Aura
+	match: LOLTH'S JUDGEMENT AURA
+	mode: official
+	reminder: All Arachnid figures you control within 6 clear sights spaces of {uncTHIS()}{sqA()}{card.key_name_sing} roll 1 additional attack die when attacking normally.
+
+keyword:
+	keyword: Lolth's Wrath Special Attack
+	match: LOLTH'S WRATH SPECIAL ATTACK
+	mode: official
+	reminder: Range Special. Attack 3. Choose a Drow figure you control that is within 5 clear sight spaces of {uncTHIS()}{sqvalue("the attacking ")}{card.key_name_sing} and roll 3 attack dice. One at a time for each skull rolled, you may inflict one wound on any small or medium figure that is within 2 clear sight spaces of the chosen Drow figure. You may inflict more than 1 wound on a single figure using Lolth's Wrath Special Attack. Figures affected by Lolth's Wrath Special Attack cannot roll any defense dice. After attacking with Lolth's Wrath Special Attack, destroy the chosen Drow figure.
+
+keyword:
+	keyword: Loyalty to the Lizard King
+	match: LOYALTY TO THE LIZARD KING
+	mode: official
+	reminder: At the start of the game, choose a Unique Lizardfolk Hero you control, or a Unique large or huge Dragon Hero you control to be {uncTHIS()}{sqTHE()}{card.key_name_sing}'s Lizard King. {uncTHISC()}{sqAC()}{card.key_name_sing} rolls 1 additional attack and defense die when {HIS()} chosen Lizard King is within 2 clear sight spaces.{if to_lower(remove_tags(card.type)) != "Unique Hero" then " You can choose only one Lizard King for all the {card.key_name} you control."}
+
+keyword:
+	keyword: Lumbering Bully
+	match: LUMBERING BULLY
+	mode: official
+	reminder: When attacking with {uncTHIS()}{sqA()}{card.key_name_sing}, all excess shields rolled by the defending figure count as unblockable hits inflicted by the defending figure on {sqvalue("that ")}{uncTHIS()}{card.key_name_sing}.
+
+keyword:
+	keyword: Lurk in Shadows
+	match: LURK IN SHADOWS
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is on a shadow space, opponents' figures must be adjacent to attack {HIM()} with a normal attack.
+
+keyword:
+	keyword: Lurking Ambush
+	match: LURKING AMBUSH
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} starts {HIS()} turn unengaged and on at least one shadow or swamp water space, for this turn add 1 to {uncTHIS()}{sqvalue("that ")}{card.key_name_sing}'s movement and add 3 to {HIS()} Attack value.
+
+keyword:
+	keyword: Lycanthropy
+	match: LYCANTHROPY
+	mode: official
+	reminder: {uncTHISC()}{sqTHEC()}{card.key_name} start{sqvalue("", heroinput: "s")} the game with 3 green Lycanthropy markers on {sqvalue("their", heroinput: HIS())} Army Card. If an opponent's Unique Hero recieves at least 1 wound from {uncTHIS()}{sqA()}{card.key_name_sing}, you may place a Lycanthropy marker on that figure's Army Card. For the duration of the game, that figure loses its Species, Class, and Personality. Instead, it has the following characteristics:\n- Species: Hybrid\n- Class: Hunter\n- Personality: Tormented\nLycanthropy never affects Constructs, Lycanthropes, Soulborgs, and destructible objects.
+
+keyword:
+	keyword: Machine Pistol Special Attack
+	match: MACHINE PISTOL SPECIAL ATTACK
+	mode: official
+	reminder: Range 7. Attack 2. {uncTHISC()}{sqAC()}{card.key_name_sing} may use this special attack 4 times in the same turn. {to_title(HE())} may target the same figure or a different figure with each attack.
+
+keyword:
+	keyword: Mage Hand
+	match: MAGE HAND
+	mode: official
+	reminder: After moving and before attacking with {sqvalue("any of the ")}{uncTHIS()}{card.key_name}, you may choose a Treasure Glyph on an unoccupied space within 4 spaces of {uncTHIS()}{sqA()}{card.key_name_sing}. You may move that Treasure Glyph onto any empty same-level space adjacent to {sqvalue("that ")}{uncTHIS()}{card.key_name_sing}. Symbol-side-up Treasure Glyphs cannot be revealed, and power-side-up Treasure Glyphs must be placed power-side-up when moved by Mage Hand.
+
+keyword:
+	keyword: Majestic Fires Special Attack
+	match: MAJESTIC FIRES SPECIAL ATTACK
+	mode: official
+	reminder: Range 7. Attack 3. Choose a figure to attack. Any figures adjacent to the targeted figure are also affected by Majestic Fires Special Attack. Common Squad figures roll 2 less defense dice against Majestic Fires Special Attack. Roll attack dice once for all affected figures. Each figure rolls defense dice separately. {uncTHISC()}{card.key_name} cannot be affected by {HIS("plural")} own Majestic Fires Special Attack.
+
+keyword:
+	keyword: Mark Of The Warlord
+	match: MARK OF THE WARLORD
+	mode: official
+	reminder: When attacking a figure that is adjacent to any Marro Warlord you control, {uncTHIS()}{card.key_name} add{sqvalue("", heroinput: "s")} 2 to {HIS("plural")} attack dice.
+
+keyword:
+	keyword: Marro Plague
+	match: MARRO PLAGUE
+	mode: official
+	reminder: After moving and before attacking, you must roll the 20-sided dice once for each figure adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}{sqvalue(" you control")}. If you roll a 16 or higher, that figure recieves a wound. Soulborgs and Wulsinu are not affected by this Marro Plague.
+
+keyword:
+	keyword: Marro Rebirth
+	match: MARRO REBIRTH
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may roll the 20-sided die. If you roll a 13 or higher, you may place any previously destroyed Common Marro Squad figure from your army on an empty space adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}.
+
+keyword:
+	keyword: Master Manipulator
+	match: MASTER MANIPULATOR
+	mode: official
+	reminder: After removing an Order Marker on {uncTHIS()}{sqTHE()}{card.key_name}'s card, instead of taking that turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may take a turn with any Unique Hero you control withing clear sight of {uncTHIS()}{sqA()}{card.key_name_sing}.
+
+keyword:
+	keyword: Master's Assault
+	match: MASTER'S ASSAULT
+	mode: official
+	reminder: {uncTHISC()}{card.key_name} may attack any or all figures adjacent to {HIM("plural")}. Roll each attack separately.
+
+keyword:
+	keyword: Master's Influence
+	match: MASTER'S INFLUENCE
+	mode: official
+	reminder: All Monk Squad figures you control may leap an additional 13 levels up or down when using their Stealth Leap special power. All Monks you control within 2 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} add 1 to their attack dice and 1 to their defense dice.
+
+keyword:
+	keyword: Master of the Elements
+	match: MASTER OF THE ELEMENTS
+	mode: official
+	reminder: After revealing an order marker on {uncTHIS()}{sqTHE()}{card.key_name}, instead of taking that turn with {HIM("plural")}, you may take a turn with up to three small or medium Elementals you control that are within 8 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}.
+
+keyword:
+	keyword: Maul
+	match: MAUL
+	mode: official
+	reminder: When rolling attack dice for {uncTHIS()}{sqA()}{card.key_name_sing} against a small or medium figure, if you roll a skull on every die, the defending figure recieves a wound for every skull, and cannot roll any defense dice.
+
+keyword:
+	keyword: Melee Attack Enhancement
+	match: <atom-param>string</atom-param> MELEE ATTACK ENHANCEMENT
+	mode: official
+	reminder: All friendly {english_plural(to_lower(param1))} adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} recieve an additional attack die when attacking a figure adjacent to them.
+
+keyword:
+	keyword: Melee Defense
+	match: MELEE DEFENSE <atom-param>number</atom-param>
+	mode: official
+	reminder: When rolling defense dice against a normal attack from an adjacent attacking figure, {uncTHIS()}{card.key_name} add{sqvalue("", heroinput: "s")} {param1} defense dice.
+
+keyword:
+	keyword: Mind Blast Special Attack
+	match: MIND BLAST SPECIAL ATTACK
+	mode: official
+	reminder: {uncTHISC()}{sqAC()}{card.key_name_sing} does not need clear line of sight to attack with Mind Blast Special Attack.
+
+keyword:
+	keyword: Mind Exchange
+	match: MIND EXCHANGE <atom-param>number</atom-param>
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may choose any Unique Hero figure within 4 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}. Roll the 20-sided die. If you roll a {param1} or higher, take temporary control of that hero and immediately take a turn with the chosen Hero. At the end of that turn, control of the chosen Hero returns to the player who controlled the Hero before the Mind Exchange. All Order Markers that were on the chosen Hero's card will stay on the card.
+
+keyword:
+	keyword: Mind Link
+	match: MIND LINK
+	mode: official
+	reminder: Instead of taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may take a turn with up to 2 different Elf Wizards you control. {if to_lower(remove_tags(card.species)) = "elf" and to_lower(remove_tags(card.class)) = "wizard" then uncTHISC() + sqTHEC() + card.key_name + " cannot be one of the 2 Elf Wizards. "}Any Elf Wizard that is taking a turn instead of {uncTHIS()}{sqTHE()}{card.key_name} must be within 6 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} before moving.
+
+keyword:
+	keyword: Mind Shackle
+	match: MIND SHACKLE <atom-param>number</atom-param>
+	mode: official
+	reminder: After moving and before attacking, you may choose any Unique figure adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}. Roll the 20-sided die. If you roll {param1} or higher, take control of the chosen figure and that figure's Army Card. You now control that Army Card and all figures on it. Remove any Order Markers on the chosen figure's Army Card. If {uncTHIS()}{sqTHE()}{card.key_name} {sqvalue("are", heroinput: "is")} destroyed, you retain control of any previously Mind Shackled Army Cards.
+
+keyword:
+	keyword: Mine!
+	match: MINE!
+	mode: official
+	reminder: When you roll the 20-sided die for a Treasure Glyph trap with {uncTHIS()}{sqA()}{card.key_name_sing}, you must subtract 4 from your die roll.
+
+keyword:
+	keyword: Mob Attack
+	match: MOB ATTACK
+	mode: official
+	reminder: When attacking with {uncTHIS()}{sqA()}{card.key_name_sing}{sqvalue(" you control")}, if the defending figure is engaged with at least 2 other {card.key_name} you control, it subtracts 2 from its defense dice.
+
+keyword:
+	keyword: Moon Frenzy
+	match: MOON FRENZY
+	mode: official
+	reminder: After revealing an order marker on {uncTHIS()}{card.key_name}, before taking {uncTHIS()}{sqTHE()}{card.key_name}'s turn, roll the 20-sided die. If you roll an 11 or higher, you may first take a turn with any Hybrid Hero in play. If you take a turn with an opponent's Hybrid Hero, you control that Hero for the duration of its turn. At the end of its turn, control of the Hybrid Hero returns to the previous owner. All order markers that were on the figure's Army Card will stay on that figure's Army Card.
+
+keyword:
+	keyword: Mortal Strike
+	match: MORTAL STRIKE
+	mode: official
+	reminder: After attacking an opponent's Unique Hero with {sqA()}{uncTHIS()}{card.key_name_sing}'s normal attack, roll 1 attack die for each wound inflicted in that attack. For each additional skull rolled, place 1 additional wound marker on the defending figure's Army Card.
+
+keyword:
+	keyword: Movement Bonding
+	match: <atom-param>string</atom-param> MOVEMENT BONDING
+	mode: official
+	reminder: Before taking a turn with {uncTHIS()}{card.key_name}, you may move 4 {english_plural(to_lower(param1))} you control up to 5 spaces each.
+
+keyword:
+	keyword: Negative Element
+	match: NEGATIVE ELEMENT
+	mode: official
+	reminder: {uncTHISC()}{sqAC()}{card.key_name_sing} can never roll defense dice while {HE()} is on a water space.
+
+keyword:
+	keyword: Net Trip
+	match: NET TRIP <atom-param>number</atom-param>
+	mode: official
+	reminder: After moving and before attacking, roll the 20-sided die. If you roll a {param1} or higher, any small or medium figure attacked by {uncTHIS()}{sqA()}{card.key_name_sing} this turn may roll no more than 1 die for defense.
+
+keyword:
+	keyword: Ninjutsu Barrage Special Attack
+	match: NINJUTSU BARRAGE SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 3. Instead of moving and attacking normally with {uncTHIS()}{sqTHE()}{card.key_name}, you may move {uncTHIS()}{sqvalue("each ")}{card.key_name_sing}{sqvalue(" you control")} up to 3 spaces. {uncTHISC()}{sqvalue("Each ")}{card.key_name_sing} can attack up to 3 times with Ninjutsu Barrage Special Attack at any point before, during, or after this move as long as {HE()} is on a space where {HE()} could end {HIS()} movement. {uncTHISC()}{sqAC()}{card.key_name_sing} cannot attack the same figure more than once on a single turn.
+
+keyword:
+	keyword: One Shield Defense
+	match: ONE SHIELD DEFENSE
+	mode: official
+	reminder: When rolling defense dice, if {uncTHIS()}{sqA()}{card.key_name_sing} rolls at least one shield, the most wounds {HE()} may take for this attack is one.
+
+keyword:
+	keyword: Orc Battle Cry Aura
+	match: ORC BATTLE CRY AURA
+	mode: official
+	reminder: When attacking with any Orc Warrior figures you control within 2 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}, you may roll Utgar Valkyrie dice. Each Utgar symbol rolled counts for an additional skull.
+
+keyword:
+	keyword: Orc Battle Rush
+	match: ORC BATTLE RUSH
+	mode: official
+	reminder: At the start of the first round of the game, after all order markers have been placed, you may move {sqvalue("all")} {uncTHIS()}{card.key_name}{sqvalue(" you control")} up to 5 spaces{sqvalue(" each")}. {to_title(HE("plural"))} must end {HIS("plural")} Orc Battle Rush movement on an empty space.
+
+keyword:
+	keyword: Orc Defensive Aura
+	match: ORC DEFENSIVE AURA <atom-param>number</atom-param>
+	mode: official
+	reminder: All Orc creatures you control within 4 clear spaces of this creature add {param1} to their defense dice. {uncTHISC()}{sqTHEC()}{card.key_name}'s Defensive Aura does not affect {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Overextend Attack
+	match: OVEREXTEND ATTACK
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may {sqvalue("destroy a ", heroinput: "place a wound marker on ")} {uncTHIS()}{card.key_name}{sqvalue(" you control")} and take another turn with {HIM("plural")}. You may only use this power once during a round.
+
+keyword:
+	keyword: Paralyzing Stare
+	match: PARALYZING STARE <atom-param>number</atom-param>
+	mode: official
+	reminder: After moving and before attacking, choose any small or medium figure within 6 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}. Roll the 20-sided die. If you roll 16 or higher, the chosen figure cannot roll any defense dice if attacked by {uncTHIS()}{sqA()}{card.key_name_sing} this turn.
+
+keyword:
+	keyword: Phantom Walk
+	match: PHANTOM WALK
+	mode: official
+	reminder: {uncTHISC()}{card.key_name} can move through all figures and is never attacked when leaving an engagement.
+
+keyword:
+	keyword: Pistol Fire Special Attack
+	match: PISTOL FIRE SPECIAL ATTACK
+	mode: official
+	reminder: Range 5. Attack 3. {uncTHISC()}{card.key_name} may not use Pistol Fire Special Attack to attack a figure who follows Jandar.
+
+keyword:
+	keyword: Poison Cloud
+	match: POISON CLOUD
+	mode: official
+	reminder: When {sqA()}{uncTHIS()}{card.key_name_sing} attacks a Common figure, add 1 to its Attack value.
+
+keyword:
+	keyword: Poison Sting Special Attack
+	match: POISON STING SPECIAL ATTACK
+	mode: official
+	reminder: Range 1 Attack 4. If {uncTHIS()}{sqA()}{card.key_name_sing} inflicts at least 1 wound with Poison Sting Special Attack, roll the 20-sided die for Poison Damage. If you roll 1-9, the defending figure receives no additional wounds for Poison Damage. If you roll 10-19, add 1 additional wound marker to the defending figure's Army Card , and roll again for Poison Damage. If you roll a 20, destroy the defending figure.
+
+keyword:
+	keyword: Poison Weapons
+	match: POISON WEAPONS
+	mode: official
+	reminder: Each time {uncTHIS()}{sqA()}{card.key_name_sing} attacks a small, medium, or large Hero with a normal attack or a leaving engagement attack and inflicts at least one wound, roll the 20-sided die. If you roll a 1-11, nothing happens. If you roll a 12 or higher, add 1 additional wound to the defending figure.
+
+keyword:
+	keyword: Poisonous Acid Breath
+	match: POISONOUS ACID BREATH
+	mode: official
+	reminder: Instead of attacking, you may choose up to 3 different small or medium figures within 4 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}. One at a time, roll the 20-sides die for each chosen figures. If the chosen figure is a Squad figure and you roll a 8 or higher, destroy it. If the chosen figure is a Hero figure and you roll a 17 or higher, destroy the chosen Hero.
+
+keyword:
+	keyword: Pounce Special Attack
+	match: POUNCE SPECIAL ATTACK
+	mode: official
+	reminder: Range 3. Attack 5. If {uncTHISC()}{sqvalue("any ")}{card.key_name} moved but did not attack normally, {HE("plural")} may use Pounce Special Attack. To pounce, choose a non-adjacent small or medium figure whose base is not higher or lower than 5 levels from the base of {sqTHE()}{card.key_name_sing}. If the figure is destroyed, immediately place {sqTHE()}{card.key_name_sing} on the space the figure occupied. If the figure is not destroyed, destroy {sqTHE()}{card.key_name_sing}.
+
+keyword:
+	keyword: Protection from Evil Aura
+	match: PROTECTION FROM EVIL AURA
+	mode: official
+	reminder: All small or medium figures you control within 3 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} add 1 to their defense dice when rolling defense against an attack from a figure who follows Utgar. {uncTHISC()}{sqTHEC()}{card.key_name}'s Protection from Evil Aura does not affect {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Psionic Blast Special Attack
+	match: PSIONIC BLAST SPECIAL ATTACK
+	mode: official
+	reminder: Range 3. Attack 3. {uncTHISC()}{sqAC()}{card.key_name_sing} do{sqvalue("", heroinput: "es")} not need clear line of sight to attack with Psionic Blast Special Attack. If a figure receives 1 or more wounds from Psionic Blast Special Attack, remove one unrevealed order marker at random from that figure's Army Card (or cards if you opponent has more than one Common card for that figure).
+keyword:
+	keyword: Queglix Gun Special Attack
+	match: QUEGLIX GUN SPECIAL ATTACK
+	mode: official
+	reminder: Range 6. Attack 1, 2, or 3. {uncTHISC()}{sqvalue("Each ")}{card.key_name_sing} starts each turn with 9 attack dice. Choose any figure within range and attack by rolling 1, 2, or 3 attack dice. {uncTHISC()}{sqTHEC()}{card.key_name_sing} may keep making special attacks with 1, 2, or 3 attack dice until {HE()} has rolled all 9 attack dice. {to_title(HE())} may target the same or different figures with each attack.
+
+keyword:
+	keyword: Quick Release Special Attack
+	match: QUICK RELEASE SPECIAL ATTACK
+	mode: official
+	reminder: Range 4. Attack 4. When {uncTHIS()}{sqA()}{card.key_name_sing} attacks with {HIS()} Quick Release Special Attack, {HE()} may attack one additional time.
+
+keyword:
+	keyword: Rage Smash
+	match: RAGE SMASH <atom-param>number</atom-param>
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} attacks using a normal attack, {HE()} receives one extra attack die for each Wound Marker {HE()} has, up to a maximum of {param1} extra attack dice for Rage Smash.
+
+keyword:
+	keyword: Rain Of Flame Special Attack
+	match: RAIN OF FLAME SPECIAL ATTACK
+	mode: official
+	reminder: Range 7. Attack 1+Special. Choose a figure to attack. Any figures adjacent to the chosen figure are also affected by the Rain of Flame Special Attack. Add 1 to {uncTHIS()}{sqTHE()}{card.key_name_sing}'s attack dice for every additional Elf Wizard you control within 3 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}, up to a maximum of +3 dice. Roll attack dice once for all affected figures. Each affected figure rolls defense dice separately. {uncTHISC()}{card.key_name} cannot be affected by {HIS("plural")} own Rain of Flame Special Attack.
+
+keyword:
+	keyword: Range Enhancement
+	match: RANGE ENHANCEMENT
+	mode: official
+	reminder: Any Soulborg Guards you control adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} add 2 spaces to their range.
+
+keyword:
+	keyword: Rapid Fire Special Attack
+	match: RAPID FIRE SPECIAL ATTACK
+	mode: official
+	reminder: Range 7. Attack 3. If {uncTHIS()}{sqA()}{card.key_name_sing}'s Rapid Fire Special Attack inflicts a wound, {HE()} may attack again with {HIS()} Rapid Fire Special Attack. {uncTHISC()}{sqTHE()}{card.key_name_sing} may continue attacking with {HIS()} Rapid Fire Special Attack until {HE()} does not inflict a wound.
+
+keyword:
+	keyword: Reach
+	match: REACH
+	mode: official
+	reminder: If an opponent's figure is within 2 spaces of {uncTHIS()}{sqA()}{card.key_name_sing}, and its base is no more than 3 levels above {uncTHIS()}{sqTHE()}{card.key_name_sing}'s height or 3 levels below {uncTHIS()}{sqTHE()}{card.key_name_sing}'s base, {uncTHIS()}{sqTHE()}{card.key_name_sing} may add 1 to {HIS()} Range when attacking that figure.
+
+keyword:
+	keyword: Red Flag Of Fury Aura
+	match: RED FLAG OF FURY AURA
+	mode: official
+	reminder: If order marker 1 is placed on {uncTHIS()}{sqTHE()}{card.key_name}, then instead of taking that turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may take a turn with up to 2 Unique Heroes you control who follow Utgar. {if to_lower(remove_tags(card.type)) = "Unique Hero" then card.key_name + " cannot be one of the 2 Unique Heroes. "}Any Unique Hero that is taking a turn instead of {uncTHIS()}{sqTHE()}{card.key_name} must be within 8 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} prior to its movement.
+
+keyword:
+	keyword: Regenerate
+	match: REGENERATE
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, remove 1 Wound Marker from this Army Card.
+
+keyword:
+	keyword: Rejected By Death
+	match: REJECTED BY DEATH
+	mode: official
+	reminder: At the start of each of your turns after {uncTHIS()}{sqA()}{card.key_name_sing} has been destroyed, roll the 20-sided die. If you roll a 19 or higher, immediately place {uncTHIS()}{sqA()}{card.key_name_sing} on a space adjacent to any figure you control and remove all Wound Markers on this card.
+
+keyword:
+	keyword: Relentless Assault
+	match: RELENTLESS ASSAULT
+	mode: official
+	reminder: Each friendly figure with a Relentless personality adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} recieves an additional attack die.
+
+keyword:
+	keyword: Righteous Smite
+	match: RIGHTEOUS SMITE
+	mode: official
+	reminder: When attacking an opponent's figure who follows Utgar, {uncTHIS()}{card.key_name} recieve{sqvalue("", heroinput: "s")} 1 additional attack die.
+
+keyword:
+	keyword: Road Strength
+	match: ROAD STRENGTH
+	mode: official
+	reminder: Add 1 to {uncTHIS()}{sqA()}{card.key_name_sing}'s attack and defense while on a road space.
+
+keyword:
+	keyword: Rock Throw
+	match: ROCK THROW
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} has a height advantage on an opponent's figure, {HE()} may add 2 to {HIS()} range when attacking that figure.
+
+keyword:
+	keyword: Rod Of Negation
+	match: ROD OF NEGATION
+	mode: official
+	reminder: Start the game with 3 brown Negation Markers on this card. At the end of the turn, if you have at least 1 Negation Marker on this card, you may choose any opponent's Unique figure within 6 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}. Roll the 20-sided die. If you roll a 1-15, nothing happens. If you roll a 16-19, place a Negation Marker on the chosen figure's Army Card. All of that figure's special powers are negated for the entire game. If you roll a 20, destroy the chosen figure.
+
+keyword:
+	keyword: Saber Storm Special Attack
+	match: SABER STORM SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 1, 2, or 3. {uncTHISC()}{sqvalue("Each ")}{card.key_name_sing} starts each turn with 6 attack dice. Choose any figure within range and attack by rolling 1, 2, or 3 attack dice. {uncTHISC()}{sqTHEC()}{card.key_name_sing} may keep making special attacks with 1, 2, or 3 attack dice until {HE()} has rolled all 6 attack dice. {to_title(HE())} may target the same or different figures with each attack.
+
+keyword:
+	keyword: Sacred Band Defy Death
+	match: SACRED BAND DEFY DEATH <atom-param>number</atom-param>
+	mode: official
+	reminder: When an adjacent Sacred Band figure you control receives one or more wounds, roll the 20-sided die before removing that figure. If you roll a {param1} or higher, ignore any wounds.
+
+keyword:
+	keyword: Scale
+	match: SCALE
+	mode: official
+	reminder: When moving up or down levels of terrain, {uncTHIS()}{card.key_name} may add 2 to their height.
+
+keyword:
+	keyword: Scatter
+	match: SCATTER
+	mode: official
+	reminder: After {uncTHIS()}{sqA()}{card.key_name_sing}{sqvalue(" you control")} rolls defense dice against a normal attack from an opponent's figure, you may move any 2 {card.key_name} you control up to 4 spaces each.
+
+keyword:
+	keyword: Scurry
+	match: SCURRY
+	mode: official
+	reminder: When {sqA()}{uncTHIS()}{card.key_name_sing} is destroyed by a normal attack from an opponent's figure, you may move any 2 {card.key_name} you control up to 4 spaces each, and all {card.key_name} you control no longer have any visible Hit Zones for the duration of the attacking figure's turn while they remain unengaged. {to_title(card.key_name)} will never take any leaving engagement attacks while using Scurry.
+
+keyword:
+	keyword: Searing Intensity
+	match: SEARING INTENSITY
+	mode: official
+	reminder: After moving and before attacking, you must roll the 20-sided die once for each figure adjacent to {sqvalue("at least one ")}{uncTHIS()}{card.key_name_sing}{sqvalue(" you control")}. If you roll a 14 or higher, that figure recieves 1 wound. Figures with the Lava Resistant Special Power are not affected by Searing Intensity.
+
+keyword:
+	keyword: Self-Destruct
+	match: SELF-DESTRUCT
+	mode: official
+	reminder: After moving and instead of attacking, {uncTHIS()}{sqvalue("all ")}{card.key_name} may choose to self-destruct. Roll the 20-sided die {sqvalue("for each destructing figure ")}to determine if any other figures are wounded. If you roll a 1-3, all adjacent figures are safe. If you roll a 4-15, each adjacent figure receive 2 wounds. If you roll a 16-19, each adjacent figure recieves 4 wounds. If you roll a 20, each adjacent figure recieves 8 wounds. After using this power, {uncTHIS()}{sqTHE()}{card.key_name_sing} is always destroyed.
+
+keyword:
+	keyword: Self-Replicating
+	match: SELF-REPLICATING
+	mode: official
+	reminder: Marro Hive cannot rebirth {uncTHIS()}{card.key_name} with its Marro Rebirth special power.
+
+keyword:
+	keyword: Shadow Ambush
+	match: SHADOW AMBUSH
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} starts {HIS()} turn unengaged and on a shadow space, add 3 dice to {HIS()} attack this turn.
+
+keyword:
+	keyword: Shadow Dance
+	match: SHADOW DANCE
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} starts {HIS()} turn on a shadow space, instead of moving normally, you may place {HIM()} on any other empty shadow space within 8 spaces of {HIS()} current location. If {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} is engaged when {HE()} starts (HIS()} Shadow Dance, {HE()} will take any leaving engagement attacks.
+
+keyword:
+	keyword: Shaolin Assault
+	match: SHAOLIN ASSAULT
+	mode: official
+	reminder: {uncTHISC()}{card.key_name} may attack any or all figures adjacent to {HIM("plural")}. Roll each attack seperately.
+
+keyword:
+	keyword: Sharpshooter
+	match: SHARPSHOOTER
+	mode: official
+	reminder: Instead of attacking,{sqvalue(" for each " + card.key_name_sing + " you control")} you may choose any non-adjacent figure within 10 clear sight spaces of {uncTHIS()}{sqTHE()}{card.key_name_sing}. Roll the 20-sided die. If you roll a 19 or 20, the chosen figure is destroyed. If you roll a 1-18, you missed. {uncTHISC()}{sqAC()}{card.key_name_sing} may not use this special power if {HE("plural")} moved this turn.
+
+keyword:
+	keyword: Shield Throw Special Attack
+	match: SHIELD THROW SPECIAL ATTACK
+	mode: official
+	reminder: Range 5. Attack 4. When {uncTHIS()}{sqA()}{card.key_name_sing} attacks with {HIS()} Shield Throw Special Attack, {HE()} may{sqvalue(" each")} attack 2 additional times. {to_title(HE())} cannot attack the same figure more than once in a turn.
+
+keyword:
+	keyword: Shield Wall
+	match: SHIELD WALL
+	mode: official
+	reminder: When defending with {uncTHIS()}{sqA()}{card.key_name_sing}, add 1 defense die for each adjacent {card.key_name_sing} you control, up to a maximum of +2 dice for the Shield Wall power.
+
+keyword:
+	keyword: Shields Of Valor
+	match: SHIELDS OF VALOR
+	mode: official
+	reminder: When defending with {uncTHIS()}{sqA()}{card.key_name_sing}, each shield rolled counts for one additional block.
+
+keyword:
+	keyword: Shocking Grasp
+	match: SHOCKING GRASP
+	mode: official
+	reminder: When rolling attack dice for a normal attack on an adjacent figure, {uncTHIS()}{card.key_name} always adds 1 automatic skull to whatever is rolled.
+
+keyword:
+	keyword: Shotgun Blast Special Attack
+	match: SHOTGUN BLAST SPECIAL ATTACK
+	mode: official
+	reminder: Range 5. Attack 3. Choose a figure to attack. Any figures adjacent to the chosen figure are also affected by the Shotgun Blast Special Attack. {uncTHISC()}{sqTHEC()}{card.key_name_sing} only needs a clear sight shot at the chosen figure. Roll attack dice once for all affected figures. Each figure rolls defense dice seperately. {uncTHISC()}{card.key_name} cannot be affected by {HIS("plural")} own Shotgun Blast Special Attack.
+
+keyword:
+	keyword: Shuriken Special Attack
+	match: SHURIKEN SPECIAL ATTACK
+	mode: official
+	reminder: Range 5. Attack Special. If {uncTHIS()}{sqTHE()}{card.key_name_sing} is attacking a small or medium figure, roll 3 attack dice for Shuriken Special Attack. If {uncTHIS()}{sqTHE()}{card.key_name_sing} is attacking a figure of a different size, roll 2 attack dice for Shuriken Special Attack.
+
+keyword:
+	keyword: Sighting
+	match: SIGHTING
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} attacks with a height advantage, {HE()} rolls an additional attack die.
+
+keyword:
+	keyword: Sky Watcher
+	match: SKY WATCHER
+	mode: official
+	reminder: If {sqA()}{uncTHIS()}{card.key_name_sing} is attacking a non-adjacent figure that has the Flying or Stealth Flying special power, add 2 dice to {sqTHE()}{uncTHIS()}{card.key_name_sing}'s attack.
+
+keyword:
+	keyword: Slither
+	match: SLITHER
+	mode: official
+	reminder: {uncTHISC()}{card.key_name} do{sqvalue("", heroinput: "es")} not have to stop {HIS("plural")} movement when entering water spaces.
+
+keyword:
+	keyword: Smoke Powder
+	match: SMOKE POWDER <atom-param>number</atom-param>
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing}{sqvalue(" you control")}, or any figure you control that is adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}{sqvalue(" you control")}, is targetted for a normal attack from a non-adjacent opponent's figure, you may roll the 20-sided die. If you roll a {param1} or higher, {uncTHIS()}{sqvalue("all ")}{card.key_name}{sqvalue(" you control")} and all figures you control that are adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} no longer have any visible hit zones for the duration of the targetting figure's turn.
+
+keyword:
+	keyword: Sneak Attack
+	match: SNEAK ATTACK <atom-param>number</atom-param>
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is attacking an opponent's figure that is adjacent to at least one other figure you control, add {param1} dice to {HIS()} attack.
+
+keyword:
+	keyword: Snow And Ice Enhanced Movement
+	match: SNOW AND ICE ENHANCED MOVEMENT
+	mode: official
+	reminder: Slippery Ice and Heavy Snow only count as 1 space when moving.
+
+keyword:
+	keyword: Snow Strength
+	match: SNOW STRENGTH
+	mode: official
+	reminder: Add 1 to {uncTHIS()}{sqA()}{card.key_name_sing}'s attack and defense while on a snow space.
+
+keyword:
+	keyword: Soul Devour
+	match: SOUL DEVOUR
+	mode: official
+	reminder: Before moving, {sqvalue("for each " + card.key_name_sing + " you control, ")}you may choose a Unique Hero adjacent to {uncTHIS()}{sqTHE()}{card.key_name_sing}. Roll the 20-sided die{sqvalue(" once for each affected figure")}. If you roll 19 or 20, destroy {uncTHIS()}{sqTHE()}{card.key_name_sing}, then take control of the chosen Unique Hero and remove any Order Markers on its card. You now control that Army Card.
+
+keyword:
+	keyword: Soul Weapons
+	match: SOUL WEAPONS
+	mode: official
+	reminder: Figures attacked by {sqA()}{uncTHIS()}{card.key_name_sing} subtract 2 from their defense dice. Destructible Objects are not affected by Soul Weapons. 
+
+keyword:
+	keyword: Spear Of Summoning
+	match: SPEAR OF SUMMONING
+	mode: official
+	reminder: After moving and before attacking, {sqvalue("for each "+card.key_name+" you control, ")}choose any figure you control on the battlefield, then roll a 20-sided die. If you roll a 1-8, nothing happens. If you roll a 9-20, move the chosen figure to any space adjacent to {uncTHIS()}{sqTHE()}{card.key_name_sing}. If the summoned figure is engaged, the figure does not recieve any leaving engagement attacks.
+
+keyword:
+	keyword: Spidey Sense
+	match: SPIDEY SENSE <atom-param>number</atom-param>
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is attacked by an opponent's figure and at least 1 skull is rolled, roll the 20-sided die. If you roll 1-{param1-1}, roll defense dice normally. If you roll {param1}-20, {uncTHIS()}{sqTHE()}{card.key_name_sing} takes no damage and may immediately move using {HIS()} Swing Line Special Power.
+
+keyword:
+	keyword: Stab In The Back
+	match: STAB IN THE BACK
+	mode: official
+	reminder: After you take a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you must roll the 20-sided die. If you roll a 1, choose an opponent. That opponent now controls {uncTHIS()}{sqTHE()}{card.key_name}. Remove any Order Markers on this Army Card, then give the card to that opponent.
+
+keyword:
+	keyword: Staff Of Lerkintin
+	match: STAFF OF LERKINTIN
+	mode: official
+	reminder: When defending with {uncTHIS()}{sqA()}{card.key_name_sing}, add as many defense dice as the number of Elves you control adjacent to {uncTHIS()}{sqTHE()}{card.key_name_sing}.
+
+keyword:
+	keyword: Stare Of Stone
+	match: STARE OF STONE
+	mode: official
+	reminder: Instead of attacking{sqvalue(" with a "+card.key_name_sing)}, choose any figure within 4 clear sight spaces of {uncTHIS()}{sqTHE()}{card.key_name_sing}. Roll the 20-sided die. If the chosen figure is a Squad figure and you roll a 7 or higher, destroy it. If the chosen figure is a Hero figure and you roll a 17 or higher, destroy the chosen Hero figure.
+
+keyword:
+	keyword: Stealth Armor
+	match: STEALTH ARMOR <atom-param>number</atom-param>
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} receives enough wounds to be destroyed, before removing {HIM()} from the board, roll the 20-sided die. If you roll a 15 or higher, ignore any wounds.
+
+keyword:
+	keyword: Stealth Dodge
+	match: STEALTH DODGE
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} rolls defense dice against an attacking figure who is not adjacent, one shield will block all damage.
+
+keyword:
+	keyword: Stealth Flying
+	match: STEALTH FLYING
+	mode: official
+	reminder: When counting spaces for {uncvalue("a ")}{sqA()}{card.key_name_sing}'s movement, ignore elevations. {uncvalue("A ")}{card.key_name} may fly over over water without stopping, pass over figures without becoming engaged, and fly over obstacles such as ruins. When {uncvalue("a ")}{sqA()}{card.key_name_sing} starts to fly, if {HE()} is engaged {HE()} will not take any leaving engagement attacks.
+
+keyword:
+	keyword: Stealth Leap
+	match: STEALTH LEAP <atom-param>number</atom-param>
+	mode: official
+	reminder: Instead of {HIS("plural")} normal move, {uncvalue("a ")}{sqTHE()}{card.key_name} may use Stealth Leap {param1}. Stealth Leap {param1} has a move of 3. When counting spaces for Stealth Leap {param1}, ignore elevations. {uncvalue("A ")}{card.key_name} may leap over water without stopping, pass over figures without becoming engaged, and leap over obstacles such as ruins. {uncvalue("A ")}{sqAC()}{card.key_name_sing} may not leap more than {param1} levels up or down in a single leap. If {uncvalue("a ")}{sqA()}{card.key_name_sing} is engaged when {HE()} starts {HIS()} Stealth Leap {param1}, {HE()} will not take any leaving engagement attacks.
+
+keyword:
+	keyword: Stinger Drain
+	match: STINGER DRAIN
+	mode: official
+	reminder: After moving and before attacking, you may roll the 20-sided die. If you roll a 1-4, you must destroy {sqvalue("a ")}{card.key_name}{sqvalue(" you control and you cannot attack this turn")}. If you roll a 5 - 9, add 0 to the attack value of this card. If you roll a 10 or higher, add 1 to the attack value of this card.
+
+keyword:
+	keyword: Stomp Special Attack
+	match: STOMP SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 3. Any figure adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} is affected by the Stomp Special Attack. Roll 3 attack dice once for all affected figures. Each figure rolls defense separately. {uncTHISC()}{sqAC()}{card.key_name_sing} cannot attack using {HIS()} Stomp Special Attack on the same turn {HE()} uses Super Leap.
+
+keyword:
+	keyword: Strategic Bonding
+	match: <atom-param>string</atom-param> STRATEGIC BONDING
+	mode: official
+	reminder: Before taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may first take a turn with any {to_lower(param1)} Hero you control{sqvalue("", heroinput: " other than " + uncTHIS() + card.key_name)}. If you do not take a turn with any {to_lower(param1)} Hero you control, add 2 to {uncTHIS()}{sqTHE()}{card.key_name}'s move number.
+
+keyword:
+	keyword: Strength Of Oak Aura
+	match: STRENGTH OF OAK AURA <atom-param>number</atom-param>
+	mode: official
+	reminder: All friendly Elves adjacent to this unit add {param1} to their defense dice.
+
+keyword:
+	keyword: Summon Elemental
+	match: SUMMON ELEMENTAL
+	mode: official
+	reminder: After moving and before attacking with {uncTHIS()}{sqTHE()}{card.key_name}, you may roll the 20-sided die. If you roll an 11 or higher, you may, if possible, place one of your previously destroyed small or medium Elementals on an empty space within 3 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}.
+
+keyword:
+	keyword: Summon The Rechets Of Bogdan
+	match: SUMMON THE RECHETS OF BOGDAN
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may attempt to summon the Rechets of Bogdan if they are in your army and they have not yet been successfully summoned. Roll the 20-sided die. If you roll a 14 or higher, you must place all 3 Rechets of Bogdan on empty spaces within 6 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}. Any Rechets of Bogdan that you cannot place on the battlefield are immediately destroyed and cannot be summoned again. When the Rechets of Bogdan are summoned, you may immediately take a turn with them.
+
+keyword:
+	keyword: Super Leap
+	match: SUPER LEAP
+	mode: official
+	reminder: Instead of {HIS("plural")} normal move, {uncvalue("a ")}{sqvalue("one or more ")}{card.key_name} may Super Leap. Super Leap has a move of 10. When counting spaces for Super Leap movement, ignore elevations. {uncvalue("A ")}{card.key_name} may leap over water without stopping, leap over figures without becoming engaged, and leap over obstacles such as ruins. {uncvalue("A ")}{sqAC()}{card.key_name_sing} may not leap more than 50 levels up or down in a single leap. If {uncvalue("a ")}{sqA()}{card.key_name_sing} is engaged when {HE()} starts to leap, {HE()} will take any leaving engagement attacks. {uncvalue("A ")}{sqA()}{card.key_name} rolls 3 less attack dice on any turn that {HE("plural")} used Super Leap.
+
+keyword:
+	keyword: Swamp Water Strength
+	match: SWAMP WATER STRENGTH
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} is on a swamp water space, add 1 to {HIS()} attack and defense.
+
+keyword:
+	keyword: Swamp Water Tunnel
+	match: SWAMP WATER TUNNEL
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} ends {HIS()} normal movement on a swamp water space, you may immediately place {HIM()} on any empty same-level swamp water space within 5 spaces. If {uncTHIS()}{sqA()}{card.key_name_sing} is engaged when {HE()} starts to tunnel, {HE()} will take any leaving engagement attacks.
+
+keyword:
+	keyword: Sweeping Sword Special Attack
+	match: SWEEPING SWORD SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 5. Choose a figure to attack. Any figures adjacent to both {sqvalue("the attacking ")}{uncTHIS()}{card.key_name_sing} and the chosen figure are also affected by Sweeping Sword Special Attack. Roll attack dice once for all affected figures. Each figure rolls defense dice seperately.
+
+keyword:
+	keyword: Swing Line
+	match: SWING LINE <atom-param>number</atom-param>
+	mode: official
+	reminder: Instead of a normal move, {uncvalue("a ")}{sqvalue("any or all ")}{card.key_name} may use {HIS("plural")} Swing Line. Swing Line has a move of {param1}. When counting spaces for Swing Line movement, ignore elevations. {uncvalue("A ")}{card.key_name} may swing over water without stopping, swing over figures without becoming engaged, and swing over obstacles such as ruins. {uncvalue("A ")}{card.key_name} may not Swing Line more than 40 levels up or down in a single Swing Line. If {uncvalue("a ")}{sqA()}{card.key_name_sing} is engaged when {HE()} starts to Swing Line, {HE()} will not take any leaving engagement attacks.
+
+keyword:
+	keyword: Swirling Vortex
+	match: SWIRLING VORTEX
+	mode: official
+	reminder: When an opponent's small or medium figure moves onto a space within 2 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}{sqvalue(" you control")}, that figure must end its move there. Figures can never move through any figure affected by Swirling Vortex.
+
+keyword:
+	keyword: Sword Of Reckoning
+	match: SWORD OF RECKONING <atom-param>number</atom-param>
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is attacking an adjacent figure, add {param1} to {HIS()} attack.
+
+keyword:
+	keyword: Tactical Disengagement
+	match: TACTICAL DISENGAGEMENT <atom-param>number</atom-param>
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} receives one or more wounds from a leaving engagement attack, immediately roll the 20-sided die. If you roll a {param1} or higher, ignore any wounds from that leaving engagement attack.
+
+keyword:
+	keyword: Tactical Switch
+	match: TACTICAL SWITCH
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} {sqvalue("you control ")}attacks an opponent's small or medium figure, before rolling the attack dice, you may switch {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} with the defending figure. After switching spaces, {uncTHIS()}{sqTHE()}{card.key_name_sing} must continue that attack, if possible, and cannot attack any other figure this turn. Figures moved by Tactical Switch never take any leaving engagement attacks. An opponent's figure may be moved by Tactical Switch only once per turn.
+
+keyword:
+	keyword: Tactician
+	match: TACTICIAN
+	mode: official
+	reminder: All friendly figures adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} add 1 extra die to their attack, and 1 extra die to their defense.
+
+keyword:
+	keyword: Talon Grab
+	match: TALON GRAB
+	mode: official
+	reminder: While {uncTHIS()}{sqA()}{card.key_name_sing} is flying, you may choose one opponent's small or medium figure that {HE()} passed over this turn. Place the chosen figure on an empty same-level space adjacent to {uncTHIS()}{sqTHE()}{card.key_name_sing} at the end of its move. If the chosen figure is engaged when it is moved by Talon Grab, it will not take any leaving-engagement attacks. Figures under overhangs can never be moved by Talon Grab.
+
+keyword:
+	keyword: Targetting Beacon
+	match: TARGETTING BEACON
+	mode: official
+	reminder: When attacking a non-adjacent figure, all Soulborg figures you control who follow Jandar add 1 die to their attack if {uncTHIS()}{sqvalue("at least one ")}{card.key_name_sing}{sqvalue(" you control")} is adjacent to the defending figure.
+
+keyword:
+	keyword: Taskmaster Bonding
+	match: TASKMASTER BONDING
+	mode: official
+	reminder: Before taking a turn with {sqTHE()}{uncTHIS()}{card.key_name}, you may first take a turn with any large wild Hero you control.
+
+keyword:
+	keyword: Techno Hatred
+	match: TECHNO HATRED
+	mode: official
+	reminder: When attacking a Soulborg figure, {uncTHIS()}{card.key_name}{sqvalue(" recieve", heroinput: " recieves")} one additional attack die.
+
+keyword:
+	keyword: Teleport Reinforcements
+	match: TELEPORT REINFORCEMENTS
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} recieves one or more wounds from an opposing figure's Normal or Special Attack and is not destroyed, you may choose one friendly Marro Squad figure for each wound {uncTHIS()}{sqTHE()}{card.key_name_sing} just recieved. Place the chosen figure(s) on any empty space(s) adjacent to {uncTHIS()}{sqTHE()}{card.key_name_sing}. If the teleported figures are engaged, they will not take any leaving engagement attacks.
+
+keyword:
+	keyword: Teleportation
+	match: TELEPORTATION
+	mode: official
+	reminder: Instead of moving {uncTHIS()}{sqTHE()}{card.key_name} normally, {sqvalue("for each " + card.key_name_sing + " you control, ")}you may choose any empty space that is on the same level and within 10 spaces of {uncTHIS()}{sqvalue("that ")}{card.key_name_sing}. Place {uncvalue("the ")}{sqTHE()}{card.key_name_sing} on the chosen space. When {uncTHIS()}{sqA()}{card.key_name_sing} starts to Teleport, if {HE()} is engaged {HE()} will not take any leaving engagement attacks.
+
+keyword:
+	keyword: Tetsubo Special Attack
+	match: TETSUBO SPECIAL ATTACK
+	mode: official
+	reminder: Range 1 Attack 3. Choose a figure to attack. You may also choose one figure adjacent to the targeted figure to be affected by the Tetsubo Special Attack as well. Roll attack dice once for both figures. Each figure rolls defense dice separately.
+
+keyword:
+	keyword: The Drop
+	match: THE DROP
+	mode: official
+	reminder: {uncTHISC()}{sqTHEC()}{card.key_name} do{sqvalue("", heroinput: "es")} not start the game on the battlefield. At the start of each round, before you place Order Markers, roll the 20-sided die. If you roll a 13 or higher you may place {uncTHIS()}{sqvalue("all ")}{card.key_name} on any empty space{sqvalue("s")}. You cannot place {HIM("plural")} adjacent to {sqvalue("each other or ")}other figures, or on glyphs.
+
+keyword:
+	keyword: Thorian Speed
+	match: THORIAN SPEED
+	mode: official
+	reminder: Opponent's figures must be adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} to attack {HIM()} with a normal attack.
+
+keyword:
+	keyword: Throw
+	match: THROW <atom-param>number</atom-param>
+	mode: official
+	reminder: After moving and before attacking, {sqvalue("for each "+card.key_name_sing+" you control, ")}choose one small or medium non-flying figure adjacent {uncTHIS()}{sqTHE()}{card.key_name_sing}. Roll the 20-sided die. If you roll a {param1} or higher, you may throw the figure by placing it on any empty space within 4 spaces of {uncTHIS()}{sqTHE()}{card.key_name_sing}. The figure must land within clear sight of {uncTHIS()}{sqTHE()}{card.key_name_sing}. After the figure is placed, roll the 20-sided die for throwing damage. If you roll an 11 or higher, the thrown figure recieves 2 wounds. If the figure is thrown onto a level higher than the height of {uncTHIS()}{sqTHE()}{card.key_name_sing} or onto water, do not roll for throwing damage. The thrown figure does not take any leaving engagment attacks.
+
+keyword:
+	keyword: Thunder Ram Assault Special Attack
+	match: THUNDER RAM ASSAULT SPECIAL ATTACK
+	mode: official
+	reminder: Range 1+Special. Attack 4. Choose a figure to attack. You may also choose up to two other figures within 2 clear sights spaces of the targeted figure to be affected by Thunder Ram Assault Special Attack. Roll attack dice once for all affected figures. Each figure rolls defense dice separately. You can only use Thunder Ram Assault Special Attack if {sqvalue("the attacking ")}{uncTHIS()}{card.key_name_sing} was not adjacent to the targeted figure at the start of this turn. You cannot use Thunder Ram Assault Special Attack if you used Thunder Step this turn.
+
+keyword:
+	keyword: Thunder Step
+	match: THUNDER STEP
+	mode: official
+	reminder: Instead of moving {sqvalue("all of the ")}{uncTHIS()}{card.key_name} normally, you may choose an opponent's figure within 5 clear sight spaces of {sqvalue("each ")}{uncTHIS()}{card.key_name_sing}. Place {sqvalue("that ")}{uncTHIS()}{card.key_name_sing} on any empty space adjacent to the chosen figure. For the duration of {sqTHE()}{uncTHIS()}{card.key_name}'s turn, add 1 to {HIS("plural")} Attack value. At the end of {HIS("plural")} turn, roll 1 attack die. If a skull is rolled, {sqvalue("destroy one "+card.key_name_sing+" you control", heroinput: "place 1 wound marker on "+uncTHIS()+card.key_name_sing+"'s Army Card")}. If {sqA()}{uncTHIS()}{card.key_name_sing} is engaged when {HE()} starts to Thunder Step, {HE()} will not take any leaving engagement attacks.
+
+keyword:
+	keyword: Tough
+	match: TOUGH
+	mode: official
+	reminder: When rolling defense dice against a normal attack, {uncTHIS()}{card.key_name} always add{sqvalue("", heroinput: "s")} one automatic shield to whatever is rolled.
+
+keyword:
+	keyword: Toxic Skin
+	match: TOXIC SKIN
+	mode: official
+	reminder: After attacking, you must roll the 20-sided die once for each figure adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}. If you roll a 17 or higher, that figure receives one wound. Soulborgs are not affected by Toxic Skin.
+
+keyword:
+	keyword: Tracking
+	match: TRACKING
+	mode: official
+	reminder: While moving, {uncTHIS()}{sqTHE()}{card.key_name} may add 2 to {HIS("plural")} move number. If {HE("plural")} do{sqvalue("", heroinput: "es")}, {HE("plural")} cannot attack this turn.
+
+keyword:
+	keyword: Trample Stomp
+	match: TRAMPLE STOMP
+	mode: official
+	reminder: At any point while moving, {uncTHIS()}{sqA()}{card.key_name_sing} may choose a small or medium figure that is adjacent, on the same level, and on a space where {uncTHIS()}{sqTHE()}{card.key_name_sing} may end {HIS()} movement. Roll the 20-sided die. If you roll 1 - 7, the figure is safe and {uncTHIS()}{sqTHE()}{card.key_name_sing}'s movement ends. If you roll 8-20, the chosen figure receives 1 wound. If the wound destroys the figure, move {uncTHIS()}{sqTHE()}{card.key_name_sing} on the space that the figure occupied, and you may continue movement. If the chosen figure is not destroyed, {uncTHIS()}{sqTHE()}{card.key_name_sing}'s movement ends. {uncTHISC()}{sqAC()}{card.key_name_sing} must be on a space where {HE()} can end movement each time {HE()} uses this power.
+
+keyword:
+	keyword: Tricky Speed
+	match: TRICKY SPEED <atom-param>number</atom-param>
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} starts {HIS()} turn adjacent to any figure you control who has a tricky personality, {HE()} may move {param1} additional spaces.
+
+keyword:
+	keyword: Turn Undead Special Attack
+	match: TURN UNDEAD SPECIAL ATTACK
+	mode: official
+	reminder: Range 4. Attack 4. Turn Undead Special Attack can be used to attack only Undead figures.
+
+keyword:
+	keyword: Ullar Enhanced Rifle Special Attack
+	match: ULLAR ENHANCED RIFLE SPECIAL ATTACK
+	mode: official
+	reminder: Range 10. Attack 1. Choose a non-adjacent small or medium figure to attack. The chosen figure cannot roll defense dice when attacked by {uncTHIS()}{sqTHE()}{card.key_name_sing}'s Ullar Enhanced Rifle Special Attack. {uncTHISC()}{sqAC()}{card.key_name_sing} may not use this special attack if {HE()} moved this turn.
+
+keyword:
+	keyword: Ullar's Amulet
+	match: ULLAR'S AMULET
+	mode: official
+	reminder: All friendly figures who follow Ullar and start their turn adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} may move 2 additional spaces.
+
+keyword:
+	keyword: Ullar's Bolt of Witherwood
+	match: ULLAR'S BOLT OF WITHERWOOD
+	mode: official
+	reminder: After moving and before attacking with {uncTHIS()}{sqTHE()}{card.key_name}, you may choose any opponent's figure within 5 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing}{sqvalue( " you control")}. Roll the 20-sided die. If you roll 1-15, nothing happens. If you roll a 16 or higher, the chosen figure is destroyed. {uncTHISC()}{sqTHEC()}{card.key_name} may attempt to use this power only once per game.
+
+keyword:
+	keyword: Underground Movement
+	match: UNDERGROUND MOVEMENT
+	mode: official
+	reminder: Instead of moving normally with {uncTHIS()}{sqvalue("any or all of the ")}{card.key_name}, you may immediately place {HIM("plural")} on any empty non-water space that is within 4 spaces of {uncvalue("the ")}{sqTHE()}{card.key_name_sing} and is no higher than 1 level above {uncvalue("the ")}{sqTHE()}{card.key_name_sing}'s height or 3 levels below {uncvalue("the ")}{sqTHE()}{card.key_name_sing}'s base. If {uncTHIS()}{sqA()}{card.key_name_sing} is engaged when {HE()} starts {HIS()} Underground Movement, {HE()} will take any leaving engagement attacks.
+
+keyword:
+	keyword: Unholy Bonding
+	match: UNHOLY BONDING
+	mode: official
+	reminder: Before taking a turn with {sqTHE()}{uncTHIS()}{card.key_name}, you may first take a turn with any small, medium or large relentless Hero you control.
+
+keyword:
+	keyword: Unit Enhancement
+	match: <atom-param>string</atom-param> UNIT ENHANCEMENT
+	mode: official
+	reminder: All friendly {english_plural(to_lower(param1))} adjacent to {uncTHIS()}{sqA()}{card.key_name_sing} roll an additional attack die and an additional defense die.
+
+keyword:
+	keyword: Unleashed Fury
+	match: UNLEASHED FURY
+	mode: official
+	reminder: Before moving, roll the 20-sided die. If you roll a 1, {sqvalue("choose a " + card.key_name_sing + " you control and destroy it", heroinput: "destroy " + uncTHIS() + card.key_name)}. If you roll a 2-6, add 1 to the attack value of this card. If you roll a 7-11, add 2 to the attack value of this card. If you roll a 12-15, add 3 to the attack value of this card. If you roll a 16-19, add 4 to the attack value of this card. If you roll a 20, add 8 to the attack value of this card.
+
+keyword:
+	keyword: Unleashed Fury Enhancement
+	match: UNLEASHED FURY ENHANCEMENT
+	mode: official
+	reminder: You may add 1 to your die roll when you roll for the Unleashed Fury power on any Army Card.
+
+keyword:
+	keyword: Utgar's Orders
+	match: UTGAR'S ORDERS
+	mode: official
+	reminder: Instead of taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, you may take a turn with any Kyrie Warrior you control who follows Utgar.
+
+keyword:
+	keyword: Valiant Army Defense Bonus
+	match: VALIANT ARMY DEFENSE BONUS
+	mode: official
+	reminder: If every Army Card you control has a Valiant personality, {uncTHIS()}{card.key_name} {sqvalue("recieve", heroinput: "recieves")} 1 additional defense die.
+
+keyword:
+	keyword: Vanish
+	match: VANISH <atom-param>number</atom-param>
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is attacked and at least 1 skull is rolled, roll the 20-sided die to vanish. If you roll a {param1} or higher, {uncTHIS()}{sqTHE()}{card.key_name_sing} takes no damage and may immediately move up to 4 spaces. {uncTHISC()}{sqAC()}{card.key_name_sing} can vanish only if {HE()} ends {HIS()} vanishing move not adjacent to any enemy figures.
+
+keyword:
+	keyword: Venom Ray Special Attack
+	match: VENOM RAY SPECIAL ATTACK
+	mode: official
+	reminder: Range 5. Attack 3. If {uncTHIS()}{sqA()}{card.key_name_sing} inflicts at least 1 wound with Venom Ray Special Attack, roll the 20-sided die for Venom Damage. If you roll a 1-9, the defending figure recieves no additional wounds for Venom Damage. If you roll a 10-19, add 1 additional wound marker to the defending figure's Army Card, and roll again for Venom Damage. If you roll a 20, destroy the defending figure.
+
+keyword:
+	keyword: Venomous Sting
+	match: VENOMOUS STING
+	mode: official
+	reminder: When rolling attack dice, if {uncTHIS()}{sqA()}{card.key_name_sing} rolls a skull on every die, the defending figure cannot roll any defense dice. Venomous Sting does not affect destructible objects.
+
+keyword:
+	keyword: Vydar's Range Enhancement Aura
+	match: VYDAR'S RANGE ENHANCEMENT AURA
+	mode: official
+	reminder: All friendly figures with a Range number of 4 or more who follow Vydar and are within 4 clear sight spaces of {uncTHIS()}{sqA()}{card.key_name_sing} add 2 to their Range number. Vydar's Range Enhancement Aura does not affect {uncTHIS()}{card.key_name}.
+
+keyword:
+	keyword: Wait Then Fire
+	match: WAIT THEN FIRE
+	mode: official
+	reminder: If {uncTHIS()}{sqvalue("none of the ")}{card.key_name}{sqvalue("", heroinput: "did not ")}move this turn, add 1 die to {HIS("plural")} attack.
+
+keyword:
+	keyword: War Cry
+	match: WAR CRY
+	mode: official
+	reminder: After taking a turn with {uncTHIS()}{sqTHE()}{card.key_name}, if {uncTHIS()}{sqvalue("at least two")} {card.key_name}{sqvalue(" you control")} {sqvalue("are", heroinput: "is")} engaged, you may immediately take a turn with one Unique Tribesman Hero you control.
+
+keyword:
+	keyword: Warforged Resolve
+	match: WARFORGED RESOLVE
+	mode: official
+	reminder: When rolling defense dice against a normal or special attack, {sqA()}{uncTHIS()}{card.key_name_sing} always adds 1 automatic shield to whatever is rolled.
+
+keyword:
+	keyword: Warrior's Armor Spirit
+	match: WARRIOR'S ARMOR SPIRIT <atom-param>number</atom-param>
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} is destroyed, place {HIS()} figure on any unique Army Card. {uncTHISC()}{sqTHEC()}{card.key_name_sing}'s Spirit adds {param1} to the defense number on that card.
+
+keyword:
+	keyword: Warrior's Attack Spirit
+	match: WARRIOR'S ATTACK SPIRIT <atom-param>number</atom-param>
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} is destroyed, place {HIS()} figure on any unique Army Card. {uncTHISC()}{sqTHEC()}{card.key_name_sing}'s Spirit adds {param1} to the attack number on that card.
+
+keyword:
+	keyword: Warrior's Swiftness Spirit
+	match: WARRIOR'S SWIFTNESS SPIRIT <atom-param>number</atom-param>
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} is destroyed, place {HIS()} figure on any unique Army Card. {uncTHISC()}{sqTHEC()}{card.key_name_sing}'s Spirit adds {param1} to the move number on that card.
+
+keyword:
+	keyword: Water Clone
+	match: WATER CLONE
+	mode: official
+	reminder: Instead of attacking with {sqvalue("any of ")}{uncTHIS()}{sqTHE()}{card.key_name}{sqvalue(", one at a time,")} roll the 20-sided die for each {card.key_name} in play. If you roll a 15 or higher, place a previously destroyed {card.key_name} on a same-level space adjacent to {sqTHE()}{card.key_name_sing}. Any {card.key_name} on a water space need a 10 or higher to Water Clone. You may only Water Clone after you move.
+
+keyword:
+	keyword: Water Mastery
+	match: WATER MASTERY
+	mode: official
+	reminder: While {uncTHIS()}{sqA()}{card.key_name_sing} is on a water space, add 1 to {HIS()} Attack and Defense.
+
+keyword:
+	keyword: Water Suits
+	match: WATER SUITS
+	mode: official
+	reminder: {uncvalue("A ")}{card.key_name} do{sqvalue("", heroinput: "es")} not have to stop {HIS("plural")} movement when entering a water space. Add 2 to {uncTHIS()}{sqA()}{card.key_name_sing}'s defense while {HE()} is on a water space.
+
+keyword:
+	keyword: Water Tunnel
+	match: WATER TUNNEL
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} ends {HIS()} normal movement on a water space, you may immediately place {HIM()} on any empty, same-level water space within 5 spaces. If {uncTHIS()}{sqA()}{card.key_name_sing} is engaged when {HE()} starts {HIS()} Water Tunnel, {HE()} will not take any leaving engagement attacks.
+
+keyword:
+	keyword: Water Weakness
+	match: WATER WEAKNESS
+	mode: official
+	reminder: When {uncvalue("a ")}{card.key_name_sing} is on a water space {HE()} rolls 2 fewer defense dice.
+
+keyword:
+	keyword: Web Special Attack
+	match: WEB SPECIAL ATTACK
+	mode: official
+	reminder: Range 4. Attack 3. Figures roll 1 less defense die when defending against Web Special Attack.
+
+keyword:
+	keyword: Whip
+	match: WHIP <atom-param>number</atom-param>
+	mode: official
+	reminder: After moving and before attacking, choose a small or medium figure adjacent to {uncTHIS()}{sqA()}{card.key_name_sing}. Roll the 20-sided die. If you roll a {param1} or higher, the chosen figure cannot roll any defense dice if attacked by {uncTHIS()}{sqTHE()}{card.key_name_sing} this turn.
+
+keyword:
+	keyword: Whirlwind Assault
+	match: WHIRLWIND ASSAULT
+	mode: official
+	reminder: {uncTHISC()}{card.key_name} may attack any or all figures adjacent to {HIM("plural")}. Roll each attack separately.
+
+keyword:
+	keyword: Wild Pack Movement
+	match: WILD PACK MOVEMENT
+	mode: official
+	reminder: Before moving, roll the 20-sided die. If you roll a 1-3, add 1 to the move value of this card. If you roll a 4-6, add 3 to the move value of this card. If you roll a 7-20, add 7 to the move value of this card.
+
+keyword:
+	keyword: Wild Swing Special Attack
+	match: WILD SWING SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 4. Choose a figure to attack. Any figures adjacent to the chosen figure are also affected by the Wild Swing Special Attack. Roll attack dice once for all affected figures. Each figure rolls defense dice seperately. {uncTHISC()}{sqAC()}{card.key_name_sing} cannot be affected by {HIS()} own Wild Swing Special Attack.
+
+keyword:
+	keyword: Wounded Smash
+	match: WOUNDED SMASH
+	mode: official
+	reminder: When {uncTHIS()}{sqA()}{card.key_name_sing} attacks, {HE()} recieves one extra attack die for each wound marker {HE()} has.
+
+keyword:
+	keyword: Wrist Rocket Special Attack
+	match: WRIST ROCKET SPECIAL ATTACK
+	mode: official
+	reminder: Range 4. Attack 4. {uncTHISC()}{sqA()}{card.key_name_sing} may use this special attack 2 times in the same turn. {uncTHISC()}{sqTHEC()}{card.key_name_sing} may target the same figure or a different figure with each attack.
+
+keyword:
+	keyword: Zettian Targeting
+	match: ZETTIAN TARGETING
+	mode: official
+	reminder: When attacking, if a 2nd {card.key_name} attacks the same figure as another, add one attack die to the 2nd {card.key_name}'s attack.
+
+keyword:
+	keyword: Zombie Onslaught Special Attack
+	match: ZOMBIE ONSLAUGHT SPECIAL ATTACK
+	mode: official
+	reminder: Range 1. Attack 6. Three {card.key_name} on the same level may combine their attacks and roll their attack dice as one attack. All {card.key_name} in the attack must be engaged to the targeted figure.
+
+keyword:
+	keyword: Zombies Rise Again
+	match: ZOMBIES RISE AGAIN
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing}{sqvalue(" that you control")} destroys an opponent's small or medium figure, replace that figure immediately, if possible, with one of your own previously destroyed {card.key_name}. Newly placed {card.key_name} cannot attack this turn.
+
+keyword:
+	keyword: +X Broadsword
+	match: +<atom-param>number</atom-param> BROADSWORD
+	mode: official
+	reminder: If {uncTHIS()}{sqA()}{card.key_name_sing} is attacking an adjacent figure, add {param1} dice to {HIS()} attack.

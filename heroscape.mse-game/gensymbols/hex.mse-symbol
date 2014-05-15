@@ -1,0 +1,57 @@
+﻿mse version: 0.3.5
+part:
+	type: shape
+	name: Hexagon
+	combine: subtract
+	point:
+		position: (0.5000127160,0.0827414429)
+		lock: free
+		line after: line
+	point:
+		position: (0.8742203742,0.2915569695)
+		lock: free
+		line after: line
+	point:
+		position: (0.8742203742,0.7091880228)
+		lock: free
+		line after: line
+	point:
+		position: (0.5000127160,0.9180035494)
+		lock: free
+		line after: line
+	point:
+		position: (0.1258050578,0.7091880228)
+		lock: free
+		line after: line
+	point:
+		position: (0.1258050578,0.2915569695)
+		lock: free
+		line after: line
+part:
+	type: shape
+	name: Hexagon
+	combine: overlap
+	point:
+		position: (0.5031185031,0.0000000000)
+		lock: free
+		line after: line
+	point:
+		position: (0.9490644491,0.2502651375)
+		lock: free
+		line after: line
+	point:
+		position: (0.9490644491,0.7507954124)
+		lock: free
+		line after: line
+	point:
+		position: (0.5031185031,1.0010605499)
+		lock: free
+		line after: line
+	point:
+		position: (0.0571725572,0.7507954124)
+		lock: free
+		line after: line
+	point:
+		position: (0.0571725572,0.2502651375)
+		lock: free
+		line after: line

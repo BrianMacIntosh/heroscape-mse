@@ -1,0 +1,71 @@
+﻿mse version: 0.3.8
+game: heroscape
+short name: Marvel Glyph
+full name: Marvel Glyph Labels
+icon: glyph-sample.png
+installer group: heroscape/MarvelGlyph
+position hint: 12
+
+version: 2013-3-7
+depends on: heroscape.mse-game 2013-3-7
+
+card background: white
+card width: 313
+card height: 275
+card dpi: 200
+
+include file: /heroscape.mse-game/styleinclude
+
+
+init script:
+	caps := "yes"
+
+
+card style:
+
+	card type fixed:
+		left:	0
+		top:	0
+		width:	313
+		height:	275
+		z index: -2
+		render style: image
+		popup style: in place
+		choice images:
+			image: glyph_tile.png
+
+	glylabelimage:
+		left:	0
+		top:	0
+		width:	313
+		height:	275
+		z index: 1
+		mask: imagemask.png
+
+	name:
+		left: 63
+		top: 205
+		width: 187
+		height: 24
+		alignment: middle center
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 14
+			color: rgb(255,255,255)
+			scale down to: 8
+
+	glyphsub:
+		left: 70
+		top: 225
+		width: 173
+		height: 24
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 14
+			color: rgb(255,255,255)
+			scale down to: 8

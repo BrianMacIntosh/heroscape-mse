@@ -1,0 +1,437 @@
+﻿mse version: 0.3.8
+game: heroscape
+short name: DS
+full name: Dungeon Set Styles
+icon: card-sample.png
+installer group: heroscape/DS
+position hint: 6
+
+version: 2013-3-7
+depends on: heroscape.mse-game 2010-12-26
+depends on: heroscape-marvelsymbols.mse-symbol-font 2008-07-29
+
+card background: white
+card width: 728
+card height: 691
+card dpi: 150
+
+styling field:
+	type: boolean
+	name: fog image
+	description: Automatically add fog effect to card image?
+	initial: yes
+
+init script:
+	
+	caps := "yes"
+	
+	colorcheck := {
+		if to_lower(input) = "jandar" then rgb(70,70,70)
+		else if to_lower(input) = "valkrill" then rgb(40,40,40)
+		else rgb(255,255,255)
+	}
+	abilheight := {
+		if (card.marvelsym != "" and set.show_marvel_sym = "Include") or set.chcg24 = "Include at bottom of text box" then 430
+		else 472
+	}
+
+include file: /heroscape.mse-game/styleinclude
+
+
+card style:
+	
+	chcg24:
+		left:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 590
+			else if set.chcg24 = "Include at bottom of text box" then 213
+			else -1000
+			}
+		top:
+			{
+			if set.chcg24 = "Do not include" then -1000
+			else if set.chcg24 = "Include in hitzone box" then 393
+			else if set.chcg24 = "Include at bottom of text box" then 613
+			else -1000
+			}
+		width: 42
+		height: 42
+		z index: 5
+		render style: image
+		popup style: in place
+		choice images:
+			jandar:	/heroscape.mse-game/chcg24/jandar.png
+			utgar:	/heroscape.mse-game/chcg24/utgar.png
+			vydar:	/heroscape.mse-game/chcg24/vydar.png
+			ullar:		/heroscape.mse-game/chcg24/ullar.png
+			einar:	/heroscape.mse-game/chcg24/einar.png
+			aquilla:	/heroscape.mse-game/chcg24/aquilla.png
+			valkrill:	/heroscape.mse-game/chcg24/valkrill.png
+
+	disclaimer:
+		left: 5
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	author text:
+		left: 650
+		top: 490
+		width: 70
+		height: 120
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 7
+			color: rgb(0,0,0)
+
+	card type:
+		left:	0
+		top:	0
+		width:	728
+		height:	691
+		z index: -2
+		render style: image
+		popup style: in place
+		choice images:
+			jandar:		cardblanks/jandar.jpg
+			ullar:		cardblanks/ullar.jpg
+			utgar:		cardblanks/utgar.jpg
+			einar:		cardblanks/einar.jpg
+			vydar:		cardblanks/vydar.jpg
+			aquilla:	cardblanks/aquilla.jpg
+			valkrill:	cardblanks/valkrill.jpg
+			custom:	cardblanks/custom.jpg
+
+	image:
+		left:	{if styling.fog_image = "no" then 345 else -1000}
+		top:	25
+		width:	246
+		height:	523
+		z index: 1
+		mask: imagemask.png
+
+	imagefogged:
+		left:	{if styling.fog_image = "yes" then 345 else -1000}
+		top:	25
+		width:	246
+		height:	523
+		z index: 1
+		mask: imagemask_fogged.png
+
+	hitzone:
+		left:	584
+		top:	226
+		width:	128
+		height:	244
+		z index: 2
+		mask: hzmask.png
+
+	########################################################### Ability Text
+
+	abilities:
+		left: 159
+		top: 178
+		width: 205
+		height:
+			script: abilheight()
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 12
+			color: black
+			scale down to: 6
+		line height soft: 0.96
+		mask: textmask.png
+
+	#####LARGECOMMON
+
+	generallogo:
+		left: 209
+		top: 41
+		width: 51
+		height: 59
+		render style: image
+		popup style: in place
+		choice images:
+			blank: /heroscape.mse-game/gensymbols/hex.png
+			jandar: /heroscape.mse-game/gensymbols/jandar.png
+			utgar: /heroscape.mse-game/gensymbols/utgar.png
+			vydar: /heroscape.mse-game/gensymbols/vydar.png
+			ullar: /heroscape.mse-game/gensymbols/ullar.png
+			einar: /heroscape.mse-game/gensymbols/einar.png
+			aquilla: /heroscape.mse-game/gensymbols/aquilla.png
+			valkrill: /heroscape.mse-game/gensymbols/valkrill.png
+			custom1: /heroscape.mse-game/gensymbols/custom1.png
+			custom2: /heroscape.mse-game/gensymbols/custom2.png
+			custom3: /heroscape.mse-game/gensymbols/custom3.png
+			symbolcustom1: script: symbol_variation(symbol: set.symbol1, variation: "standard")
+			symbolcustom2: script: symbol_variation(symbol: set.symbol2, variation: "standard")
+			symbolcustom3: script: symbol_variation(symbol: set.symbol3, variation: "standard")
+
+	name:
+		left: 158
+		top : 107
+		width: 156
+		height: 35
+		alignment: middle center
+		padding bottom: 0
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 15
+			color: rgb(255,255,255)
+		line height soft: 0.9
+
+	###### LARGEMASTER
+
+	general:
+		left: 192
+		top: 147
+		width: 91
+		height: 17
+		alignment: middle center shrink-overflow
+		z index: 1
+		font:
+			name: Arial Narrow
+			weight: bold
+			size: 10
+			color: rgb(255,255,255)
+
+	species:
+		left: 72
+		top : 285
+		width: 63
+		height: 15
+		alignment: middle right shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 11
+			weight: bold
+			color: rgb(255,255,255)
+			separator color: rgb(128,128,128)
+
+	type:
+		left: 39
+		top: 311
+		width: 97
+		height: 15
+		alignment: middle right shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 11
+			weight: bold
+			color: rgb(255,255,255)
+			separator color: rgb(128,128,128)
+
+	class:
+		left: 22
+		top: 335
+		width: 113
+		height: 15
+		alignment: middle right shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 11
+			weight: bold
+			color: rgb(255,255,255)
+			separator color: rgb(128,128,128)
+
+	personality:
+		left: 22
+		top: 361
+		width: 113
+		height: 14
+		alignment: middle right shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 11
+			weight: bold
+			color: rgb(255,255,255)
+			separator color: rgb(128,128,128)
+
+	size:
+		left: 51
+		top: 384
+		width: {85 - card_style.marvel_size_number.content_width}
+		height: 30
+		alignment: right shrink-overflow
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 15
+			weight: bold
+			color: rgb(255,255,255)
+			separator color: rgb(128,128,128)
+	
+	marvel size number:
+		left: 99
+		top: 384
+		width: 40
+		height: 30
+		alignment: right shrink-overflow
+		z index: 3
+		font:
+			name: Arial Narrow
+			size: 15
+			weight: bold
+			color: rgb(255,255,255)
+			separator color: rgb(128,128,128)
+
+	life:
+		left: 458
+		top: 340
+		width: 39
+		height: 27
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 20
+			weight: bold
+			color: rgb(255,255,255)
+
+	move:
+		left: 503
+		top: 393
+		width: 53
+		height: 30
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 18
+			weight: bold
+			color: rgb(255,255,255)
+
+	range:
+		left: 503
+		top: 441
+		width: 53
+		height: 30
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 18
+			weight: bold
+			color: rgb(255,255,255)
+
+	attack:
+		left: 503
+		top: 488
+		width: 53
+		height: 30
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 18
+			weight: bold
+			color: rgb(255,255,255)
+
+	defense:
+		left: 503
+		top: 537
+		width: 53
+		height: 30
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 18
+			weight: bold
+			color: rgb(255,255,255)
+
+	points:
+		left: 443
+		top: 582
+		width: 68
+		height: 27
+		alignment: top center shrink-overflow
+		z index: 3
+		font:
+			name: Arial
+			size: 18
+			weight: bold
+			color:
+				script: colorcheck( card.card_type )
+
+	########################################################### Abilities
+
+	marvelsym:
+		left:
+			{
+			if set.show_marvel_sym = "Include" then 196
+			else -1000
+			}
+		top: 601
+		width: 76
+		height: 45
+		z index: 3
+		alignment: middle center
+		symbol font:
+			name: heroscape-marvelsymbols
+			size: 60
+			alignment: middle center
+
+	########################################################### Static Text
+
+	move ext:
+		left: 493
+		top: 416
+		width: 76
+		height: 15
+		alignment: middle center
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 9
+			color: rgb(255,255,255)
+
+	range ext:
+		left: 493
+		top: 465
+		width: 76
+		height: 15
+		alignment: middle center
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 9
+			color: rgb(255,255,255)
+
+	attack ext:
+		left: 493
+		top: 513
+		width: 76
+		height: 15
+		alignment: middle center
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 9
+			color: rgb(255,255,255)
+
+	defense ext:
+		left: 493
+		top: 561
+		width: 76
+		height: 15
+		alignment: middle center
+		z index: 2
+		font:
+			name: Arial Narrow
+			size: 9
+			color: rgb(255,255,255)
