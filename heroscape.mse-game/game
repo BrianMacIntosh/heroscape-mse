@@ -186,9 +186,13 @@ set field:
 	name: description
 	multi line: true
 set field:
-	type: boolean
+	type: choice
 	name: automatic abilities
 	description: Automatically fill ability texts using keyword database?
+	choice: Case Sensitive
+	choice: Case Insensitive
+	choice: Off
+	initial: Case Insensitive
 set field:
 	type: boolean
 	name: glyph reminder
@@ -866,10 +870,12 @@ card field:
 	script: 
 		expand_keywords(
 			default_expand: {true}
-			condition: {set.automatic_abilities}
+			condition: {
+				(set.automatic_abilities == "Case Insensitive" or set.automatic_abilities == "yes") 
+				or (set.automatic_abilities == "Case Sensitive" and correct_case)
+			}
 			combine: {
-				"<b-auto><nospellcheck>" + shldsize("19") + lowertags(to_upper(keyword)) + shldendsize() + "</nospellcheck></b-auto>" +
-				if expand then "<atom-reminder-{mode}>" + shldsize("13") + "\n" + reminder + shldendsize() + "</atom-reminder-{mode}>"
+				if expand then "<b-auto><nospellcheck>" + shldsize("19") + lowertags(to_upper(keyword)) + shldendsize() + "</nospellcheck></b-auto><atom-reminder-{mode}>" + shldsize("13") + "\n" + reminder + shldendsize() + "</atom-reminder-{mode}>" else keyword
 			}
 			remove_tags_spc(value)
 		)
